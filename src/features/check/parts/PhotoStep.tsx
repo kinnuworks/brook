@@ -88,7 +88,7 @@ export function PhotoStep({ onContinue }: { onContinue: () => void }) {
                   </>
                 ) : (
                   <span className="px-2">
-                    {busy === slot ? <Loader2 className="mx-auto size-6 animate-spin text-aqua-600" /> : <Camera className="mx-auto size-6 text-aqua-600" />}
+                    {busy === slot ? <Loader2 className="mx-auto size-6 animate-spin text-aqua-700" /> : <Camera className="mx-auto size-6 text-aqua-700" />}
                     <span className="mt-1.5 block text-[14.5px] font-semibold text-deep-900">{s.brook[key]}</span>
                     {optional && <span className="block text-[12px] text-ink-faint">{s.ui.optional}</span>}
                   </span>

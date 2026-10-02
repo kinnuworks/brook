@@ -1,23 +1,36 @@
 // One citizen stream check as an HL7 FHIR R4 transaction Bundle, shaped by
 // the OneAquaHealth FHIR Implementation Guide (hl7.eu.fhir.oah, github.com/hl7-eu/oah).
 //
-// • The site is a Location on the OAH Location profile, linked to the raw
-//   form (QuestionnaireResponse) through the IG's referenceForm extension.
-// • Answers are grouped into Observations under the IG's own indicator
-//   codes (morophology, hydrology, LandUse, riparianVegetation, foam,
-//   invasiveOrganisms), one component per OneAquaHealth app field, valued
-//   with the app's own answer codes.
-// • A citizen check is `preliminary`. The IG's indicator profile requires
-//   `final` and a performer, so a check only claims that profile once a
-//   researcher has verified it (see `verify`). That gap in the IG is real and
-//   documented in docs/FHIR.md.
-// • Where an answer came from: every component carries an answer-source
-//   extension (tap, voice, photo suggestion confirmed or corrected…), and a
-//   Provenance names the citizen as author, Brook as assembler and, when a
-//   photo suggestion was used, the AI model as informant. Resources whose
-//   values an AI proposed carry the HL7 security label AIAST.
+// • The site is a Location on the OAH Location profile (location-oah).
+// • The raw form is a QuestionnaireResponse to Brook's Questionnaire
+//   (public/fhir), answers in their native types, subject = the Location.
+// • Answers are grouped into Observations under the IG's own indicator codes
+//   (morophology, hydrology, foam, LandUse, riparianVegetation,
+//   invasiveOrganisms), one component per OneAquaHealth app field. Component
+//   values only use the types the IG's indicator profile allows
+//   (CodeableConcept, Quantity, string): the app's answer codes, HL7 Y/N for
+//   yes/no, UCUM quantities for numbers, one component per ticked option of a
+//   multi-select, the IG's own `absent` for "none of these", and
+//   data-absent-reason `asked-unknown` for "I'm not sure".
+// • A citizen check is `preliminary` and claims no Observation profile: the
+//   IG's indicator profile fixes status to `final` and requires a performer,
+//   so an unreviewed report cannot conform to it. Once a researcher verifies
+//   it (`verifiedBy`), the same content becomes `final`, names the reviewer as
+//   a performer, claims observation-indicators-oah, and a second Provenance
+//   records the verification. The gap is documented in docs/FHIR.md.
+// • Where an answer came from: every component carries Brook's answer-source
+//   extension (tap, voice, photo suggestion confirmed or corrected…). A
+//   Provenance names the citizen as author, Brook as assembler and, when an
+//   AI model took part, the model as informant. Resources holding a value an
+//   AI proposed or interpreted (and the citizen accepted) carry the HL7
+//   security label AIAST; a value the citizen corrected is theirs, not the AI's.
+//
+// Brook's definitions (CodeSystems, the extension, the Questionnaire) are
+// generated from this file, protocol.ts and the English strings by
+// scripts/fhir-definitions.mjs and served from public/fhir.
 
-import type { AnswerValues, FeelingKey, QuestionId, SiteRef } from "./protocol";
+import en from "../i18n/en";
+import type { AnswerValues, FeelingKey, QuestionDef, QuestionId, SiteRef } from "./protocol";
 import { activeQuestions, FEELINGS, QUESTION_BY_ID } from "./protocol";
 
 export const OAH_IG = "http://hl7.eu/fhir/ig/oah";
@@ -30,11 +43,28 @@ export const BROOK_FHIR = "https://brook-oah.vercel.app/fhir";
 export const BROOK_FIELDS = `${BROOK_FHIR}/CodeSystem/oah-citizen-fields`;
 export const BROOK_ANSWERS = `${BROOK_FHIR}/CodeSystem/oah-citizen-answers`;
 export const BROOK_ANSWER_SOURCE = `${BROOK_FHIR}/StructureDefinition/answer-source`;
+export const BROOK_ANSWER_SOURCE_CODES = `${BROOK_FHIR}/CodeSystem/answer-source`;
+export const BROOK_ANSWER_SOURCE_VS = `${BROOK_FHIR}/ValueSet/answer-source`;
+export const BROOK_QUESTIONNAIRE = `${BROOK_FHIR}/Questionnaire/oah-citizen-check`;
 export const BROOK_TAG = { system: `${BROOK_FHIR}/CodeSystem/tags`, code: "brook-citizen-check", display: "Brook citizen stream check" };
-const AIAST = { system: "http://terminology.hl7.org/CodeSystem/v3-ObservationValue", code: "AIAST", display: "Artificial Intelligence asserted" };
-const OAH_SITES = "https://api.enora-oah.eu/api/sites";
+export const AIAST = { system: "http://terminology.hl7.org/CodeSystem/v3-ObservationValue", code: "AIAST", display: "Artificial Intelligence asserted" };
+/** Version of the Brook app, as recorded on its Device. */
+export const BROOK_APP_VERSION = "1.0.0";
 
-export type AnswerSource = "tap" | "voice" | "text" | "voice-ai" | "text-ai" | "photo-confirmed" | "photo-corrected";
+const OAH_SITES = "https://api.enora-oah.eu/api/sites";
+const YES_NO = "http://terminology.hl7.org/CodeSystem/v2-0532";
+const DAR = "http://terminology.hl7.org/CodeSystem/data-absent-reason";
+const UCUM = "http://unitsofmeasure.org";
+const PARTICIPANT = "http://terminology.hl7.org/CodeSystem/provenance-participant-type";
+const DATA_OPERATION = "http://terminology.hl7.org/CodeSystem/v3-DataOperation";
+
+export const ANSWER_SOURCES = ["tap", "voice", "text", "voice-ai", "text-ai", "photo-confirmed", "photo-corrected"] as const;
+export type AnswerSource = (typeof ANSWER_SOURCES)[number];
+
+/** The stored value is what an AI proposed (from a photo) or how it read free speech or text, accepted by the citizen. */
+export const aiAsserted = (s?: AnswerSource | null): boolean => s === "photo-confirmed" || s === "voice-ai" || s === "text-ai";
+/** An AI model took part in reaching the answer, even when the citizen overruled it. */
+export const aiInvolved = (s?: AnswerSource | null): boolean => aiAsserted(s) || s === "photo-corrected";
 
 export interface CheckForFhir {
   id: string;
@@ -47,11 +77,15 @@ export interface CheckForFhir {
   citizenRef: string;
   aiModel?: string | null;
   verifiedBy?: string | null;
+  /** When the reviewer verified the check; defaults to `submittedAt`. */
+  verifiedAt?: string | null;
 }
 
-type Resource = Record<string, unknown> & { resourceType: string; id: string };
+type Json = Record<string, unknown>;
+type Resource = Json & { resourceType: string; id: string };
 
-const GROUPS: { code: string; display: string; fields: QuestionId[] }[] = [
+/** Brook's mapping of OneAquaHealth app fields onto the IG's indicator codes. */
+export const INDICATOR_GROUPS: readonly { code: string; display: string; fields: readonly QuestionId[] }[] = [
   { code: "morophology", display: "Morphology of the streams", fields: ["channelForm", "bottomChannelType", "banksChannelType", "habitats", "fallenBiomassTypes"] },
   { code: "hydrology", display: "Hydrology of the stream", fields: ["waterFlow", "waterHeight", "hasDams", "numberOfDams", "waterAbstraction"] },
   { code: "foam", display: "Foam/colour/smell", fields: ["waterColor", "pipes", "waterDischarge", "construction"] },
@@ -59,6 +93,34 @@ const GROUPS: { code: string; display: string; fields: QuestionId[] }[] = [
   { code: "riparianVegetation", display: "Riparian vegetation", fields: ["isVegetationCoveredLeft", "vegetationTypeLeft", "isVegetationCoveredRight", "vegetationTypeRight"] },
   { code: "invasiveOrganisms", display: "Invasive invertebrate, plants and fish", fields: ["hasInvasivePlantSpecies", "invasivePlantSpecies"] },
 ];
+
+/** Numeric fields: their Questionnaire item type and UCUM unit. */
+export const NUMBER_FIELDS: Partial<Record<QuestionId, { type: "integer" | "decimal"; unit: string; code: string }>> = {
+  numberOfDams: { type: "integer", unit: "dams", code: "1" },
+  waterHeight: { type: "decimal", unit: "m", code: "m" },
+};
+
+/** A field code: a OneAquaHealth app field, or one of the four feelings. */
+export type FieldCode = QuestionId | `feelings.${FeelingKey}`;
+
+/** Display of a field code: Brook's short English name of the OneAquaHealth question. */
+export function fieldDisplay(code: FieldCode): string {
+  if (code.startsWith("feelings.")) return en.feelings[code.slice(9) as FeelingKey];
+  return en.q[code as QuestionId].title;
+}
+
+/** Display of an answer code: OneAquaHealth's own English label for it. */
+export function answerDisplay(qid: QuestionId, code: string): string {
+  return en.q[qid].options?.[code]?.official ?? code;
+}
+
+export const answerCoding = (qid: QuestionId, code: string) => ({ system: BROOK_ANSWERS, code: `${qid}.${code}`, display: answerDisplay(qid, code) });
+export const fieldCoding = (code: FieldCode) => ({ system: BROOK_FIELDS, code, display: fieldDisplay(code) });
+/** "None of these" for a multi-select: the IG's own coded result. */
+export const NONE_CODING = { system: OAH_CODES, code: "absent", display: "Absent" };
+const NOT_SURE = { coding: [{ system: DAR, code: "asked-unknown", display: "Asked But Unknown" }], text: "Not sure" };
+const yesNo = (v: boolean) => ({ coding: [{ system: YES_NO, code: v ? "Y" : "N", display: v ? "Yes" : "No" }], text: v ? "Yes" : "No" });
+const chosen = (qid: QuestionId, code: string) => ({ coding: [answerCoding(qid, code)], text: en.q[qid].options?.[code]?.label ?? code });
 
 const uuid = (seed: string, n: number) => {
   // Deterministic per check so re-sending never duplicates on the server.
@@ -69,35 +131,62 @@ const uuid = (seed: string, n: number) => {
   return `${hex}-${base.slice(0, 4)}-4${base.slice(5, 8)}-a${base.slice(9, 12)}-${base.slice(12, 24)}`;
 };
 
-function valueOf(qid: QuestionId, value: unknown): Record<string, unknown> {
-  const q = QUESTION_BY_ID[qid];
-  if (value === null) {
-    return { dataAbsentReason: { coding: [{ system: "http://terminology.hl7.org/CodeSystem/data-absent-reason", code: "asked-unknown", display: "Asked But Unknown" }] } };
-  }
+/** One field's value as Observation component value(s): one per ticked option of a multi-select. */
+function componentValues(q: QuestionDef, value: unknown): Json[] {
+  if (value === null) return [{ valueCodeableConcept: NOT_SURE }];
   switch (q.kind) {
     case "single":
     case "rating":
-      return { valueCodeableConcept: { coding: [{ system: BROOK_ANSWERS, code: `${qid}.${value}` }], text: String(value) } };
+      return [{ valueCodeableConcept: chosen(q.id, String(value)) }];
     case "multi": {
       const codes = value as string[];
-      if (!codes.length) return { valueCodeableConcept: { coding: [{ system: OAH_CODES, code: "absent", display: "Absent" }], text: "none" } };
-      return { valueCodeableConcept: { coding: codes.map((c) => ({ system: BROOK_ANSWERS, code: `${qid}.${c}` })), text: codes.join(", ") } };
+      if (!codes.length) return [{ valueCodeableConcept: { coding: [NONE_CODING], text: "None" } }];
+      return codes.map((c) => ({ valueCodeableConcept: chosen(q.id, c) }));
     }
     case "yesno":
-      return { valueBoolean: value };
-    case "number":
-      return qid === "waterHeight"
-        ? { valueQuantity: { value, unit: "m", system: "http://unitsofmeasure.org", code: "m" } }
-        : { valueInteger: value };
+      return [{ valueCodeableConcept: yesNo(Boolean(value)) }];
+    case "number": {
+      const unit = NUMBER_FIELDS[q.id] ?? { unit: "1", code: "1" };
+      return [{ valueQuantity: { value, unit: unit.unit, system: UCUM, code: unit.code } }];
+    }
     case "text":
-      return { valueString: value };
+      return [{ valueString: String(value) }];
     default:
-      return { valueString: JSON.stringify(value) };
+      return [{ valueString: JSON.stringify(value) }];
   }
 }
 
-const sourceExt = (source?: AnswerSource) => (source ? [{ url: BROOK_ANSWER_SOURCE, valueCode: source }] : []);
-const aiTouched = (s?: AnswerSource) => s === "photo-confirmed" || s === "photo-corrected" || s === "voice-ai" || s === "text-ai";
+/** One field's answer(s) in the QuestionnaireResponse; "not sure" leaves the item unanswered, as the app stores null. */
+function formAnswers(q: QuestionDef, value: unknown): Json[] {
+  if (value === null || value === undefined) return [];
+  switch (q.kind) {
+    case "single":
+    case "rating":
+      return [{ valueCoding: answerCoding(q.id, String(value)) }];
+    case "multi": {
+      const codes = value as string[];
+      return codes.length ? codes.map((c) => ({ valueCoding: answerCoding(q.id, c) })) : [{ valueCoding: NONE_CODING }];
+    }
+    case "yesno":
+      return [{ valueBoolean: Boolean(value) }];
+    case "number":
+      return [NUMBER_FIELDS[q.id]?.type === "integer" && Number.isInteger(value) ? { valueInteger: value } : { valueDecimal: value }];
+    case "text":
+      return [{ valueString: String(value) }];
+    default:
+      return [];
+  }
+}
+
+const sourceExt = (source?: AnswerSource): Json => (source ? { extension: [{ url: BROOK_ANSWER_SOURCE, valueCode: source }] } : {});
+const SURVEY = [{ coding: [{ system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "survey", display: "Survey" }] }];
+const role = (code: "author" | "assembler" | "informant" | "verifier") => ({
+  coding: [{ system: PARTICIPANT, code, display: code[0].toUpperCase() + code.slice(1) }],
+});
+const modelDeviceId = (model: string) => {
+  const slug = model.toLowerCase().replace(/[^a-z0-9.]+/g, "-").replace(/^[-.]+|[-.]+$/g, "").slice(0, 52);
+  return slug ? `brook-ai-${slug}` : "brook-ai-model";
+};
 
 export function buildBundle(check: CheckForFhir): Record<string, unknown> {
   const { site, answers, sources } = check;
@@ -106,162 +195,172 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     location: site.custom ? uuid(check.id, 1) : `oah-site-${site.code.toLowerCase()}`,
     form: uuid(check.id, 2),
     device: "brook-app",
-    model: "brook-ai-model",
     provenance: uuid(check.id, 3),
+    verification: uuid(check.id, 4),
   };
-  const meta = (extraProfile?: string, ai = false): Record<string, unknown> => ({
-    ...(extraProfile ? { profile: [extraProfile] } : {}),
+  const meta = (profile?: string, ai = false): Json => ({
+    ...(profile ? { profile: [profile] } : {}),
     tag: [BROOK_TAG],
     ...(ai ? { security: [AIAST] } : {}),
   });
+  const asked = activeQuestions(answers).filter((q) => q.id in answers);
+  const askedIds = new Set(asked.map((q) => q.id));
+  const citizen = { identifier: { system: `${BROOK_FHIR}/citizens`, value: check.citizenRef }, display: "Citizen scientist (pseudonymous)" };
+  const performer = [citizen, ...(verified ? [{ display: check.verifiedBy }] : [])];
+  const status = verified ? "final" : "preliminary";
 
   const location: Resource = {
     resourceType: "Location",
     id: ids.location,
     meta: meta(OAH_LOCATION_PROFILE),
-    extension: [
-      {
-        url: "http://hl7.org/fhir/StructureDefinition/artifact-relatedArtifact",
-        valueRelatedArtifact: { type: "documentation", display: "OneAquaHealth citizen stream check", resource: `${BROOK_FHIR}/Questionnaire/oah-citizen-check` },
-      },
-    ],
     identifier: [site.custom ? { system: `${BROOK_FHIR}/user-sites`, value: ids.location } : { system: OAH_SITES, value: site.code }],
     name: site.name,
+    description: site.custom ? "Stream site added by a Brook volunteer" : `OneAquaHealth research site ${site.code}${site.city ? `, ${site.city}` : ""}`,
     mode: "instance",
     ...(site.city ? { address: { city: site.city } } : {}),
-    position: { latitude: site.lat, longitude: site.lon },
+    position: { longitude: site.lon, latitude: site.lat },
   };
 
-  const asked = activeQuestions(answers).filter((q) => q.id in answers);
+  const items: Json[] = asked
+    .filter((q) => q.id !== "feelings")
+    .map((q) => {
+      const answer = formAnswers(q, answers[q.id]);
+      return { linkId: q.id, ...(answer.length ? { answer } : {}) };
+    });
+  const feelings = answers.feelings;
+  const feelingScores =
+    feelings && typeof feelings === "object" && !Array.isArray(feelings)
+      ? FEELINGS.filter((k) => typeof (feelings as Record<FeelingKey, number>)[k] === "number").map((k) => [k, (feelings as Record<FeelingKey, number>)[k]] as const)
+      : [];
+  if (askedIds.has("feelings") && feelingScores.length) {
+    items.push({ linkId: "feelings", item: feelingScores.map(([k, v]) => ({ linkId: `feelings.${k}`, answer: [{ valueInteger: v }] })) });
+  }
   const form: Resource = {
     resourceType: "QuestionnaireResponse",
     id: ids.form,
-    meta: meta(),
-    questionnaire: `${BROOK_FHIR}/Questionnaire/oah-citizen-check`,
+    meta: meta(undefined, asked.some((q) => aiAsserted(sources[q.id]))),
+    language: check.lang,
+    identifier: { system: `${BROOK_FHIR}/checks`, value: check.id },
+    questionnaire: BROOK_QUESTIONNAIRE,
     status: "completed",
     subject: { reference: `Location/${ids.location}` },
     authored: check.submittedAt,
-    author: { identifier: { system: `${BROOK_FHIR}/citizens`, value: check.citizenRef }, display: "Citizen scientist (pseudonymous)" },
-    item: asked
-      .filter((q) => q.id !== "feelings")
-      .map((q) => {
-        const v = answers[q.id];
-        const answer =
-          v === null
-            ? []
-            : Array.isArray(v)
-              ? v.map((c) => ({ valueCoding: { system: BROOK_ANSWERS, code: `${q.id}.${c}` } }))
-              : q.kind === "yesno"
-                ? [{ valueBoolean: v }]
-                : q.kind === "number"
-                  ? [{ valueDecimal: v }]
-                  : q.kind === "text"
-                    ? [{ valueString: v }]
-                    : [{ valueCoding: { system: BROOK_ANSWERS, code: `${q.id}.${v}` } }];
-        return { linkId: q.id, ...(answer.length ? { answer } : {}) };
-      }),
+    author: citizen,
+    item: items,
   };
 
-  const performer = [
-    { identifier: { system: `${BROOK_FHIR}/citizens`, value: check.citizenRef }, display: "Citizen scientist (pseudonymous)" },
-    ...(verified ? [{ display: check.verifiedBy }] : []),
-  ];
+  type ObservationBody = { extension?: Json[]; value?: Json; component?: Json[] };
+  const observation = (n: number, code: Json, ai: boolean, rest: ObservationBody, profile = verified, who: Json[] = performer): Resource => ({
+    resourceType: "Observation",
+    id: uuid(check.id, n),
+    meta: meta(profile ? OAH_INDICATOR_PROFILE : undefined, ai),
+    ...(rest.extension ? { extension: rest.extension } : {}),
+    status,
+    category: SURVEY,
+    code,
+    subject: { reference: `Location/${ids.location}` },
+    effectiveDateTime: check.startedAt,
+    issued: check.submittedAt,
+    performer: who,
+    ...(rest.value ?? {}),
+    derivedFrom: [{ reference: `QuestionnaireResponse/${ids.form}` }],
+    ...(rest.component ? { component: rest.component } : {}),
+  });
 
-  const observations: Resource[] = GROUPS.map((g, i) => {
-    const fields = g.fields.filter((f) => f in answers && QUESTION_BY_ID[f] && asked.some((q) => q.id === f));
-    if (!fields.length) return null;
-    const ai = fields.some((f) => aiTouched(sources[f]));
-    return {
-      resourceType: "Observation",
-      id: uuid(check.id, 10 + i),
-      meta: meta(verified ? OAH_INDICATOR_PROFILE : undefined, ai),
-      status: verified ? "final" : "preliminary",
-      category: [{ coding: [{ system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "survey", display: "Survey" }] }],
-      code: { coding: [{ system: OAH_CODES, code: g.code, display: g.display }] },
-      subject: { reference: `Location/${ids.location}` },
-      effectiveDateTime: check.startedAt,
-      issued: check.submittedAt,
-      performer,
-      derivedFrom: [{ reference: `QuestionnaireResponse/${ids.form}` }],
-      component: fields.map((f) => ({
-        extension: sourceExt(sources[f]),
-        code: { coding: [{ system: BROOK_FIELDS, code: f }], text: f },
-        ...valueOf(f, answers[f]),
+  const observations: Resource[] = [];
+  INDICATOR_GROUPS.forEach((g, i) => {
+    const fields = g.fields.filter((f) => askedIds.has(f));
+    if (!fields.length) return;
+    const component = fields.flatMap((f) =>
+      componentValues(QUESTION_BY_ID[f], answers[f]).map((value) => ({
+        ...sourceExt(sources[f]),
+        code: { coding: [fieldCoding(f)], text: en.q[f].official },
+        ...value,
       })),
-    } as Resource;
-  }).filter((r): r is Resource => r !== null);
+    );
+    observations.push(observation(10 + i, { coding: [{ system: OAH_CODES, code: g.code, display: g.display }] }, fields.some((f) => aiAsserted(sources[f])), { component }));
+  });
 
-  if (answers.overallAssessment) {
-    observations.push({
-      resourceType: "Observation",
-      id: uuid(check.id, 30),
-      meta: meta(verified ? OAH_INDICATOR_PROFILE : undefined),
-      status: verified ? "final" : "preliminary",
-      category: [{ coding: [{ system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "survey", display: "Survey" }] }],
-      code: { coding: [{ system: BROOK_FIELDS, code: "overallAssessment", display: "Citizen overall assessment of stream ecosystem health" }] },
-      subject: { reference: `Location/${ids.location}` },
-      effectiveDateTime: check.startedAt,
-      performer,
-      derivedFrom: [{ reference: `QuestionnaireResponse/${ids.form}` }],
-      valueCodeableConcept: { coding: [{ system: BROOK_ANSWERS, code: `overallAssessment.${answers.overallAssessment}` }], text: String(answers.overallAssessment) },
-    });
+  if (askedIds.has("overallAssessment") && typeof answers.overallAssessment === "string") {
+    observations.push(
+      observation(30, { coding: [fieldCoding("overallAssessment")], text: en.q.overallAssessment.official }, aiAsserted(sources.overallAssessment), {
+        ...sourceExt(sources.overallAssessment),
+        value: { valueCodeableConcept: chosen("overallAssessment", answers.overallAssessment) },
+      }),
+    );
   }
 
-  const feelings = answers.feelings;
-  if (feelings && typeof feelings === "object" && !Array.isArray(feelings) && Object.keys(feelings).length) {
-    observations.push({
-      resourceType: "Observation",
-      id: uuid(check.id, 31),
-      meta: meta(),
-      status: verified ? "final" : "preliminary",
-      category: [{ coding: [{ system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "survey", display: "Survey" }] }],
-      code: { coding: [{ system: BROOK_FIELDS, code: "feelings", display: "Emotional response to the stream (0–5)" }] },
-      subject: { reference: `Location/${ids.location}` },
-      effectiveDateTime: check.startedAt,
-      performer: performer.slice(0, 1),
-      derivedFrom: [{ reference: `QuestionnaireResponse/${ids.form}` }],
-      component: FEELINGS.filter((k) => typeof (feelings as Record<FeelingKey, number>)[k] === "number").map((k) => ({
-        code: { coding: [{ system: BROOK_FIELDS, code: `feelings.${k}` }], text: k },
-        valueInteger: (feelings as Record<FeelingKey, number>)[k],
-      })),
-    });
+  if (askedIds.has("feelings") && feelingScores.length) {
+    observations.push(
+      observation(
+        31,
+        { coding: [fieldCoding("feelings")], text: en.q.feelings.official },
+        aiAsserted(sources.feelings),
+        {
+          component: feelingScores.map(([k, v]) => ({
+            ...sourceExt(sources.feelings),
+            code: { coding: [fieldCoding(`feelings.${k}`)] },
+            valueInteger: v,
+          })),
+        },
+        false,
+        performer.slice(0, 1),
+      ),
+    );
   }
 
-  const usedAi = Object.values(sources).some(aiTouched);
+  const model = asked.some((q) => aiInvolved(sources[q.id])) && check.aiModel ? check.aiModel : null;
   const device: Resource = {
     resourceType: "Device",
     id: ids.device,
     meta: meta(),
     deviceName: [{ name: "Brook — talking field coach for the OneAquaHealth citizen stream check", type: "user-friendly-name" }],
-    version: [{ value: "1.0.0" }],
+    type: { text: "Progressive web app (citizen science field guide)" },
+    version: [{ value: BROOK_APP_VERSION }],
   };
-  const model: Resource | null =
-    usedAi && check.aiModel
-      ? {
-          resourceType: "Device",
-          id: ids.model,
-          meta: meta(),
-          deviceName: [{ name: check.aiModel, type: "model-name" }],
-          type: { text: "AI model that suggested answers from photos or free speech, for the citizen to confirm" },
-        }
-      : null;
+  const modelDevice: Resource | null = model
+    ? {
+        resourceType: "Device",
+        id: modelDeviceId(model),
+        meta: meta(),
+        deviceName: [{ name: model, type: "model-name" }],
+        type: { text: "AI model that suggested answers from photos or read free speech, for the citizen to confirm" },
+      }
+    : null;
 
   const provenance: Resource = {
     resourceType: "Provenance",
     id: ids.provenance,
     meta: meta(),
     target: [{ reference: `QuestionnaireResponse/${ids.form}` }, ...observations.map((o) => ({ reference: `Observation/${o.id}` }))],
+    occurredPeriod: { start: check.startedAt, end: check.submittedAt },
     recorded: check.submittedAt,
-    activity: { text: "Citizen stream check guided by Brook; every answer given or confirmed by the citizen" },
+    activity: {
+      coding: [{ system: DATA_OPERATION, code: "CREATE", display: "create" }],
+      text: "Citizen stream check guided by Brook; every answer given or confirmed by the citizen",
+    },
     agent: [
-      { type: { coding: [{ system: "http://terminology.hl7.org/CodeSystem/provenance-participant-type", code: "author" }] }, who: performer[0] },
-      { type: { coding: [{ system: "http://terminology.hl7.org/CodeSystem/provenance-participant-type", code: "assembler" }] }, who: { reference: `Device/${ids.device}` } },
-      ...(model ? [{ type: { coding: [{ system: "http://terminology.hl7.org/CodeSystem/provenance-participant-type", code: "informant" }] }, who: { reference: `Device/${ids.model}` } }] : []),
-      ...(verified ? [{ type: { coding: [{ system: "http://terminology.hl7.org/CodeSystem/provenance-participant-type", code: "verifier" }] }, who: { display: check.verifiedBy } }] : []),
+      { type: role("author"), who: citizen },
+      { type: role("assembler"), who: { reference: `Device/${ids.device}` } },
+      ...(modelDevice ? [{ type: role("informant"), who: { reference: `Device/${modelDevice.id}` } }] : []),
     ],
   };
+  const verification: Resource | null = verified
+    ? {
+        resourceType: "Provenance",
+        id: ids.verification,
+        meta: meta(),
+        target: observations.map((o) => ({ reference: `Observation/${o.id}` })),
+        recorded: check.verifiedAt ?? check.submittedAt,
+        activity: {
+          coding: [{ system: DATA_OPERATION, code: "UPDATE", display: "revise" }],
+          text: "Reviewed and verified by a OneAquaHealth researcher; observations set to final",
+        },
+        agent: [{ type: role("verifier"), who: { display: check.verifiedBy } }],
+      }
+    : null;
 
-  const resources: Resource[] = [location, form, ...observations, device, ...(model ? [model] : []), provenance];
+  const resources: Resource[] = [location, form, ...observations, device, ...(modelDevice ? [modelDevice] : []), provenance, ...(verification ? [verification] : [])];
   return {
     resourceType: "Bundle",
     type: "transaction",

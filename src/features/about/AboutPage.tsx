@@ -29,7 +29,7 @@ function Point({ icon: Icon, title, children }: { icon: typeof Mic; title: strin
 function Architecture() {
   const box = "fill-white stroke-[#dbe8ed]";
   return (
-    <figure className="card overflow-x-auto p-4">
+    <figure className="card overflow-x-auto p-4" tabIndex={0} aria-label="Architecture diagram (scrolls sideways on small screens)">
       <svg viewBox="0 0 980 430" className="min-w-[760px]" role="img" aria-labelledby="arch-title">
         <title id="arch-title">Brook architecture: from a citizen at the stream to OneAquaHealth's data and FHIR systems</title>
         <defs>

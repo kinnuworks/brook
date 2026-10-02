@@ -40,7 +40,7 @@ function PhonePreview() {
               And the banks: natural, artificial like concrete walls, or stones laid without concrete?
             </div>
             <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-aqua-50 px-3 py-2 ring-1 ring-aqua-200">
-              <div className="mb-1 flex items-center gap-1 text-[11px] font-semibold text-aqua-600">
+              <div className="mb-1 flex items-center gap-1 text-[11px] font-semibold text-aqua-700">
                 <ImageIcon className="size-3" /> From your photo
               </div>
               Looks like <b>laid stones</b>: loose rocks along both banks, no mortar.

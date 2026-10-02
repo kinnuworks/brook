@@ -10,16 +10,17 @@
   --color-deep-900: #0d3245;
   --color-aqua: #6bc7d4;
   --color-aqua-600: #3fa9b9;
+  --color-aqua-700: #17707e;
   --color-aqua-200: #c6ebf1;
   --color-aqua-100: #e3f5f8;
   --color-aqua-50: #f1fafb;
   --color-leaf: #8cc740;
-  --color-leaf-700: #4f7f1c;
+  --color-leaf-700: #3d6914;
   --color-leaf-100: #ecf6df;
   --color-sky: #63c7f2;
   --color-ink: #10283a;
   --color-ink-soft: #4b6474;
-  --color-ink-faint: #8aa0ad;
+  --color-ink-faint: #5d7582;
   --color-line: #dbe8ed;
   --color-mist: #f4f8f9;
   --color-sun: #f2b33d;
@@ -128,7 +129,7 @@
   @apply ring-2 ring-aqua bg-aqua-50;
 }
 @utility eyebrow {
-  @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-aqua-600;
+  @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-aqua-700;
 }
 
 /* Respect people who prefer less motion. */

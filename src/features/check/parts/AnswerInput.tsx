@@ -39,7 +39,7 @@ function OptionChip({ label, official, on, onClick, suggested, picture }: { labe
         <span className="block text-[17px] font-semibold leading-tight">{label}</span>
         {official && official !== label && <span className="mt-0.5 block text-[12.5px] text-ink-soft">{official}</span>}
       </span>
-      {suggested && <ImageIcon className="size-4 shrink-0 text-aqua-600" aria-label="suggested from your photo" />}
+      {suggested && <ImageIcon className="size-4 shrink-0 text-aqua-700" aria-label="suggested from your photo" />}
     </button>
   );
 }
@@ -65,7 +65,7 @@ export function AnswerInput({ qid, suggestion, onAnswer, onRejectSuggestion, dra
 
   const offeredBox = suggestion && q.kind !== "multi" && q.kind !== "yesno" && (
     <div className="mb-3 rounded-2xl bg-aqua-50 p-3.5 ring-1 ring-aqua-200">
-      <div className="flex items-center gap-1.5 text-[13px] font-semibold text-aqua-600">
+      <div className="flex items-center gap-1.5 text-[13px] font-semibold text-aqua-700">
         <ImageIcon className="size-4" aria-hidden /> {s.ui.fromYourPhoto}
       </div>
       <div className="mt-1 text-[17px] font-bold text-deep-900">{describe(lang, qid, suggestion.value)}</div>
@@ -114,7 +114,7 @@ export function AnswerInput({ qid, suggestion, onAnswer, onRejectSuggestion, dra
       return (
         <div>
           {suggestion && (
-            <p className="mb-2 flex items-center gap-1.5 text-[13.5px] text-aqua-600">
+            <p className="mb-2 flex items-center gap-1.5 text-[13.5px] text-aqua-700">
               <ImageIcon className="size-4" aria-hidden /> {s.ui.fromYourPhoto}: {describe(lang, qid, suggestion.value)}
               {suggestion.evidence ? ` — “${suggestion.evidence}”` : ""}
             </p>
@@ -146,7 +146,7 @@ export function AnswerInput({ qid, suggestion, onAnswer, onRejectSuggestion, dra
         <div>
           {marginDiagram}
           {suggestion && (
-            <p className="mb-2 flex items-center gap-1.5 text-[13.5px] text-aqua-600">
+            <p className="mb-2 flex items-center gap-1.5 text-[13.5px] text-aqua-700">
               <ImageIcon className="size-4" aria-hidden /> {s.ui.fromYourPhoto}: {describe(lang, qid, suggestion.value)}
               {suggestion.evidence ? ` — “${suggestion.evidence}”` : ""}
             </p>

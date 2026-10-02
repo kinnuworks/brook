@@ -28,7 +28,7 @@ export function Review({ onSubmit, busy }: { onSubmit: () => void; busy: boolean
           if (!qs.length) return null;
           return (
             <section key={section} className="rounded-2xl bg-white ring-1 ring-line">
-              <h3 className="border-b border-line px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.06em] text-aqua-600">{s.sections[section].title}</h3>
+              <h3 className="border-b border-line px-4 py-2.5 text-[13px] font-semibold uppercase tracking-[0.06em] text-aqua-700">{s.sections[section].title}</h3>
               <ul className="divide-y divide-line">
                 {qs.map((q) => {
                   const answered = q.id in answers;

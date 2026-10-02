@@ -48,7 +48,7 @@ export default function StoryPage() {
   if (data === undefined) {
     return (
       <div className="grid min-h-[60vh] place-items-center">
-        <Loader2 className="size-7 animate-spin text-aqua-600" />
+        <Loader2 className="size-7 animate-spin text-aqua-700" />
       </div>
     );
   }
@@ -245,7 +245,7 @@ export default function StoryPage() {
             {data.weather ? (
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <div className="rounded-2xl bg-aqua-50 p-4">
-                  <CloudRain className="size-5 text-aqua-600" aria-hidden />
+                  <CloudRain className="size-5 text-aqua-700" aria-hidden />
                   <div className="mt-2 text-[24px] font-bold tabular-nums">{data.weather.rain72hMm} mm</div>
                   <div className="text-[13px] text-ink-soft">{s.story.rainLabel}</div>
                 </div>

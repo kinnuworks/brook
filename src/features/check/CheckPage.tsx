@@ -29,6 +29,7 @@ export default function CheckPage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const demo = params.get("demo") === "1";
+  const film = params.has("film");
   const lang = useSettings((st) => st.lang);
   const voiceOn = useSettings((st) => st.voiceOn);
   const setVoiceOn = useSettings((st) => st.setVoiceOn);
@@ -240,6 +241,30 @@ export default function CheckPage() {
     });
   }, [handleUtterance]);
 
+  // Film mode (?film=1): lets the demo-video script "speak" a reply through exactly
+  // the same path a real voice reply takes, since a recorded browser has no microphone.
+  useEffect(() => {
+    if (!params.has("film")) return;
+    const w = window as unknown as { __brookHear?: (text: string) => Promise<void> };
+    w.__brookHear = async (text: string) => {
+      setListening(true);
+      setAvatar("listening");
+      const words = text.split(" ");
+      for (let i = 1; i <= words.length; i++) {
+        setInterim(words.slice(0, i).join(" "));
+        await new Promise((r) => setTimeout(r, 140));
+      }
+      await new Promise((r) => setTimeout(r, 350));
+      setListening(false);
+      setInterim("");
+      setAvatar("idle");
+      await handleUtterance([text], "voice");
+    };
+    return () => {
+      delete w.__brookHear;
+    };
+  }, [params, handleUtterance]);
+
   const toggleMic = () => {
     if (listening) listenRef.current?.stop();
     else startListening();
@@ -335,19 +360,19 @@ export default function CheckPage() {
             <LangPicker onChange={onLangChange} />
           </div>
         </div>
-        <div className="h-1.5 bg-aqua-100" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
+        <div className="h-1.5 bg-aqua-100" role="progressbar" aria-label={s.ui.step} aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
           <div className="h-1.5 rounded-r-full bg-gradient-to-r from-aqua to-deep transition-all duration-500" style={{ width: `${pct}%` }} />
         </div>
       </header>
 
       {/* Conversation */}
-      <div ref={scrollRef} data-scroller className="flex-1 overflow-y-auto overscroll-contain">
+      <div ref={scrollRef} data-scroller tabIndex={0} aria-label="Conversation" className="flex-1 overflow-y-auto overscroll-contain focus-visible:outline-none">
         <Transcript avatar={avatar} interim={interim} />
       </div>
 
       {/* Dock: what you can do right now */}
       <div className="z-20 border-t border-line bg-white/95 shadow-[0_-12px_30px_-18px_rgb(16_40_58/0.35)] backdrop-blur">
-        <div className="mx-auto max-h-[62vh] max-w-2xl overflow-y-auto px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-3">
+        <div tabIndex={-1} className="mx-auto max-h-[62vh] max-w-2xl overflow-y-auto px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-3">
           {step === "intro" && (
             <button className="btn-primary w-full" onClick={() => useCheck.getState().begin(lang)}>
               {s.ui.start}
@@ -411,7 +436,7 @@ export default function CheckPage() {
                 <button className="grid size-12 place-items-center rounded-full text-ink-soft ring-1 ring-line hover:ring-aqua" onClick={() => setTyping((t) => !t)} aria-label={s.ui.typeInstead}>
                   <Keyboard className="size-5" />
                 </button>
-                {canListen() && (
+                {(canListen() || film) && (
                   <button
                     onClick={toggleMic}
                     disabled={thinking}
@@ -446,7 +471,7 @@ export default function CheckPage() {
                   </button>
                 </form>
               )}
-              {!canListen() && <p className="text-[13px] text-ink-faint">{s.ui.speechUnsupported}</p>}
+              {!canListen() && !film && <p className="text-[13px] text-ink-faint">{s.ui.speechUnsupported}</p>}
               <details className="text-[13px] text-ink-soft">
                 <summary className="cursor-pointer select-none">{s.ui.officialQuestion}</summary>
                 <p className="mt-1">{qText.official}</p>

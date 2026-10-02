@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-02T10:39:55.053Z",
+  "base": "http://localhost:5173",
+  "results": [
+    {
+      "page": "home",
+      "violations": []
+    },
+    {
+      "page": "check-safety",
+      "violations": []
+    },
+    {
+      "page": "hub",
+      "violations": []
+    },
+    {
+      "page": "about",
+      "violations": []
+    },
+    {
+      "page": "check-question",
+      "violations": []
+    }
+  ]
+}

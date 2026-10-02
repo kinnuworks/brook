@@ -30,7 +30,7 @@ function BrookBubble({ m, first, avatar }: { m: Extract<Msg, { from: "brook" }>;
     <div className="flex items-end gap-2.5 animate-rise">
       <div className="w-9 shrink-0">{first && <BrookAvatar size={36} state={avatar} />}</div>
       <div className={`max-w-[85%] rounded-[22px] rounded-bl-md px-4 py-3 text-[17px] leading-snug shadow-[0_1px_2px_rgb(16_40_58/0.06)] ${tone}`}>
-        {Icon && <Icon className={`mb-1 size-4 ${m.tone === "safety" ? "text-clay" : "text-aqua-600"}`} aria-hidden />}
+        {Icon && <Icon className={`mb-1 size-4 ${m.tone === "safety" ? "text-clay" : "text-aqua-700"}`} aria-hidden />}
         {m.text}
       </div>
     </div>
