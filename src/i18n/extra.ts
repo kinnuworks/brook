@@ -9,7 +9,7 @@ type DeepPartial<T> = { [K in keyof T]?: T[K] extends (infer U)[] ? U[] : T[K] e
 export const EXTRA: Record<string, DeepPartial<Strings>> = {
   pt: {
     ui: {
-      typeOrTalk: "Escreva uma resposta ou toque no microfone",
+      typeOrTalk: "Escreva, ou toque no microfone",
       yourCheck: "A sua observação",
       answersSoFar: "As suas respostas até agora",
       nothingYet: "As suas respostas vão aparecer aqui.",
@@ -20,7 +20,7 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
   },
   fr: {
     ui: {
-      typeOrTalk: "Écrivez une réponse ou touchez le micro",
+      typeOrTalk: "Écrivez, ou touchez le micro",
       yourCheck: "Votre observation",
       answersSoFar: "Vos réponses jusqu’ici",
       nothingYet: "Vos réponses s’afficheront ici.",
@@ -31,7 +31,7 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
   },
   it: {
     ui: {
-      typeOrTalk: "Scrivi una risposta o tocca il microfono",
+      typeOrTalk: "Scrivi, o tocca il microfono",
       yourCheck: "La tua osservazione",
       answersSoFar: "Le tue risposte finora",
       nothingYet: "Le tue risposte appariranno qui.",
@@ -42,7 +42,7 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
   },
   nl: {
     ui: {
-      typeOrTalk: "Typ een antwoord of tik op de microfoon",
+      typeOrTalk: "Typ, of tik op de microfoon",
       yourCheck: "Jouw beekcheck",
       answersSoFar: "Je antwoorden tot nu toe",
       nothingYet: "Je antwoorden verschijnen hier.",
@@ -53,7 +53,7 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
   },
   no: {
     ui: {
-      typeOrTalk: "Skriv et svar, eller trykk på mikrofonen",
+      typeOrTalk: "Skriv, eller trykk på mikrofonen",
       yourCheck: "Din bekkesjekk",
       answersSoFar: "Svarene dine så langt",
       nothingYet: "Svarene dine dukker opp her.",
@@ -64,7 +64,7 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
   },
   el: {
     ui: {
-      typeOrTalk: "Πληκτρολογήστε απάντηση ή πατήστε το μικρόφωνο",
+      typeOrTalk: "Γράψτε, ή πατήστε το μικρόφωνο",
       yourCheck: "Η καταγραφή σας",
       answersSoFar: "Οι απαντήσεις σας μέχρι τώρα",
       nothingYet: "Οι απαντήσεις σας θα εμφανίζονται εδώ.",

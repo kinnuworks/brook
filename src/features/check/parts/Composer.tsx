@@ -85,7 +85,7 @@ export function Composer({ canTalk, listening, thinking, onMic, onSend, quick }:
               placeholder={canTalk ? s.ui.typeOrTalk : s.ui.typeInstead}
               aria-label={s.ui.typeInstead}
               enterKeyHint="send"
-              className="h-full min-w-0 flex-1 rounded-full bg-transparent px-4 text-[16px] text-ink outline-none placeholder:text-ink-faint"
+              className="h-full min-w-0 flex-1 text-ellipsis rounded-full bg-transparent px-4 text-[16px] text-ink outline-none placeholder:text-ink-faint"
             />
           )}
         </div>

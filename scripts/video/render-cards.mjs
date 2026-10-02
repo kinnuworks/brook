@@ -25,8 +25,46 @@ const BASE_CSS = `
 const WAVE = `<svg class="wave" viewBox="0 0 1920 150" preserveAspectRatio="none"><path d="M0 90 Q120 50 240 90 T480 90 T720 90 T960 90 T1200 90 T1440 90 T1680 90 T1920 90 V150 H0Z" fill="#6bc7d4" opacity=".25"/><path d="M0 110 Q120 80 240 110 T480 110 T720 110 T960 110 T1200 110 T1440 110 T1680 110 T1920 110 V150 H0Z" fill="#216b8c" opacity=".12"/></svg>`;
 const brand = `<div class="brand">${avatar}<span>Brook</span></div>`;
 
-// Phone geometry (shared with compose.py): screen 452×978 at (424, 51).
-const PHONE = { x: 412, y: 39, w: 476, h: 1002, sx: 424, sy: 51, sw: 452, sh: 978 };
+// Phone geometry (shared with compose.py): screen 452×978 at (424, 51); the app
+// (recorded at 390×797) fills the screen under the status bar, at (424, 105) 452×924.
+const PHONE = { sx: 424, sy: 51, sw: 452, sh: 978 };
+
+/** A realistic phone over a transparent canvas, with a hole where the app shows. */
+function phoneSvg(id, sx, sy, sw, sh) {
+  const k = sw / 390; // CSS px of a 390-wide phone
+  const bar = 47 * k;
+  const r = 54 * k;
+  const bezel = 11.5 * k;
+  const edge = 3 * k;
+  const ox = sx - bezel - edge;
+  const oy = sy - bezel - edge;
+  const ow = sw + 2 * (bezel + edge);
+  const oh = sh + 2 * (bezel + edge);
+  const btn = (x, y, h) => `<rect x="${x}" y="${y}" width="${4 * k}" height="${h}" rx="${2 * k}" fill="url(#btn-${id})"/>`;
+  return `<defs>
+    <linearGradient id="ti-${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3e8ec"/><stop offset=".5" stop-color="#8f9ba4"/><stop offset="1" stop-color="#d7dde2"/></linearGradient>
+    <linearGradient id="btn-${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4c5861"/><stop offset=".5" stop-color="#9aa6ae"/><stop offset="1" stop-color="#5c6870"/></linearGradient>
+    <mask id="hole-${id}"><rect x="0" y="0" width="1920" height="1080" fill="white"/><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${r}" fill="black"/></mask>
+    <clipPath id="scr-${id}"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${r}"/></clipPath>
+    <filter id="sh-${id}" x="-30%" y="-20%" width="160%" height="140%"><feDropShadow dx="0" dy="${30 * k}" stdDeviation="${30 * k}" flood-color="#0d3245" flood-opacity=".32"/></filter>
+  </defs>
+  ${btn(ox - 3 * k, oy + oh * 0.17, oh * 0.05)}${btn(ox - 3 * k, oy + oh * 0.25, oh * 0.09)}${btn(ox - 3 * k, oy + oh * 0.36, oh * 0.09)}${btn(ox + ow - 1 * k, oy + oh * 0.29, oh * 0.13)}
+  <g filter="url(#sh-${id})" mask="url(#hole-${id})">
+    <rect x="${ox}" y="${oy}" width="${ow}" height="${oh}" rx="${r + bezel + edge}" fill="url(#ti-${id})"/>
+    <rect x="${ox + edge}" y="${oy + edge}" width="${ow - 2 * edge}" height="${oh - 2 * edge}" rx="${r + bezel}" fill="#0a0d10"/>
+  </g>
+  <g clip-path="url(#scr-${id})">
+    <rect x="${sx}" y="${sy}" width="${sw}" height="${bar}" fill="#fefefe"/>
+    <text x="${sx + 34 * k}" y="${sy + 31 * k}" font-family="DM Sans" font-weight="600" font-size="${16 * k}" fill="#10283a">9:41</text>
+    <g transform="translate(${sx + sw - 34 * k - 71 * k} ${sy + 19.5 * k}) scale(${k})" fill="#10283a">
+      <rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/>
+      <g transform="translate(24 0)"><path d="M8 11.5 L5.6 9 a3.4 3.4 0 0 1 4.8 0 Z"/><path d="M2.8 6.3 a7.4 7.4 0 0 1 10.4 0" stroke="#10283a" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M0.6 3.8 a10.6 10.6 0 0 1 14.8 0" stroke="#10283a" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>
+      <g transform="translate(44 -0.5)"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#10283a" stroke-opacity=".4"/><rect x="2" y="2" width="18" height="9" rx="2"/><path d="M25 4.5 v4 a2 2 0 0 0 0 -4z" fill-opacity=".45"/></g>
+    </g>
+    <rect x="${sx + sw / 2 - 60 * k}" y="${sy + 11 * k}" width="${120 * k}" height="${34 * k}" rx="${17 * k}" fill="#000"/>
+    <rect x="${sx + sw / 2 - 67 * k}" y="${sy + sh - 9 * k}" width="${134 * k}" height="${5 * k}" rx="${2.5 * k}" fill="#10283a" fill-opacity=".85"/>
+  </g>`;
+}
 // Browser geometry: window 1560×975 at (180, 70), content 1560×919 at (180, 126).
 const BROWSER = { x: 180, y: 70, w: 1560, h: 975, cx: 180, cy: 126, cw: 1560, ch: 919 };
 
@@ -47,14 +85,8 @@ const phoneScene = (n, eyebrow, title, sub) =>
      </div>`,
   );
 
-// Transparent phone frame with a rounded screen hole.
-await render(
-  "phone-frame",
-  `<svg width="1920" height="1080" style="position:absolute;inset:0"><defs><mask id="m"><rect width="1920" height="1080" fill="white"/><rect x="${PHONE.sx}" y="${PHONE.sy}" width="${PHONE.sw}" height="${PHONE.sh}" rx="40" fill="black"/></mask>
-   <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#216b8c" flood-opacity=".35"/></filter></defs>
-   <g filter="url(#sh)"><rect x="${PHONE.x}" y="${PHONE.y}" width="${PHONE.w}" height="${PHONE.h}" rx="56" fill="#0d3245" mask="url(#m)"/></g></svg>`,
-  true,
-);
+// Transparent phone frame: the app shows through the screen, under the status bar.
+await render("phone-frame", `<svg width="1920" height="1080" style="position:absolute;inset:0">${phoneSvg("p", PHONE.sx, PHONE.sy, PHONE.sw, PHONE.sh)}</svg>`, true);
 // Transparent browser frame with a window hole.
 await render(
   "browser-frame",
@@ -83,6 +115,7 @@ const desktopScene = (n, text) =>
     `<div class="bg"></div>${WAVE}
      <div style="position:absolute;left:0;right:0;top:8px;text-align:center;font-size:30px;font-weight:700;color:#0d3245">${text}</div>`,
   );
+await desktopScene("s11b", "On a laptop: your progress, your photos and every answer beside the conversation");
 await desktopScene("s12", "For scientists: which questions do people find hard?");
 await desktopScene("s13", "Seven languages · works without AI or signal · data stays in Europe · ≈ 0.1 ¢ per check");
 
@@ -144,13 +177,22 @@ await render(
      <div style="font-family:'DM Serif Display',serif;font-size:56px;color:#0d3245;margin-top:8px">The languages of OneAquaHealth's cities</div>
    </div>`,
 );
+// While Brook speaks Portuguese: the other two phones step back, and a label names the voice.
+await render(
+  "langs-focus",
+  `<svg width="1920" height="1080" style="position:absolute;inset:0">${LANG.xs
+    .slice(1)
+    .map((x) => `<rect x="${x - 18}" y="${LANG.y - 18}" width="${LANG.w + 36}" height="${LANG.h + 36}" rx="72" fill="#f4f8f9" fill-opacity=".62"/>`)
+    .join("")}</svg>
+   <div style="position:absolute;left:${LANG.xs[0] + LANG.w / 2}px;top:${LANG.y + LANG.h + 26}px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:#216b8c;color:white;border-radius:999px;padding:9px 22px 9px 18px;font-size:23px;font-weight:700;box-shadow:0 10px 24px -10px rgba(33,107,140,.7);white-space:nowrap">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+     Brook, in Portuguese
+   </div>`,
+  true,
+);
 await render(
   "langs-frame",
-  `<svg width="1920" height="1080" style="position:absolute;inset:0"><defs><mask id="m"><rect width="1920" height="1080" fill="white"/>${LANG.xs
-    .map((x) => `<rect x="${x}" y="${LANG.y}" width="${LANG.w}" height="${LANG.h}" rx="32" fill="black"/>`)
-    .join("")}</mask>
-   <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#216b8c" flood-opacity=".3"/></filter></defs>
-   <g filter="url(#sh)">${LANG.xs.map((x) => `<rect x="${x - 10}" y="${LANG.y - 10}" width="${LANG.w + 20}" height="${LANG.h + 20}" rx="44" fill="#0d3245" mask="url(#m)"/>`).join("")}</g></svg>`,
+  `<svg width="1920" height="1080" style="position:absolute;inset:0">${LANG.xs.map((x, i) => phoneSvg(`l${i}`, x, LANG.y, LANG.w, LANG.h)).join("")}</svg>`,
   true,
 );
 

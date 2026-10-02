@@ -33,18 +33,27 @@ export async function startScreencast(page, { width, height, quality = 92 } = {}
       const endedAt = Date.now() / 1000;
       if (!frames.length) throw new Error("no frames captured");
       // Chrome only sends a frame when something changes: hold each frame until the next one.
+      // The first frame carries the time the page last changed, which can be seconds before
+      // recording began; counting from there would freeze the start and push every action late.
+      const at = (i) => Math.max(frames[i].t, startedAt);
       const lines = [];
+      let total = 0;
       for (let i = 0; i < frames.length; i++) {
-        const next = i + 1 < frames.length ? frames[i + 1].t : Math.max(endedAt, startedAt + minSeconds);
-        const dur = Math.max(1 / fps, next - frames[i].t);
+        const next = i + 1 < frames.length ? at(i + 1) : Math.max(endedAt, startedAt + minSeconds);
+        // True timing, even for frames closer than 1/fps apart: the fps filter below drops extras.
+        const dur = Math.max(0.001, next - at(i));
+        total += dur;
         lines.push(`file '${path.resolve(frames[i].file)}'`, `duration ${dur.toFixed(4)}`);
       }
+      // The concat format needs the last file listed twice, and ffmpeg then shows it twice as
+      // long: cut the clip at its real length, or every clip ends on a frozen frame.
       lines.push(`file '${path.resolve(frames.at(-1).file)}'`);
       const list = path.join(dir, "list.txt");
       await writeFile(list, lines.join("\n"));
       execFileSync("ffmpeg", [
         "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", list,
         "-vf", `fps=${fps},scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p`,
+        "-t", total.toFixed(3),
         "-c:v", "libx264", "-preset", "slow", "-crf", "16", out,
       ]);
       await rm(dir, { recursive: true, force: true });
