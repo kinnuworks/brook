@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* Brook's palette is OneAquaHealth's own: the deep teal, aqua, leaf green and
+   sky of the OAH logo, so Brook reads as part of the same family of tools.
+   Light by design: it is used outdoors, in daylight, at a stream. */
+@theme {
+  --color-deep: #216b8c;
+  --color-deep-600: #1b5c79;
+  --color-deep-700: #164c64;
+  --color-deep-900: #0d3245;
+  --color-aqua: #6bc7d4;
+  --color-aqua-600: #3fa9b9;
+  --color-aqua-200: #c6ebf1;
+  --color-aqua-100: #e3f5f8;
+  --color-aqua-50: #f1fafb;
+  --color-leaf: #8cc740;
+  --color-leaf-700: #4f7f1c;
+  --color-leaf-100: #ecf6df;
+  --color-sky: #63c7f2;
+  --color-ink: #10283a;
+  --color-ink-soft: #4b6474;
+  --color-ink-faint: #8aa0ad;
+  --color-line: #dbe8ed;
+  --color-mist: #f4f8f9;
+  --color-sun: #f2b33d;
+  --color-sun-100: #fdf3dc;
+  --color-clay: #c9603d;
+  --color-clay-100: #fbe9e2;
+
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+
+  --radius-card: 24px;
+  --shadow-card: 0 1px 2px rgb(16 40 58 / 0.04), 0 10px 30px -8px rgb(33 107 140 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(16 40 58 / 0.05), 0 18px 40px -12px rgb(33 107 140 / 0.28);
+
+  --animate-ripple: ripple 2.4s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-wave: wave 14s linear infinite;
+  --animate-rise: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes wave {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-mist text-ink font-sans;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  ::selection {
+    background: var(--color-aqua-200);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-aqua-600);
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@utility card {
+  background-color: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  min-height: 3rem;
+  padding-inline: 1.5rem;
+  font-size: 17px;
+  user-select: none;
+  transition: background-color 0.15s, color 0.15s, box-shadow 0.15s, transform 0.1s;
+  &:active {
+    transform: scale(0.98);
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+@utility btn-primary {
+  @apply btn bg-deep text-white hover:bg-deep-600;
+  box-shadow: 0 8px 20px -8px rgb(33 107 140 / 0.6);
+}
+@utility btn-secondary {
+  @apply btn bg-white text-deep ring-1 ring-line hover:ring-aqua hover:bg-aqua-50;
+}
+@utility btn-ghost {
+  @apply btn bg-transparent text-deep hover:bg-aqua-100;
+}
+@utility chip {
+  @apply flex w-full items-center gap-3 rounded-2xl bg-white px-4 py-3.5 text-left ring-[1.5px] ring-line transition hover:ring-aqua hover:bg-aqua-50 min-h-14;
+  &:active {
+    transform: scale(0.99);
+  }
+}
+@utility chip-on {
+  @apply ring-2 ring-aqua bg-aqua-50;
+}
+@utility eyebrow {
+  @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-aqua-600;
+}
+
+/* Respect people who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

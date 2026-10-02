@@ -1,0 +1,260 @@
+import type { FeelingKey, QuestionId, Section } from "@/core/protocol";
+
+/** One answer choice: what Brook calls it, OneAquaHealth's own label, and the words that mean it. */
+export interface OptionText {
+  /** Plain-language label shown on the chip. */
+  label: string;
+  /** The official OneAquaHealth wording, shown small under the plain label. */
+  official: string;
+  /** Words and phrases a person might say for this answer (lower case). */
+  say: string[];
+}
+
+export interface QuestionText {
+  /** Short name used in summaries ("Channel form"). */
+  title: string;
+  /** What Brook asks, in plain words. */
+  ask: string;
+  /** The plain-language explanation Brook gives when asked "what does that mean?". */
+  help: string;
+  /** The official OneAquaHealth question, shown for transparency. */
+  official: string;
+  options?: Record<string, OptionText>;
+}
+
+export interface Strings {
+  langName: string;
+  /** Phrases that mean yes / no / not sure / help / repeat / back / none, lower case. */
+  words: {
+    yes: string[];
+    no: string[];
+    notSure: string[];
+    help: string[];
+    repeat: string[];
+    back: string[];
+    none: string[];
+    and: string[];
+  };
+  units: { metre: string[]; centimetre: string[]; half: string[]; depth: Record<string, number> };
+  numbers: Record<string, number>;
+  sections: Record<Section, { title: string; intro: string }>;
+  q: Record<QuestionId, QuestionText>;
+  feelings: Record<FeelingKey, string>;
+  feelingWords: Record<FeelingKey, string[]>;
+  brook: {
+    hello: string;
+    safety: string;
+    safetyReady: string;
+    sitePrompt: string;
+    siteFound: string;
+    siteCustom: string;
+    photosPrompt: string;
+    photoUpstream: string;
+    photoDownstream: string;
+    photoSurroundings: string;
+    photoBiodiversity: string;
+    photosLooking: string;
+    photosSuggested: string;
+    photosNone: string;
+    photosNotStream: string;
+    gotIt: string;
+    gotItNone: string;
+    notSureOk: string;
+    didntCatch: string;
+    tapInstead: string;
+    suggestion: string;
+    suggestionNotSure: string;
+    keepGoing: string;
+    secondLookIntro: string;
+    secondLookDone: string;
+    feelingsHeard: string;
+    reviewPrompt: string;
+    submitted: string;
+    offlineQueued: string;
+    aiResting: string;
+    bestGuess: string;
+    suggestionYesNo: string;
+  };
+  secondLook: {
+    goodWithPollution: string;
+    poorButNatural: string;
+    clearAfterRain: string;
+    muddyNoRain: string;
+    foamDischarge: string;
+    riffleStagnant: string;
+    dryWithWater: string;
+    keep: string;
+    change: string;
+    source: string;
+  };
+  pollution: { pipes: string; waterDischarge: string; artificial: string; impervious: string };
+  ui: {
+    tagline: string;
+    heroTitle: string;
+    heroBody: string;
+    start: string;
+    tryDemo: string;
+    forResearchers: string;
+    howItWorks: string;
+    chooseLanguage: string;
+    voiceOn: string;
+    voiceOff: string;
+    listen: string;
+    listening: string;
+    typeInstead: string;
+    send: string;
+    notSure: string;
+    none: string;
+    yes: string;
+    no: string;
+    whatDoesItMean: string;
+    takePhoto: string;
+    useSamplePhotos: string;
+    skip: string;
+    continue: string;
+    back: string;
+    confirm: string;
+    change: string;
+    fromYourPhoto: string;
+    aiSuggested: string;
+    youAnswered: string;
+    officialQuestion: string;
+    review: string;
+    submit: string;
+    submitting: string;
+    edit: string;
+    step: string;
+    of: string;
+    nearest: string;
+    away: string;
+    customSite: string;
+    customSiteName: string;
+    useMyLocation: string;
+    searchSites: string;
+    metres: string;
+    feelingsNotApplicable: string;
+    done: string;
+    notAnswered: string;
+    privacyNote: string;
+    sharePhotos: string;
+    disclaimer: string;
+    hubTitle: string;
+    aboutTitle: string;
+    home: string;
+    check: string;
+    hub: string;
+    about: string;
+    speechUnsupported: string;
+    offline: string;
+    handsFree: string;
+    handsFreeHint: string;
+    question: string;
+    sources: Record<string, string>;
+    depthPicks: { label: string; value: number }[];
+    invasiveExamples: string[];
+    analyzing: string;
+    photoTip: string;
+    retake: string;
+    optional: string;
+    skipPhotos: string;
+    locating: string;
+    locationDenied: string;
+    close: string;
+    heard: string;
+    searchPlaceholder: string;
+    useThisPlace: string;
+    sendFailed: string;
+    retry: string;
+  };
+  home: {
+    trust: string[];
+    features: { title: string; body: string }[];
+    stepsTitle: string;
+    steps: { title: string; body: string }[];
+    citiesTitle: string;
+    sites: string;
+    researchersTitle: string;
+    researchersBody: string;
+    footer: string;
+  };
+  hub: {
+    title: string;
+    intro: string;
+    includeSimulated: string;
+    simulatedNote: string;
+    simulated: string;
+    live: string;
+    checks: string;
+    sitesCovered: string;
+    medianTime: string;
+    minutes: string;
+    voiceShare: string;
+    aiAccepted: string;
+    languages: string;
+    mapTitle: string;
+    noChecks: string;
+    clarityTitle: string;
+    clarityIntro: string;
+    help: string;
+    notSure: string;
+    unclear: string;
+    fix: string;
+    agreementTitle: string;
+    agreementIntro: string;
+    accepted: string;
+    corrected: string;
+    feelingsTitle: string;
+    feelingsIntro: string;
+    latestTitle: string;
+    when: string;
+    site: string;
+    rating: string;
+    mode: string;
+    lang: string;
+    fhir: string;
+    open: string;
+    labLatest: string;
+    latestCitizen: string;
+    downloadCsv: string;
+    loading: string;
+  };
+  story: {
+    title: string;
+    youSaw: string;
+    scientistsFound: string;
+    lastLabVisit: string;
+    noLabData: string;
+    agree: string;
+    differ: string;
+    whyDiffer: string;
+    healthRisk: string;
+    riskLow: string;
+    riskMedium: string;
+    riskHigh: string;
+    weather: string;
+    rainLast3: string;
+    rainLabel: string;
+    maxTemp: string;
+    risks: { pathogen: string; fecal: string; arg: string };
+    notOnDevice: string;
+    resourcesAccepted: string;
+    notAccepted: string;
+    viewOnServer: string;
+    tipsTitle: string;
+    tipPeople: string;
+    tipPets: string;
+    tipNature: string;
+    tipsFor: { people: string; animals: string; nature: string };
+    feelingsTitle: string;
+    thanks: string;
+    yourCheck: string;
+    sentTo: string;
+    again: string;
+    share: string;
+    readAloud: string;
+    quality: Record<string, string>;
+    indicators: { macroinvertebrates: string; diatoms: string; fish: string; nitrate: string };
+    indicatorHelp: { macroinvertebrates: string; diatoms: string; fish: string };
+    tips: Record<string, string>;
+  };
+}
