@@ -76,3 +76,9 @@ describe("negation across a verb (pt, it, el) and in English", () => {
     expect(parseNumber("about ten centimetres", en, "metres")).toBe(0.1);
   });
 });
+
+describe("questions about a word are help requests", () => {
+  it.each(["what does U shape mean?", "what's a riffle?", "what is a weir?"])("“%s”", (text) => {
+    expect(ask("en", "channelForm", text)).toEqual({ kind: "help" });
+  });
+});

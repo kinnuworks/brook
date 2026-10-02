@@ -98,6 +98,26 @@ export function HomePage() {
         <WaveBand />
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pt-14">
+        <h2 className="font-serif text-[32px] text-deep-900">{s.home.whatTitle}</h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          {s.home.whatPoints.map((p, i) => (
+            <article key={p.title} className="rounded-3xl bg-white/80 p-6 ring-1 ring-line">
+              <span className="grid size-9 place-items-center rounded-full bg-aqua-100 text-[15px] font-bold text-deep">{i + 1}</span>
+              <h3 className="mt-3 text-[18px] font-bold text-deep-900">{p.title}</h3>
+              <p className="mt-1.5 text-[15.5px] leading-relaxed text-ink-soft">{p.body}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-4 flex items-start gap-4 rounded-3xl bg-deep p-6 text-white">
+          <BrookAvatar size={44} />
+          <div>
+            <h3 className="text-[18px] font-bold">{s.home.brookTitle}</h3>
+            <p className="mt-1 text-[15.5px] leading-relaxed text-white/85">{s.home.brookBody}</p>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-14">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {s.home.features.map((f, i) => {

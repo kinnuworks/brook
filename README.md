@@ -1,6 +1,8 @@
 # Brook — talk to your stream
 
-**A talking field coach for the OneAquaHealth citizen stream check.** Voice or tap, in the seven languages of OneAquaHealth's app. Brook explains every term, suggests answers from your photos for you to confirm, gently double-checks contradictions against real weather, and hands over OneAquaHealth's own data format plus HL7 FHIR — then shows you what scientists found at your stream.
+**In one minute:** OneAquaHealth is a European science project that studies the health of small rivers (streams) in five cities. It asks ordinary people to visit a stream and answer about twenty questions: Is the water clear or muddy? Are the sides natural or concrete? Are pipes pouring dirty water in? But many of the questions use hard words, so people get confused or give up.
+
+**Brook is a friendly guide on your phone** that turns those questions into a simple conversation. You talk or tap, in seven languages. Brook explains any word, looks at your photos and suggests answers you confirm, gently asks you to look again if two answers don't fit, and at the end shows what scientists found at that stream. Your answers go to OneAquaHealth in the exact form they already use.
 
 Built for the **OneAquaHealth IEEE Global Hackathon 2026** · *Healthy Waters, Healthy Ecosystems, Healthy Communities*.
 
@@ -62,7 +64,7 @@ Phone (PWA, offline-capable)                     Server (Vercel functions)      
 - **AI can only choose valid answers** — strict JSON schema restricted to the question's OneAquaHealth codes, validated again on the server; replies are treated as data, never instructions.
 - **Works without AI.** The dialogue is scripted; if the AI is unavailable or its budget is spent, the check continues by voice and tap.
 - **Every answer says where it came from:** tapped, said, typed, understood with AI, photo suggestion confirmed, or corrected — stored with the check, exported in FHIR, and measured in the hub.
-- **Cost-capped:** all-time, daily and per-caller limits, failing closed (`api/_lib/ai.ts`). About one cent per check.
+- **Cost-capped:** all-time, daily and per-caller limits, failing closed (`api/_lib/ai.ts`). Measured cost: about **0.1 cent per check** (one photo analysis ≈ 0.10 ¢, each AI-understood reply ≈ 0.006 ¢).
 
 ## Adoption & cost
 
@@ -70,7 +72,7 @@ Phone (PWA, offline-capable)                     Server (Vercel functions)      
 2. **Send straight to OneAquaHealth** — every check is already the exact `CitizenSubmissionPutDTO`; with a service account it is one POST to `/api/citizens/submit`.
 3. **Let local volunteers check the words** — one file per language.
 
-At pilot scale hosting is **€0** (static app, serverless functions, free database tier); the optional AI is **≈1 cent per check**, so **≈€100 for 10,000 checks a year** across five cities — and zero with AI switched off. MIT-licensed, no accounts, no app store.
+At pilot scale hosting is **€0** (static app, serverless functions, free database tier); the optional AI costs **≈0.1 cent per check** (measured), so **≈€15 for 10,000 checks a year** across five cities — and zero with AI switched off. MIT-licensed, no accounts, no app store.
 
 ## Privacy & security
 
@@ -81,11 +83,17 @@ At pilot scale hosting is **€0** (static app, serverless functions, free datab
 
 ## Evidence
 
-| What | Where | Result |
+| What we checked | How | Result |
 |---|---|---|
-| Unit tests (protocol vs OAH codes, matcher, second look, One Health tips, FHIR) | `npm test` | see CI output |
-| FHIR validation (official HL7 validator, OAH IG) | [docs/FHIR.md](docs/FHIR.md) | see results table |
-| End-to-end walkthrough of a full check on a phone viewport | `node scripts/e2e-walkthrough.mjs` | 24 questions answered by tap, typing, “not sure” and help; 0 errors |
+| Brook understands real replies without AI | 238 replies in 7 languages written by someone who never saw Brook's word lists (`tests/eval/`) | **93%** understood correctly on first sight, 4% deferred to AI/tap, 3% wrong. After fixing three general problems it revealed: 96% / 4% / **0% wrong** (same set, no longer held out) |
+| Health-data format | Official HL7 validator against the OneAquaHealth FHIR IG ([docs/FHIR.md](docs/FHIR.md)) | **0 errors, 0 warnings**; verified checks also pass the IG's indicator profile; 4 deliberately broken bundles rejected |
+| Works with OneAquaHealth's server | Round trip to the OAH FHIR sandbox | 14 resources created; re-sending updates, never duplicates |
+| Same answer codes as OneAquaHealth | Unit tests against their published answer lists | pass |
+| Accessibility | axe-core, WCAG 2.1 AA, phone screen | **0 violations** on every screen |
+| No signal at the stream | Network cut mid-check (`scripts/offline-test.mjs`) | check kept, sent on reconnect |
+| Whole flow | Robot walkthrough on a phone screen (`scripts/e2e-walkthrough.mjs`) | 24 questions by tap, typing, “not sure” and help; 0 errors |
+| Everything else | `npm test` | 108 tests pass |
+| AI cost | Spending ledger | ≈0.1 ¢ per check |
 
 ## Honest limits
 

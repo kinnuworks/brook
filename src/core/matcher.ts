@@ -240,12 +240,16 @@ export function interpretLocally(q: QuestionDef, raw: string, s: Strings): Local
   if (negated && /(sure|certain|certez|cert[oa]\b|\bsur\b|\bsure\b|sicur|zeker|sikker|σιγουρ|\bidea\b|\bidee\b|\bknow\b|\bsei\b|\bsais\b|\bsabe\b|\bweet\b|\bvet\b|ξερω)/u.test(text)) {
     if (q.allowNotSure) return { kind: "notSure" };
   }
-  // A question about a term ("what's a riffle?", "hva er et stryk?") is a request for help, not an answer.
+  // A question about a term ("what's a riffle?", "what does U shape mean?", "hva er et stryk?") is a
+  // request for help, not an answer.
   const helpAtStart = w.help.some((h) => {
     const nh = normalize(h);
     return text.startsWith(nh + " ") || text === nh || text.startsWith(nh + "?");
   });
-  if (helpAtStart && (raw.trim().endsWith("?") || tokens.length <= 6)) return { kind: "help" };
+  const asksMeaning = /(\bmean\b|\bmeaning\b|\bsignifica\b|\bsignifie\b|veut dire|\bbetekent\b|\bbedoel|\bbetyr\b|σημαινει|\bque quer dizer\b|\bo que e\b|\bqu'est-ce\b|\bcos'e\b|\bche cos'e\b|\bwat is\b|\bwat zijn\b|\bhva er\b|\bτι ειναι\b)/u.test(text);
+  if ((helpAtStart && (raw.trim().endsWith("?") || tokens.length <= 6)) || (asksMeaning && (raw.trim().endsWith("?") || /^(what|o que|que|qu'|cosa|che|wat|hva|τι)\b/u.test(text)))) {
+    return { kind: "help" };
+  }
 
   const vocabulary = new Set(
     Object.values(s.q[q.id].options ?? {}).flatMap((o) => [...o.say, o.label].flatMap((p) => normalize(p).split(" "))),

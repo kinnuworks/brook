@@ -170,6 +170,10 @@ export interface Strings {
     facingDownstream: string;
   };
   home: {
+    whatTitle: string;
+    whatPoints: { title: string; body: string }[];
+    brookTitle: string;
+    brookBody: string;
     trust: string[];
     features: { title: string; body: string }[];
     stepsTitle: string;
@@ -243,6 +247,8 @@ export interface Strings {
     differ: string;
     whyDiffer: string;
     healthRisk: string;
+    riskExplain: string;
+    technical: string;
     riskLow: string;
     riskMedium: string;
     riskHigh: string;

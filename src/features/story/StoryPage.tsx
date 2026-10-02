@@ -210,6 +210,7 @@ export default function StoryPage() {
             </p>
             {risk && typeof risk.health === "number" ? (
               <>
+                <p className="mt-2 text-[14px] leading-snug text-ink-soft">{s.story.riskExplain}</p>
                 <div className="mt-3 flex items-baseline gap-2">
                   <span className="text-[34px] font-bold tabular-nums text-deep-900">{risk.health.toFixed(2)}</span>
                   <span className={`rounded-full px-2.5 py-0.5 text-[13px] font-bold ${level === "low" ? "bg-leaf-100 text-leaf-700" : level === "medium" ? "bg-sun-100 text-[#8a5a00]" : "bg-clay-100 text-clay"}`}>
@@ -310,15 +311,12 @@ export default function StoryPage() {
         {/* The data */}
         <section className="card p-6">
           <p className="eyebrow">{s.story.yourCheck}</p>
-          <details className="mt-2">
-            <summary className="cursor-pointer text-[15px] font-semibold text-deep">CitizenSubmissionPutDTO · JSON</summary>
-            <pre className="mt-2 max-h-80 overflow-auto rounded-2xl bg-deep-900 p-4 text-[12.5px] leading-relaxed text-aqua-100">{JSON.stringify(data.dto, null, 2)}</pre>
-          </details>
-          <div className="mt-4 rounded-2xl bg-aqua-50 p-4 text-[14.5px]">
+          <div className="mt-3 rounded-2xl bg-aqua-50 p-4 text-[15px]">
             <p className="font-semibold text-deep-900">{s.story.sentTo}</p>
             {data.fhirResult ? (
-              <p className={`mt-1 ${data.fhirResult.ok ? "text-leaf-700" : "text-clay"}`}>
-                {data.fhirResult.ok ? `✓ ${fmt(s.story.resourcesAccepted, { n: data.fhirResult.locations?.length ?? 0 })}` : `${s.story.notAccepted} (${data.fhirResult.status || data.fhirResult.error})`} · {data.fhirResult.server}
+              <p className={`mt-1 font-semibold ${data.fhirResult.ok ? "text-leaf-700" : "text-clay"}`}>
+                {data.fhirResult.ok ? `✓ ${fmt(s.story.resourcesAccepted, { n: data.fhirResult.locations?.length ?? 0 })}` : `${s.story.notAccepted} (${data.fhirResult.status || data.fhirResult.error})`}
+                <span className="font-normal text-ink-soft"> · {new URL(data.fhirResult.server).hostname}</span>
               </p>
             ) : (
               <p className="mt-1 text-ink-soft">—</p>
@@ -336,6 +334,10 @@ export default function StoryPage() {
               )}
             </div>
           </div>
+          <details className="mt-3">
+            <summary className="cursor-pointer text-[15px] font-semibold text-deep">{s.story.technical}</summary>
+            <pre className="mt-2 max-h-80 overflow-auto rounded-2xl bg-deep-900 p-4 text-[12.5px] leading-relaxed text-aqua-100">{JSON.stringify(data.dto, null, 2)}</pre>
+          </details>
         </section>
 
         {data.status !== "server" && <SusCard submissionId={data.status === "sent" ? data.id : undefined} trial={data.trial} />}
