@@ -1,0 +1,10 @@
+# Only the app is deployed; working files stay local.
+out
+tests
+docs/evidence/bundles
+docs/evidence/validation
+test-results
+playwright-report
+.claude
+*.mp4
+*.webm
