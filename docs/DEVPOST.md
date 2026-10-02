@@ -10,7 +10,7 @@ A talking guide for OneAquaHealth's citizen stream check: talk or tap in 7 langu
 **Primary: Track 1 — Citizen Science UX.** Also delivers Track 3 (AI-Supported Assessment), Track 4 (Awareness & Storytelling) and Track 7 (Digital Health Standards).
 
 ## Video demo link
-https://youtu.be/dLPSiwrsPDw
+https://www.youtube.com/watch?v=fHfNSAoPz7I
 
 ## Try it out (links)
 - Live app: https://brook-oah.vercel.app

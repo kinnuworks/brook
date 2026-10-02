@@ -16,7 +16,7 @@ Built for the **OneAquaHealth IEEE Global Hackathon 2026** · *Healthy Waters, H
 | **Try it without a stream** | https://brook-oah.vercel.app/check?demo=1 (real photos of OneAquaHealth site O17, Alna at Bryn, Oslo) |
 | **Research hub** | https://brook-oah.vercel.app/hub |
 | **How it works** | https://brook-oah.vercel.app/about |
-| **Demo video** | https://youtu.be/dLPSiwrsPDw |
+| **Demo video** | https://www.youtube.com/watch?v=fHfNSAoPz7I |
 
 ## Track alignment
 

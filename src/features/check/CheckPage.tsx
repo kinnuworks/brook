@@ -227,7 +227,8 @@ export default function CheckPage() {
           if (r.intent === "help") return st.help(via);
           if (r.intent === "repeat") return st.repeat(via);
           if (r.intent === "back") return st.back();
-          return st.unclear(via, first, r.reply);
+          // Brook only says lines that were written for it: an unsure AI gets the scripted "say that again".
+          return st.unclear(via, first);
         }
       }
       st.unclear(via, first);
