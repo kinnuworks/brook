@@ -1,0 +1,2781 @@
+{
+  "at": "2026-10-02T13:50:47.454Z",
+  "model": "gpt-6-luna",
+  "photos": 36,
+  "overall": {
+    "streamPhotos": 33,
+    "labelled": 138,
+    "offered": 134,
+    "coverage": 0.97,
+    "precision": 0.99,
+    "wrong": 2,
+    "byConfidence": {
+      "medium": {
+        "offered": 61,
+        "correct": 59,
+        "precision": 0.97
+      },
+      "high": {
+        "offered": 73,
+        "correct": 73,
+        "precision": 1
+      }
+    },
+    "unscoredSuggestions": 260,
+    "streamsRecognised": 33,
+    "notStreamPhotos": 3,
+    "notStreamRecognised": 3,
+    "suggestionsOnNotStreamPhotos": 0
+  },
+  "byField": {
+    "waterFlow": {
+      "labelled": 13,
+      "offered": 12,
+      "coverage": 0.92,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          6,
+          6
+        ],
+        "high": [
+          6,
+          6
+        ]
+      }
+    },
+    "banksChannelType": {
+      "labelled": 16,
+      "offered": 16,
+      "coverage": 1,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          6,
+          6
+        ],
+        "high": [
+          10,
+          10
+        ]
+      }
+    },
+    "hasDams": {
+      "labelled": 6,
+      "offered": 5,
+      "coverage": 0.83,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          2,
+          2
+        ],
+        "high": [
+          3,
+          3
+        ]
+      }
+    },
+    "isVegetationCoveredLeft": {
+      "labelled": 20,
+      "offered": 20,
+      "coverage": 1,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          2,
+          2
+        ],
+        "high": [
+          18,
+          18
+        ]
+      }
+    },
+    "isVegetationCoveredRight": {
+      "labelled": 20,
+      "offered": 20,
+      "coverage": 1,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          4,
+          4
+        ],
+        "high": [
+          16,
+          16
+        ]
+      }
+    },
+    "vegetationTypeLeft": {
+      "labelled": 9,
+      "offered": 9,
+      "coverage": 1,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          4,
+          4
+        ],
+        "high": [
+          5,
+          5
+        ]
+      }
+    },
+    "vegetationTypeRight": {
+      "labelled": 9,
+      "offered": 9,
+      "coverage": 1,
+      "precision": 0.78,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          6,
+          4
+        ],
+        "high": [
+          3,
+          3
+        ]
+      }
+    },
+    "imperviousAreasLeft": {
+      "labelled": 17,
+      "offered": 16,
+      "coverage": 0.94,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          1,
+          1
+        ],
+        "medium": [
+          12,
+          12
+        ],
+        "high": [
+          4,
+          4
+        ]
+      }
+    },
+    "imperviousAreasRight": {
+      "labelled": 17,
+      "offered": 17,
+      "coverage": 1,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          13,
+          13
+        ],
+        "high": [
+          4,
+          4
+        ]
+      }
+    },
+    "waterColor": {
+      "labelled": 5,
+      "offered": 4,
+      "coverage": 0.8,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          3,
+          3
+        ],
+        "high": [
+          1,
+          1
+        ]
+      }
+    },
+    "bottomChannelType": {
+      "labelled": 6,
+      "offered": 6,
+      "coverage": 1,
+      "precision": 1,
+      "byConfidence": {
+        "low": [
+          0,
+          0
+        ],
+        "medium": [
+          3,
+          3
+        ],
+        "high": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "misses": [
+    {
+      "photo": "zwalm-footbridge",
+      "field": "vegetationTypeRight",
+      "label": "H",
+      "suggested": "B",
+      "confidence": "medium",
+      "evidence": "Low shrubs dominate the visible right bank."
+    },
+    {
+      "photo": "zwalm-fields",
+      "field": "vegetationTypeRight",
+      "label": "H",
+      "suggested": "T",
+      "confidence": "medium",
+      "evidence": "Trees are prominent along the downstream-right margin."
+    }
+  ],
+  "results": [
+    {
+      "id": "akerselva-island",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS",
+        "banksChannelType": "NAT",
+        "hasDams": false,
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "T",
+        "vegetationTypeRight": "T",
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "The streambed appears natural, with no visible concrete."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks are lined with natural vegetation."
+        },
+        "habitats": {
+          "value": [
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "Broken white water and small rapids are visible."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "The water is fast and broken into waves and rapids."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No construction work is visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "The left margin is densely wooded, with no visible paving or buildings."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "The right margin is densely wooded, with no visible paving or buildings."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees dominate the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees dominate the right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "akerselva-high-water",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "T",
+        "vegetationTypeRight": "T"
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "The stream margins appear soil-covered and densely vegetated."
+        },
+        "habitats": {
+          "value": [
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "White water and small waves are visible across the stream."
+        },
+        "fallenBiomassTypes": {
+          "value": [
+            "FT"
+          ],
+          "confidence": "medium",
+          "evidence": "A large fallen trunk lies across the foreground."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "The water has strong waves and visible turbulence."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream is apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible left margin is densely wooded, without roads or buildings."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible right margin is densely wooded, without roads or buildings."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the visible left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees taller than three metres dominate the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the visible right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees taller than three metres dominate the right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "akerselva-wooded",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "NOR",
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "T",
+        "vegetationTypeRight": "T",
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Both banks appear naturally vegetated."
+        },
+        "fallenBiomassTypes": {
+          "value": [
+            "FB"
+          ],
+          "confidence": "medium",
+          "evidence": "A fallen branch lies partly across the near water."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface has gentle ripples without obvious rapids."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No visible pipe or outlet."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible margin is densely wooded."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible margin is densely wooded."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the visible bank."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees dominate the visible bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the visible bank."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees dominate the visible bank."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "akerselva-park",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "LAS",
+          "confidence": "medium",
+          "evidence": "Loose-looking stones line the visible bank edges."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "medium",
+          "evidence": "The surface has prominent, closely spaced ripples."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crosses the visible stream."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or drainage outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "Cranes are distant; no works are visible beside the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin is mostly grassy."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin is mostly wooded."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-left bank has extensive grass cover."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "high",
+          "evidence": "Grass dominates the downstream-left bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and other vegetation cover the downstream-right bank."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Tall trees dominate the downstream-right bank."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps or visibly cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "akerselva-path",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "T",
+        "vegetationTypeRight": "T"
+      },
+      "suggestions": {
+        "habitats": {
+          "value": [
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "Broken white water and small rapids are visible."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "The surface has persistent waves and visibly fast-flowing water."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream is apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No visible pipe or polluted-water outlet enters the stream."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin is mostly tree-covered."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-left margin is densely covered with trees."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Tall trees dominate the downstream-left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Plants and trees are visible along the downstream-right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees appear to dominate, though a path borders this margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "akerselva-meadow",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "NOR",
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "The visible banks appear soil-covered and vegetated, with no concrete or set stone."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stretch of river."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No outlet or pipe draining into the visible river."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible beside or in the river."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left downstream margin appears grassy and wooded, without visible paving or buildings."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right downstream margin appears wooded, without visible paving or buildings."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The left downstream margin has a grassy slope and trees."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "The visible slope on the left downstream margin is largely grass."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense trees cover the right downstream margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "The right downstream margin is dominated by trees."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "alna-alnaparken-snow",
+      "notStream": false,
+      "labels": {
+        "waterColor": "MU",
+        "hasDams": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Visible streambed appears natural beneath the water."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "medium",
+          "evidence": "Water is visibly choppy and turbulent beneath the bridge."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "medium",
+          "evidence": "The visible water is brownish and not transparent."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "A bridge crosses the stream, but no barrier across the water is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or draining outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction work is visible."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Woody vegetation is visible along the left-side margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Tall trees dominate the visible left-side margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Trees and woody plants are visible along the right-side margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Tall trees dominate the visible right-side margin."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "alna-middelalderparken",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "channelForm": {
+          "value": "FLAT",
+          "confidence": "medium",
+          "evidence": "The channel appears broad and shallow, with low banks."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "The banks appear soil-covered and vegetated."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface is mostly smooth, without visible rapids."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "low",
+          "evidence": "Shallow water near the foreground appears transparent."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the water is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or draining outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin is mostly grassy, with no substantial paving visible."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin is mostly grassy and tree-covered."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The left margin has grass and low vegetation."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Mown grass dominates the visible left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The right margin is covered with trees and other vegetation."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees dominate the visible right margin."
+        },
+        "recentVegetationCuts": {
+          "value": true,
+          "confidence": "low",
+          "evidence": "The grassy margin appears mown, though timing is unclear."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "alna-svartdalen",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "NOR",
+        "banksChannelType": "NAT",
+        "hasDams": false,
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "T",
+        "vegetationTypeRight": "T",
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Natural rocks are visible along the stream edge."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "The banks are lined with soil, roots, and vegetation."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "medium",
+          "evidence": "Stones and gravel are visible along the edges."
+        },
+        "fallenBiomassTypes": {
+          "value": [
+            "FB"
+          ],
+          "confidence": "medium",
+          "evidence": "Branches lie across the foreground bank."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface is mostly smooth with gentle ripples."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "low",
+          "evidence": "The water appears greenish-brown and not transparent."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream is apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or polluted-water outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin is densely wooded, with no paving or buildings visible."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin is densely wooded, with no paving or buildings visible."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the left bank."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees dominate the vegetation along the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers the right bank."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees dominate the vegetation along the right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "alna-rapids",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS",
+        "bottomChannelType": "NAT"
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "The streambed is exposed rock and boulders."
+        },
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "medium",
+          "evidence": "A concrete retaining wall lines one bank; the opposite bank appears rocky and vegetated."
+        },
+        "habitats": {
+          "value": [
+            "SD",
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "Visible rocks and gravel, with broken white water and small cascades."
+        },
+        "fallenBiomassTypes": {
+          "value": [
+            "FB",
+            "FL"
+          ],
+          "confidence": "medium",
+          "evidence": "A fallen branch and accumulated leaves are visible near the water."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "The water forms vigorous rapids and cascades."
+        },
+        "waterColor": {
+          "value": "FO",
+          "confidence": "medium",
+          "evidence": "White foam is visible across the turbulent water."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe visibly discharges water into the stream."
+        },
+        "construction": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A concrete structure and elevated walkway run beside the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin is mainly covered by trees and other vegetation."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin is mainly vegetated; impervious cover does not appear to exceed one third."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense trees and shrubs cover the left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees taller than three metres dominate the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and shrubs cover much of the right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Tall trees dominate the vegetated right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or recently cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "alna-alnabru",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "NOR",
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Natural-looking shallow bed with visible stones and gravel."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks appear soil-covered and vegetated."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "medium",
+          "evidence": "Stones or gravel are visible in the shallow upstream section."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "Water is flowing with gentle ripples."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible left margin is predominantly vegetated."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible right margin is predominantly vegetated."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The left margin has continuous grass and other vegetation."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grass and low plants dominate the visible left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and shrubs cover the visible right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees dominate the visible right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-bjerkedalen-bridge",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "LAS"
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "The visible bed is covered with loose stones."
+        },
+        "banksChannelType": {
+          "value": "LAS",
+          "confidence": "medium",
+          "evidence": "Loose rocks line the banks, with some concrete structures."
+        },
+        "habitats": {
+          "value": [
+            "SD",
+            "AV"
+          ],
+          "confidence": "medium",
+          "evidence": "Stone deposits and plants growing in the water are visible."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface appears calm."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "medium",
+          "evidence": "The streambed is visible through the water."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No drainage pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "A finished bridge is visible, but no active construction works."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "A paved path is immediately beside this bank."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "low",
+          "evidence": "The nearby margin appears mostly soil and vegetation."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Grasses and aquatic plants cover parts of this margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grasses and other low plants dominate the visible margin."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-ensjo-plaza",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "ART",
+        "isVegetationCoveredLeft": false,
+        "isVegetationCoveredRight": false,
+        "imperviousAreasLeft": true,
+        "imperviousAreasRight": true
+      },
+      "suggestions": {
+        "channelForm": {
+          "value": "FLAT",
+          "confidence": "medium",
+          "evidence": "Wide, shallow-looking water area with low, nearly level edges."
+        },
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "high",
+          "evidence": "The water is bordered by constructed metal and paved edges."
+        },
+        "waterFlow": {
+          "value": "STA",
+          "confidence": "medium",
+          "evidence": "The surface appears still, with no visible current or waves."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the water is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet draining into the water is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible beside the water."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Paving and buildings dominate the right side of this upstream view."
+        },
+        "imperviousAreasRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Paving and buildings dominate the left side of this upstream view."
+        },
+        "isVegetationCoveredLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin is mostly paved, with only scattered vegetation."
+        },
+        "isVegetationCoveredRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin is mostly paved, with sparse plants."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-street",
+      "notStream": false,
+      "labels": {
+        "imperviousAreasLeft": true,
+        "imperviousAreasRight": true
+      },
+      "suggestions": {
+        "channelForm": {
+          "value": "U",
+          "confidence": "medium",
+          "evidence": "The channel has a narrow, rounded trough with steep sides."
+        },
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Stones and rocks are visible beneath the water."
+        },
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "high",
+          "evidence": "Concrete retaining walls form the channel sides."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "medium",
+          "evidence": "Stones and gravel are visible in the channel."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface appears mostly calm."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "medium",
+          "evidence": "The shallow water and stones beneath it are visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or dirty-water outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-left margin has extensive paving and buildings."
+        },
+        "imperviousAreasRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-right margin has a road and paved areas."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-left bank is densely planted with vegetation."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Herbaceous flowering plants dominate the downstream-left bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-right bank is densely planted with vegetation."
+        },
+        "vegetationTypeRight": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Herbaceous flowering plants dominate the downstream-right bank."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-reconstructed",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "LAS",
+        "bottomChannelType": "NAT",
+        "waterColor": "CL"
+      },
+      "suggestions": {
+        "channelForm": {
+          "value": "FLAT",
+          "confidence": "medium",
+          "evidence": "The channel is broad and shallow, with low banks."
+        },
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Rounded natural stones and gravel are visible beneath the water."
+        },
+        "banksChannelType": {
+          "value": "LAS",
+          "confidence": "medium",
+          "evidence": "Large loose stones line the banks without visible concrete."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "high",
+          "evidence": "Stone and gravel deposits are visible along the channel."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "Water is flowing, but there are no obvious waves or rapids."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet draining into the stream is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction work is visible beside the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A paved cycle path occupies much of this bank margin."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Grass covers the margin beside the paved path."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grass is the visible vegetation along this margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Trees and low vegetation are visible along this margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees dominate the visible vegetation along this margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-boulders",
+      "notStream": false,
+      "labels": {
+        "bottomChannelType": "NAT"
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "The visible bed consists of loose stones and gravel, with no concrete apparent."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Grassy, planted banks are visible along the channel."
+        },
+        "habitats": {
+          "value": [
+            "SD",
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "Stones and gravel fill the channel, with broken water flowing over them."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "medium",
+          "evidence": "Water tumbles and breaks around the stones."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "medium",
+          "evidence": "The water appears transparent around the visible stones."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet draining into the stream is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin is the image's right side, which is mostly grassy."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin is the image's left side, which is mostly grassy."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The image's right bank is covered with grasses and shrubs."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grasses and herbs dominate the image's right bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The image's left bank has substantial grass and other vegetation."
+        },
+        "vegetationTypeRight": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grasses and herbs dominate the image's left bank."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-reeds",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "NOR",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "H",
+        "vegetationTypeRight": "H"
+      },
+      "suggestions": {
+        "channelForm": {
+          "value": "U",
+          "confidence": "medium",
+          "evidence": "The channel has a rounded trough with steep sides."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Both banks appear soil-based and densely planted."
+        },
+        "habitats": {
+          "value": [
+            "AV"
+          ],
+          "confidence": "high",
+          "evidence": "Emergent aquatic plants grow along the water's edge."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface appears mostly smooth."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "medium",
+          "evidence": "The water appears transparent near the banks."
+        },
+        "hasDams": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "A low transverse structure crosses the channel."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or polluted discharge is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction work is visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin is mostly planted vegetation."
+        },
+        "imperviousAreasRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin includes substantial paved paths and steps."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense reeds and other plants cover the downstream-left bank."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Herbaceous reeds dominate the downstream-left bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Grass and plants cover parts of the downstream-right bank."
+        },
+        "vegetationTypeRight": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grass is prominent along the downstream-right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No clear fresh stumps or recently cut strips are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-concrete-wall",
+      "notStream": false,
+      "labels": {
+        "waterColor": "MU"
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "high",
+          "evidence": "A large concrete wall forms one channel bank."
+        },
+        "habitats": {
+          "value": [
+            "AV"
+          ],
+          "confidence": "medium",
+          "evidence": "Tall aquatic vegetation grows at the water’s edge."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface has ripples but no strong waves."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "high",
+          "evidence": "The water appears opaque and muddy."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet draining into the stream is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left bank is lined with dense reeds and grasses."
+        },
+        "imperviousAreasRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A concrete wall and urban infrastructure border this side."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense reeds and grasses cover the left bank."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "high",
+          "evidence": "Grasses and reed-like plants dominate the left bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "The visible right bank is a concrete wall."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hovinbekken-urban-channel",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "ART",
+        "isVegetationCoveredLeft": false,
+        "isVegetationCoveredRight": false,
+        "imperviousAreasLeft": true,
+        "imperviousAreasRight": true
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "high",
+          "evidence": "Concrete retaining walls line the channel."
+        },
+        "waterFlow": {
+          "value": "DRY",
+          "confidence": "high",
+          "evidence": "No water is visible in the channel."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction work is visible."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Buildings and paved infrastructure occupy the left margin."
+        },
+        "imperviousAreasRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A paved walkway and buildings occupy the right margin."
+        },
+        "isVegetationCoveredLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible left margin is mostly concrete and built infrastructure."
+        },
+        "isVegetationCoveredRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible right margin is mostly paved."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "ljanselva-woodland",
+      "notStream": false,
+      "labels": {
+        "bottomChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "T",
+        "vegetationTypeRight": "T",
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Visible gravel and stones form the stream bed."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "medium",
+          "evidence": "Stones and gravel are visible in the channel."
+        },
+        "fallenBiomassTypes": {
+          "value": [
+            "FT",
+            "FB"
+          ],
+          "confidence": "medium",
+          "evidence": "A fallen trunk and branches lie across or beside the stream."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "Water is moving, but the visible flow appears fairly slow."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "low",
+          "evidence": "The shallow water and stream bed are partly visible."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or dirty-water outlet is visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin is densely vegetated, with no visible paved areas."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin is densely vegetated, with no visible paved areas."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and shrubs cover the left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees taller than three metres dominate the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and shrubs cover the right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees taller than three metres dominate the right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "ljanselva-stone-bridge",
+      "notStream": false,
+      "labels": {
+        "bottomChannelType": "NAT",
+        "waterColor": "CL"
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Visible bed consists of natural gravel, stones, and sediment."
+        },
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "medium",
+          "evidence": "Stone masonry and a concrete structure line parts of the channel."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "high",
+          "evidence": "Exposed gravel and stone deposits are visible in the channel."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "Water appears to flow gently without visible waves or rapids."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "medium",
+          "evidence": "The shallow water is transparent enough to see the bed."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "A bridge crosses the stream, but no dam or weir is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe visibly discharging into the stream."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction work is visible beside or in the stream."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Vegetation grows along the bank on the image's right side."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense vegetation covers much of the bank on the image's left side."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Tall trees dominate the vegetated bank on the image's left side."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "lysakerelva-grini-weir",
+      "notStream": false,
+      "labels": {
+        "hasDams": true
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "medium",
+          "evidence": "A concrete spillway and constructed channel edges are visible."
+        },
+        "habitats": {
+          "value": [
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "White, turbulent water forms rapids below the weir."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "Water rushes over the weir and forms turbulent waves."
+        },
+        "hasDams": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A broad weir crosses the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin corresponds to the wooded bank in this upstream view."
+        },
+        "imperviousAreasRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin corresponds to the large building beside the water."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and other vegetation cover the wooded bank on the image's right."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Tall trees dominate the wooded bank on the image's right."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "lysakerelva-fish-ladder",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS"
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "medium",
+          "evidence": "Concrete structures and masonry line the channel."
+        },
+        "habitats": {
+          "value": [
+            "SD",
+            "RF"
+          ],
+          "confidence": "medium",
+          "evidence": "Rocks and broken, foaming water are visible."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "Strong current and turbulent waves are visible."
+        },
+        "waterColor": {
+          "value": "FO",
+          "confidence": "high",
+          "evidence": "White foam is visible on the water surface."
+        },
+        "hasDams": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A concrete fish-ladder structure crosses the channel."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Buildings and paved surfaces border this side."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense leafy vegetation covers much of this bank."
+        },
+        "vegetationTypeRight": {
+          "value": "B",
+          "confidence": "medium",
+          "evidence": "Dense growth appears mainly shrub-sized."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "lysakerelva-waterfall",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "FAS"
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Natural rock is visible beneath and beside the flowing water."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "The channel sides are exposed natural rock."
+        },
+        "habitats": {
+          "value": [
+            "SD",
+            "RF"
+          ],
+          "confidence": "high",
+          "evidence": "Rock deposits and cascading, broken white water are visible."
+        },
+        "waterFlow": {
+          "value": "FAS",
+          "confidence": "high",
+          "evidence": "Water rushes over steep cascades with abundant broken white water."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "The visible cascades cross natural rock, with no artificial barrier apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No construction works are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "frognerbekken",
+      "notStream": false,
+      "labels": {
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "LAS",
+          "confidence": "medium",
+          "evidence": "A visible bank is edged with loose-looking stones."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface appears smooth, without visible waves or fast flow."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream is apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin is vegetated, with no substantial paved area visible."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin is vegetated, with no substantial paved area visible."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense trees and other vegetation cover the left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees dominate the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees, shrubs, and grass cover the right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees appear to dominate the right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, cleared patches, or recently cut strips are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "frognerelva-laid-stones",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "LAS",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "LAS",
+          "confidence": "medium",
+          "evidence": "Loose rocks line both banks; no concrete is visible."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface appears calm, without visible waves or fast flow."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction is visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "low",
+          "evidence": "A path is visible beyond the bank, but the surrounding margin is mostly vegetated."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible bank and adjacent margin are predominantly grass and vegetation."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Trees and shrubs cover the left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees appear to dominate the left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Grass and other vegetation cover the right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grass appears to dominate the visible right margin."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "hoffselva-clear",
+      "notStream": false,
+      "labels": {
+        "waterColor": "CL",
+        "bottomChannelType": "NAT"
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Visible bed consists of stones and gravel."
+        },
+        "banksChannelType": {
+          "value": "LAS",
+          "confidence": "medium",
+          "evidence": "Loose rocks line parts of the channel bank."
+        },
+        "habitats": {
+          "value": [
+            "SD"
+          ],
+          "confidence": "medium",
+          "evidence": "Stones and gravel are visible in the channel."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "Water appears to flow steadily without obvious strong waves."
+        },
+        "waterColor": {
+          "value": "CL",
+          "confidence": "medium",
+          "evidence": "The shallow water is transparent enough to see the bed."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "A pipe is visible, but no discharge into the stream is apparent."
+        },
+        "construction": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "A large timber structure spans and borders the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "A paved area and building lie beside this bank."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The opposite margin appears predominantly wooded."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Shrubs and trees cover much of this margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees are the dominant visible vegetation."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "medium",
+          "evidence": "Trees and shrubs cover much of this margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees are the dominant visible vegetation."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "touch-channel",
+      "notStream": false,
+      "labels": {
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks are lined with soil and dense vegetation."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface appears mostly smooth, without visible rapids or strong waves."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "high",
+          "evidence": "The water is opaque and tan-colored."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction work is visible beside the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible left margin is densely vegetated, with no roads or buildings."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The visible right margin is densely vegetated, with no roads or buildings."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense trees and shrubs cover the visible left margin."
+        },
+        "vegetationTypeLeft": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Trees taller than the shrubs dominate the visible left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "Dense trees and shrubs cover the visible right margin."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Tall trees dominate the visible right margin."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "zwalm-footbridge",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "NAT",
+        "hasDams": false,
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "H",
+        "vegetationTypeRight": "H",
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "channelForm": {
+          "value": "U",
+          "confidence": "medium",
+          "evidence": "The channel appears to have a rounded trough with steep banks."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks appear soil-covered and vegetated."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The water surface appears calm, without visible waves or fast flow."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "high",
+          "evidence": "No barrier crossing the stream is visible."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin appears grassy, with no visible paved area or buildings."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin appears vegetated, with no visible paved area or buildings."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The left margin is covered with grass."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "high",
+          "evidence": "Grass dominates the visible left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The right bank is covered with low vegetation and shrubs."
+        },
+        "vegetationTypeRight": {
+          "value": "B",
+          "confidence": "medium",
+          "evidence": "Low shrubs dominate the visible right bank."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "zwalm-poplars",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks are soil-lined and covered with natural vegetation."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface appears mostly smooth, with no obvious waves or fast current."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "medium",
+          "evidence": "The water looks brownish and opaque rather than transparent."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream is apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible along the banks."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin, shown on photo right, appears grassy and unpaved."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin, shown on photo left, is densely vegetated and unpaved."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The photo-right bank is covered with grasses and other plants."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grasses and low plants dominate the photo-right bank."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The photo-left bank is densely covered with woody vegetation."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Tall trees dominate the densely vegetated photo-left bank."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "zwalm-meander",
+      "notStream": false,
+      "labels": {
+        "waterFlow": "NOR",
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "Visible streambed appears natural, with no concrete visible."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks are soil-covered and vegetated."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface has gentle ripples, without obvious rapids."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "medium",
+          "evidence": "The water appears opaque and brownish-gray."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream is apparent."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or polluted-water outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible beside or in the stream."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The left margin downstream (image right) appears grassy and natural."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The right margin downstream (image left) is wooded and grassy."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The left margin downstream is covered with grass and shrubs."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grass dominates the visible left margin downstream."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The right margin downstream is densely vegetated."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "high",
+          "evidence": "Tall trees dominate the right margin downstream."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No fresh stumps, mown strips, or cleared patches are apparent."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "zwalm-fields",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "NAT",
+        "isVegetationCoveredLeft": true,
+        "isVegetationCoveredRight": true,
+        "vegetationTypeLeft": "H",
+        "vegetationTypeRight": "H",
+        "imperviousAreasLeft": false,
+        "imperviousAreasRight": false
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "NAT",
+          "confidence": "medium",
+          "evidence": "The visible bed appears muddy and natural."
+        },
+        "banksChannelType": {
+          "value": "NAT",
+          "confidence": "high",
+          "evidence": "Both banks are soil-covered and vegetated."
+        },
+        "waterFlow": {
+          "value": "NOR",
+          "confidence": "medium",
+          "evidence": "The surface is mostly smooth, with gentle ripples."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "medium",
+          "evidence": "The water looks opaque and brownish."
+        },
+        "hasDams": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No barrier crossing the visible stream."
+        },
+        "pipes": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No pipe or outlet is visible."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No construction works are visible."
+        },
+        "imperviousAreasLeft": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-left margin shows vegetation and field, not paving or buildings."
+        },
+        "imperviousAreasRight": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "The downstream-right margin is vegetated, with no visible paving or buildings."
+        },
+        "isVegetationCoveredLeft": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-left bank and margin are covered with grass and herbs."
+        },
+        "vegetationTypeLeft": {
+          "value": "H",
+          "confidence": "medium",
+          "evidence": "Grass and herbs dominate the downstream-left margin."
+        },
+        "isVegetationCoveredRight": {
+          "value": true,
+          "confidence": "high",
+          "evidence": "The downstream-right margin has dense vegetation and trees."
+        },
+        "vegetationTypeRight": {
+          "value": "T",
+          "confidence": "medium",
+          "evidence": "Trees are prominent along the downstream-right margin."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "zwalm-mill-sluice",
+      "notStream": false,
+      "labels": {
+        "banksChannelType": "ART",
+        "hasDams": true
+      },
+      "suggestions": {
+        "bottomChannelType": {
+          "value": "ART",
+          "confidence": "medium",
+          "evidence": "A paved surface is visible beneath the water at the lower right."
+        },
+        "banksChannelType": {
+          "value": "ART",
+          "confidence": "high",
+          "evidence": "The channel sides are built from brick and concrete."
+        },
+        "waterFlow": {
+          "value": "STA",
+          "confidence": "medium",
+          "evidence": "The water surface appears still in the enclosed channel."
+        },
+        "waterColor": {
+          "value": "MU",
+          "confidence": "medium",
+          "evidence": "The water appears opaque and murky."
+        },
+        "construction": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No active construction works are visible."
+        },
+        "recentVegetationCuts": {
+          "value": false,
+          "confidence": "medium",
+          "evidence": "No freshly cut vegetation or cleared patches are visible."
+        }
+      },
+      "isStream": true
+    },
+    {
+      "id": "not-a-stream-old-map",
+      "notStream": true,
+      "labels": {},
+      "suggestions": {},
+      "isStream": false
+    },
+    {
+      "id": "not-a-stream-basin-map",
+      "notStream": true,
+      "labels": {},
+      "suggestions": {},
+      "isStream": false
+    },
+    {
+      "id": "not-a-stream-plant",
+      "notStream": true,
+      "labels": {},
+      "suggestions": {},
+      "isStream": false
+    }
+  ]
+}

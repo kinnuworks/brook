@@ -1,0 +1,572 @@
+[
+  {
+    "id": "akerselva-island",
+    "file": "tests/eval/photos/akerselva-island.jpg",
+    "labels": {
+      "waterFlow": "FAS",
+      "banksChannelType": "NAT",
+      "hasDams": false,
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "T",
+      "vegetationTypeRight": "T",
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Akerselva - Oslo, Norway 2020-08-03 (01).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Akerselva_-_Oslo,_Norway_2020-08-03_(01).jpg",
+      "author": "Ryan Hodnett",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "akerselva-high-water",
+    "file": "tests/eval/photos/akerselva-high-water.jpg",
+    "labels": {
+      "waterFlow": "FAS",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "T",
+      "vegetationTypeRight": "T"
+    },
+    "source": {
+      "title": "Akerselva - Oslo, Norway 2020-08-03 (02).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Akerselva_-_Oslo,_Norway_2020-08-03_(02).jpg",
+      "author": "Ryan Hodnett",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "akerselva-wooded",
+    "file": "tests/eval/photos/akerselva-wooded.jpg",
+    "labels": {
+      "waterFlow": "NOR",
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "T",
+      "vegetationTypeRight": "T",
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Akerselva - Oslo, Norway 2020-08-03 (03).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Akerselva_-_Oslo,_Norway_2020-08-03_(03).jpg",
+      "author": "Ryan Hodnett",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "akerselva-park",
+    "file": "tests/eval/photos/akerselva-park.jpg",
+    "labels": {
+      "waterFlow": "FAS",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true
+    },
+    "source": {
+      "title": "Akerselva - Oslo, Norway 2020-08-03 (04).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Akerselva_-_Oslo,_Norway_2020-08-03_(04).jpg",
+      "author": "Ryan Hodnett",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "akerselva-path",
+    "file": "tests/eval/photos/akerselva-path.jpg",
+    "labels": {
+      "waterFlow": "FAS",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "T",
+      "vegetationTypeRight": "T"
+    },
+    "source": {
+      "title": "Akerselva - Oslo, Norway 2020-08-03 (07).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Akerselva_-_Oslo,_Norway_2020-08-03_(07).jpg",
+      "author": "Ryan Hodnett",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "akerselva-meadow",
+    "file": "tests/eval/photos/akerselva-meadow.jpg",
+    "labels": {
+      "waterFlow": "NOR",
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Akerselva - Oslo, Norway 2020-08-03 (09).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Akerselva_-_Oslo,_Norway_2020-08-03_(09).jpg",
+      "author": "Ryan Hodnett",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "alna-alnaparken-snow",
+    "file": "tests/eval/photos/alna-alnaparken-snow.jpg",
+    "labels": {
+      "waterColor": "MU",
+      "hasDams": false
+    },
+    "source": {
+      "title": "2011-04-03 Alnaelva i Alnaparken.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:2011-04-03_Alnaelva_i_Alnaparken.jpg",
+      "author": "Chell Hill",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "alna-middelalderparken",
+    "file": "tests/eval/photos/alna-middelalderparken.jpg",
+    "labels": {
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Alna i Middelalderparken.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Alna_i_Middelalderparken.jpg",
+      "author": "Helge Høifødt",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "alna-svartdalen",
+    "file": "tests/eval/photos/alna-svartdalen.jpg",
+    "labels": {
+      "waterFlow": "NOR",
+      "banksChannelType": "NAT",
+      "hasDams": false,
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "T",
+      "vegetationTypeRight": "T",
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Alna i Svartdalen.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Alna_i_Svartdalen.JPG",
+      "author": "Helge Høifødt",
+      "licence": "Public domain"
+    }
+  },
+  {
+    "id": "alna-rapids",
+    "file": "tests/eval/photos/alna-rapids.jpg",
+    "labels": {
+      "waterFlow": "FAS",
+      "bottomChannelType": "NAT"
+    },
+    "source": {
+      "title": "Alna.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Alna.jpg",
+      "author": "Ida Tolgensbakk",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "alna-alnabru",
+    "file": "tests/eval/photos/alna-alnabru.jpg",
+    "labels": {
+      "waterFlow": "NOR",
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Alnaelva Alnabru.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Alnaelva_Alnabru.jpg",
+      "author": "Torstein Frogner",
+      "licence": "CC BY 3.0"
+    }
+  },
+  {
+    "id": "hovinbekken-bjerkedalen-bridge",
+    "file": "tests/eval/photos/hovinbekken-bjerkedalen-bridge.jpg",
+    "labels": {
+      "banksChannelType": "LAS"
+    },
+    "source": {
+      "title": "Bjerkedalen med bro.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Bjerkedalen_med_bro.JPG",
+      "author": "Helge Høifødt",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "hovinbekken-ensjo-plaza",
+    "file": "tests/eval/photos/hovinbekken-ensjo-plaza.jpg",
+    "labels": {
+      "banksChannelType": "ART",
+      "isVegetationCoveredLeft": false,
+      "isVegetationCoveredRight": false,
+      "imperviousAreasLeft": true,
+      "imperviousAreasRight": true
+    },
+    "source": {
+      "title": "Ensjø juni 2020.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Ensj%C3%B8_juni_2020.jpg",
+      "author": "Kimsaka",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "hovinbekken-street",
+    "file": "tests/eval/photos/hovinbekken-street.jpg",
+    "labels": {
+      "imperviousAreasLeft": true,
+      "imperviousAreasRight": true
+    },
+    "source": {
+      "title": "Gladengveien ved OBOS.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Gladengveien_ved_OBOS.jpg",
+      "author": "Helge Høifødt",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "hovinbekken-reconstructed",
+    "file": "tests/eval/photos/hovinbekken-reconstructed.jpg",
+    "labels": {
+      "banksChannelType": "LAS",
+      "bottomChannelType": "NAT",
+      "waterColor": "CL"
+    },
+    "source": {
+      "title": "Hovinbekken rekonstruert.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Hovinbekken_rekonstruert.jpg",
+      "author": "Kimsaka",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "hovinbekken-boulders",
+    "file": "tests/eval/photos/hovinbekken-boulders.jpg",
+    "labels": {
+      "bottomChannelType": "NAT"
+    },
+    "source": {
+      "title": "Hovinbekken w Bjerkedalen, głazy.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Hovinbekken_w_Bjerkedalen,_g%C5%82azy.JPG",
+      "author": "Panek",
+      "licence": "CC BY-SA 3.0 pl"
+    }
+  },
+  {
+    "id": "hovinbekken-reeds",
+    "file": "tests/eval/photos/hovinbekken-reeds.jpg",
+    "labels": {
+      "waterFlow": "NOR",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "H",
+      "vegetationTypeRight": "H"
+    },
+    "source": {
+      "title": "Hovinbekken w Bjerkedalen.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Hovinbekken_w_Bjerkedalen.JPG",
+      "author": "Panek",
+      "licence": "CC BY-SA 3.0 pl"
+    }
+  },
+  {
+    "id": "hovinbekken-concrete-wall",
+    "file": "tests/eval/photos/hovinbekken-concrete-wall.jpg",
+    "labels": {
+      "waterColor": "MU"
+    },
+    "source": {
+      "title": "Hovinbekken, 2025.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Hovinbekken,_2025.jpg",
+      "author": "Ssu",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "hovinbekken-urban-channel",
+    "file": "tests/eval/photos/hovinbekken-urban-channel.jpg",
+    "labels": {
+      "banksChannelType": "ART",
+      "isVegetationCoveredLeft": false,
+      "isVegetationCoveredRight": false,
+      "imperviousAreasLeft": true,
+      "imperviousAreasRight": true
+    },
+    "source": {
+      "title": "Hovinebekken restoration.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Hovinebekken_restoration.jpg",
+      "author": "Panek",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "ljanselva-woodland",
+    "file": "tests/eval/photos/ljanselva-woodland.jpg",
+    "labels": {
+      "bottomChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "T",
+      "vegetationTypeRight": "T",
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Ljanselva - 2014-04-28 at 19-07-23.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Ljanselva_-_2014-04-28_at_19-07-23.jpg",
+      "author": "Kjetil Ree",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "ljanselva-stone-bridge",
+    "file": "tests/eval/photos/ljanselva-stone-bridge.jpg",
+    "labels": {
+      "bottomChannelType": "NAT",
+      "waterColor": "CL"
+    },
+    "source": {
+      "title": "Ljanselva - 2014-05-29 at 13-46-29.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Ljanselva_-_2014-05-29_at_13-46-29.jpg",
+      "author": "Kjetil Ree",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "lysakerelva-grini-weir",
+    "file": "tests/eval/photos/lysakerelva-grini-weir.jpg",
+    "labels": {
+      "hasDams": true
+    },
+    "source": {
+      "title": "Baerum grini mölle IMG 2473.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Baerum_grini_m%C3%B6lle_IMG_2473.JPG",
+      "author": "Bjoertvedt",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "lysakerelva-fish-ladder",
+    "file": "tests/eval/photos/lysakerelva-fish-ladder.jpg",
+    "labels": {
+      "waterFlow": "FAS"
+    },
+    "source": {
+      "title": "Elveveien 81, 1366 Lysaker, Norway - panoramio.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Elveveien_81,_1366_Lysaker,_Norway_-_panoramio.jpg",
+      "author": "-Any-",
+      "licence": "CC BY 3.0"
+    }
+  },
+  {
+    "id": "lysakerelva-waterfall",
+    "file": "tests/eval/photos/lysakerelva-waterfall.jpg",
+    "labels": {
+      "waterFlow": "FAS"
+    },
+    "source": {
+      "title": "Foss, Lysakerelven - panoramio.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Foss,_Lysakerelven_-_panoramio.jpg",
+      "author": "Audun Dragland",
+      "licence": "CC BY 3.0"
+    }
+  },
+  {
+    "id": "frognerbekken",
+    "file": "tests/eval/photos/frognerbekken.jpg",
+    "labels": {
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Frognerbekken.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Frognerbekken.jpg",
+      "author": "Kjetil Ree",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "frognerelva-laid-stones",
+    "file": "tests/eval/photos/frognerelva-laid-stones.jpg",
+    "labels": {
+      "banksChannelType": "LAS",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Frognerelva 1.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Frognerelva_1.jpg",
+      "author": "Jan-Tore Egge",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "hoffselva-clear",
+    "file": "tests/eval/photos/hoffselva-clear.jpg",
+    "labels": {
+      "waterColor": "CL",
+      "bottomChannelType": "NAT"
+    },
+    "source": {
+      "title": "Hoffselva ved Nedre Skøyen vei 8.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Hoffselva_ved_Nedre_Sk%C3%B8yen_vei_8.jpg",
+      "author": "Helge Høifødt",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "touch-channel",
+    "file": "tests/eval/photos/touch-channel.jpg",
+    "labels": {
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Plaisance-du-Touch (Haute-Garonne, Fr) le Touch.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Plaisance-du-Touch_(Haute-Garonne,_Fr)_le_Touch.JPG",
+      "author": "Havang(nl)",
+      "licence": "CC0"
+    }
+  },
+  {
+    "id": "zwalm-footbridge",
+    "file": "tests/eval/photos/zwalm-footbridge.jpg",
+    "labels": {
+      "banksChannelType": "NAT",
+      "hasDams": false,
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "H",
+      "vegetationTypeRight": "H",
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "Brug over Zwalm nabij Schuisplanklos - Zwalm.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Brug_over_Zwalm_nabij_Schuisplanklos_-_Zwalm.jpg",
+      "author": "Spotter2",
+      "licence": "CC BY-SA 4.0"
+    }
+  },
+  {
+    "id": "zwalm-poplars",
+    "file": "tests/eval/photos/zwalm-poplars.jpg",
+    "labels": {
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "C2 0003 zwalm zwalm01 - 367100 - onroerenderfgoed.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:C2_0003_zwalm_zwalm01_-_367100_-_onroerenderfgoed.jpg",
+      "author": "Vandevorst, Kris",
+      "licence": "CC BY 4.0"
+    }
+  },
+  {
+    "id": "zwalm-meander",
+    "file": "tests/eval/photos/zwalm-meander.jpg",
+    "labels": {
+      "waterFlow": "NOR",
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "C2 0003 zwalm zwalm08 - 367157 - onroerenderfgoed.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:C2_0003_zwalm_zwalm08_-_367157_-_onroerenderfgoed.jpg",
+      "author": "Vandevorst, Kris",
+      "licence": "CC BY 4.0"
+    }
+  },
+  {
+    "id": "zwalm-fields",
+    "file": "tests/eval/photos/zwalm-fields.jpg",
+    "labels": {
+      "banksChannelType": "NAT",
+      "isVegetationCoveredLeft": true,
+      "isVegetationCoveredRight": true,
+      "vegetationTypeLeft": "H",
+      "vegetationTypeRight": "H",
+      "imperviousAreasLeft": false,
+      "imperviousAreasRight": false
+    },
+    "source": {
+      "title": "C2 0003 zwalm zwalm10 - 367116 - onroerenderfgoed.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:C2_0003_zwalm_zwalm10_-_367116_-_onroerenderfgoed.jpg",
+      "author": "Vandevorst, Kris",
+      "licence": "CC BY 4.0"
+    }
+  },
+  {
+    "id": "zwalm-mill-sluice",
+    "file": "tests/eval/photos/zwalm-mill-sluice.jpg",
+    "labels": {
+      "banksChannelType": "ART",
+      "hasDams": true
+    },
+    "source": {
+      "title": "C2 0003 zwalm zwalm13 - 367159 - onroerenderfgoed.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:C2_0003_zwalm_zwalm13_-_367159_-_onroerenderfgoed.jpg",
+      "author": "Vandevorst, Kris",
+      "licence": "CC BY 4.0"
+    }
+  },
+  {
+    "id": "not-a-stream-old-map",
+    "file": "tests/eval/photos/not-a-stream-old-map.jpg",
+    "notStream": true,
+    "labels": {},
+    "source": {
+      "title": "..Loen Elv og Hovie Bæk. - no-nb krt 00858.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:..Loen_Elv_og_Hovie_B%C3%A6k._-_no-nb_krt_00858.jpg",
+      "author": "Unknown author",
+      "licence": "Public domain"
+    }
+  },
+  {
+    "id": "not-a-stream-basin-map",
+    "file": "tests/eval/photos/not-a-stream-basin-map.jpg",
+    "notStream": true,
+    "labels": {},
+    "source": {
+      "title": "Drainage basin map of Touch.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Drainage_basin_map_of_Touch.jpg",
+      "author": "SIAH du Touch",
+      "licence": "CC BY-SA 3.0"
+    }
+  },
+  {
+    "id": "not-a-stream-plant",
+    "file": "tests/eval/photos/not-a-stream-plant.jpg",
+    "notStream": true,
+    "labels": {},
+    "source": {
+      "title": "Males herbes toulousaines 2.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Males_herbes_toulousaines_2.jpg",
+      "author": "Olybrius",
+      "licence": "Public domain"
+    }
+  }
+]

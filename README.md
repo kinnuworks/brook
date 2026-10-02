@@ -86,13 +86,14 @@ At pilot scale hosting is **€0** (static app, serverless functions, free datab
 | What we checked | How | Result |
 |---|---|---|
 | Brook understands real replies without AI | 238 replies in 7 languages written by someone who never saw Brook's word lists (`tests/eval/`) | **93%** understood correctly on first sight, 4% deferred to AI/tap, 3% wrong. After fixing three general problems it revealed: 96% / 4% / **0% wrong** (same set, no longer held out) |
+| Photo suggestions are right | 36 real photos from Wikimedia Commons of streams in and around Oslo, Toulouse and Ghent, none used while building Brook; we labelled only what each photo plainly shows (`tests/eval/photos.json`, `npm run eval:vision`) | Suggested 134 of 138 labelled answers; **132 right (99%)**, every high-confidence one right (73/73). Both misses: which plants dominate one bank where grass, shrubs and trees mix. 3 of 3 non-stream images (maps, a plant) recognised, **0 suggestions** on them. Not scored: 260 suggestions on things we didn't label, such as channel shape |
 | Health-data format | Official HL7 validator against the OneAquaHealth FHIR IG ([docs/FHIR.md](docs/FHIR.md)) | **0 errors, 0 warnings**; verified checks also pass the IG's indicator profile; 4 deliberately broken bundles rejected |
 | Works with OneAquaHealth's server | Round trip to the OAH FHIR sandbox | 14 resources created; re-sending updates, never duplicates |
 | Same answer codes as OneAquaHealth | Unit tests against their published answer lists | pass |
 | Accessibility | axe-core, WCAG 2.1 AA, phone screen | **0 violations** on every screen |
 | No signal at the stream | Network cut mid-check (`scripts/offline-test.mjs`) | check kept, sent on reconnect |
 | Whole flow | Robot walkthrough on a phone screen (`scripts/e2e-walkthrough.mjs`) | 24 questions by tap, typing, “not sure” and help; 0 errors |
-| Everything else | `npm test` | 108 tests pass |
+| Everything else | `npm test` | 111 tests pass |
 | AI cost | Spending ledger | ≈0.1 ¢ per check |
 
 ## Honest limits
@@ -100,7 +101,7 @@ At pilot scale hosting is **€0** (static app, serverless functions, free datab
 - The research hub starts with **simulated checks** (`scripts/seed-demo.mjs`), clearly marked, so it has something to show. Their question-difficulty figures are stated assumptions, not findings. Checks made with the sample photos are marked **Trial**; only checks with people's own photos count as **Field**.
 - Translations were prepared for this prototype and have not yet been reviewed by native-speaking volunteers.
 - Voice depends on the browser's speech engine: none in Firefox (tap and typing still work); in Chrome, recognition runs on Google's servers.
-- Photo suggestions can be wrong — that is why they are suggestions and why agreement is measured.
+- Photo suggestions can be wrong — that is why they are suggestions and why agreement is measured. The photo test scores only what a photo plainly shows; suggestions on harder things (channel shape, banks that differ) are not yet measured.
 - One Health tips are precautionary, based on simple published rules and OneAquaHealth's own risk scores. Not medical advice.
 - OneAquaHealth's FHIR sandbox is shared and wiped regularly; Brook keeps its own record of every submission result.
 

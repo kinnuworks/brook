@@ -298,6 +298,11 @@ export default function AboutPage() {
             correctly on first sight, with no AI. After fixing three general problems it found, 96%, with none recorded wrongly.
           </li>
           <li>
+            <b>Photo suggestions:</b> 36 real photos of streams in Oslo, Toulouse and near Ghent that Brook had never seen. We wrote down only what each
+            photo clearly shows. Brook's suggestions were right 132 times out of 134. For three pictures that weren't streams (two maps and a plant), it
+            said so and suggested nothing.
+          </li>
+          <li>
             <b>Health-data format:</b> checked with the official HL7 validator against OneAquaHealth's own rules: 0 errors.
           </li>
           <li>
@@ -323,7 +328,10 @@ export default function AboutPage() {
           </li>
           <li>The seven languages haven't yet been checked by native-speaking volunteers.</li>
           <li>Voice needs a browser that supports it (Chrome, Edge or Safari). In Firefox you tap or type instead.</li>
-          <li>Photo suggestions can be wrong. That's why they are only suggestions, and why we measure how often people accept them.</li>
+          <li>
+            Photo suggestions can be wrong. Our photo test only scored things a photo shows clearly; harder things, like the shape of the channel, weren't
+            scored. That's why they are only suggestions, and why we measure how often people accept them.
+          </li>
           <li>The health tips are simple, careful advice based on OneAquaHealth's own data. They are not medical advice.</li>
         </ul>
       </Section>

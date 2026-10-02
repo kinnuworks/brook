@@ -4,7 +4,7 @@
 Brook — talk to your stream
 
 ## Elevator pitch (≤ 200 characters)
-A talking field coach for OneAquaHealth's citizen stream check: voice or tap, 7 languages, photo suggestions you confirm, and data in OAH's own format + HL7 FHIR.
+A talking guide for OneAquaHealth's citizen stream check: talk or tap in 7 languages, get every hard word explained, and send data scientists can use right away.
 
 ## Track
 **Primary: Track 1 — Citizen Science UX.** Also delivers Track 3 (AI-Supported Assessment), Track 4 (Awareness & Storytelling) and Track 7 (Digital Health Standards).
@@ -29,7 +29,7 @@ OneAquaHealth asks citizens to check their urban streams — and that's how you 
 
 ### What it does
 - **A conversation, not a form.** Brook asks each of OneAquaHealth's questions in plain words, by voice or text, in the seven languages of OAH's app (EN, PT, FR, IT, NL, NO, EL). “What does that mean?” always works, pictograms show the meaning, and OAH's official wording is one tap away. A “face downstream” diagram ends the left/right confusion.
-- **Photos suggest, people decide.** From the upstream, downstream and surroundings photos, Brook suggests answers to the questions a photo can answer — with what it saw. Nothing is recorded until the person confirms or corrects it.
+- **Photos suggest, people decide.** From the upstream, downstream and surroundings photos, Brook suggests answers to the questions a photo can answer — with what it saw. Nothing is recorded until the person confirms or corrects it. In a test on 36 real stream photos Brook had never seen, 132 of its 134 suggestions on clearly visible things were right, and for pictures that weren't streams it suggested nothing.
 - **A second look.** Seven published rules spot contradictions (a “good” rating next to a sewage discharge; clear water after 20 mm of rain, using live weather) and ask gently. They never change an answer.
 - **Your stream's story.** After sending, people see what OneAquaHealth scientists measured at that exact site — macroinvertebrate, diatom and fish quality classes and Resilience Map health-risk scores from OAH's public API — next to what they saw, with precautionary One Health tips for people, pets and the stream.
 - **Data that travels.** Every check is produced as the exact `CitizenSubmissionPutDTO` OAH's API accepts, and as an HL7 FHIR R4 transaction shaped by the OneAquaHealth Implementation Guide, posted to OAH's HL7 Europe sandbox.
@@ -52,6 +52,7 @@ OneAquaHealth asks citizens to check their urban streams — and that's how you 
 - A check a non-expert can finish in about five minutes, by voice, without knowing a single ecological term — producing data OAH can ingest unchanged.
 - AI that measurably helps without ever deciding, and data that records exactly where every answer came from.
 - A hub that turns conversations into protocol design insight: which questions OAH's form designers should reword first.
+- Tested, not just demoed, on things Brook had never seen: 93% of 238 real-style replies in 7 languages understood without AI; 132 of 134 photo suggestions right on 36 stream photos; 0 errors from the official HL7 validator against the OAH IG; 0 accessibility violations.
 
 ### What we learned
 Most data-quality problems in citizen science are language problems. A volunteer who understands the question gives a better answer than any model can infer — so the best use of AI here is to explain, suggest and double-check, not to decide.

@@ -127,7 +127,8 @@ export async function POST(request: Request): Promise<Response> {
       biodiversity: string | null;
     };
     const suggestions: Record<string, { value: unknown; confidence: string; evidence: string }> = {};
-    for (const id of VISUAL) {
+    // No stream in the photos means nothing in them can answer a stream question.
+    for (const id of out.is_stream ? VISUAL : []) {
       const a = out.answers?.[id];
       if (!a || a.value === null || a.value === undefined) continue;
       if (Array.isArray(a.value) && !a.value.length) continue;
