@@ -1,6 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "answer-source",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Answer source</b></p><p>How the citizen's answer behind an Observation component (or, for a single-valued Observation, the Observation itself) reached the record. Lets a researcher separate answers a person gave unaided from those an AI model suggested or interpreted.</p><p>Extension <code>https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source</code>: a code from <code>https://brook-oah.vercel.app/fhir/ValueSet/answer-source</code> (required), on Observation.component and Observation.</p></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
   "version": "0.1.0",
   "name": "AnswerSource",

@@ -1,7 +1,7 @@
 {
   "validator": "HL7 FHIR Validator 6.10.4",
   "fhirVersion": "4.0.1",
-  "ran": "2026-10-02T10:51:11.731Z",
+  "ran": "2026-10-02T10:56:09.729Z",
   "terminology": "https://tx.fhir.org",
   "loaded": [
     "OneAquaHealth IG (hl7.eu.fhir.oah) built from source with SUSHI",
@@ -177,10 +177,7 @@
       "errors": 0,
       "warnings": 0,
       "issues": [],
-      "information": {
-        "This property has only a code ('field') and not a URI, so it has no clearly defined meaning in the terminology ecosystem": 1,
-        "This property has only a code ('appValue') and not a URI, so it has no clearly defined meaning in the terminology ecosystem": 1
-      }
+      "information": {}
     },
     {
       "file": "public/fhir/CodeSystem-oah-citizen-fields.json",

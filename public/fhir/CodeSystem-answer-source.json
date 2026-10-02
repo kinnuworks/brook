@@ -1,6 +1,10 @@
 {
   "resourceType": "CodeSystem",
   "id": "answer-source",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Answer source codes</b></p><p>How a citizen's answer reached the record: tapped, spoken or typed and matched by word lists, interpreted by an AI model from free speech or text, or suggested by an AI model from a photo and then confirmed or corrected by the citizen.</p><table><tr><th>Code</th><th>Display</th></tr><tr><td>tap</td><td>Tapped</td></tr><tr><td>voice</td><td>Spoken</td></tr><tr><td>text</td><td>Typed</td></tr><tr><td>voice-ai</td><td>Spoken, interpreted by AI</td></tr><tr><td>text-ai</td><td>Typed, interpreted by AI</td></tr><tr><td>photo-confirmed</td><td>Photo suggestion, confirmed</td></tr><tr><td>photo-corrected</td><td>Photo suggestion, corrected</td></tr></table></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/CodeSystem/answer-source",
   "version": "0.1.0",
   "name": "AnswerSourceCodes",

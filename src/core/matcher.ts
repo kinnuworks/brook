@@ -48,7 +48,7 @@ function findPhrase(text: string, phrases: readonly string[]): string | null {
 
 // Words that negate what follows, in the seven languages (accents already stripped).
 const NEGATIONS = new Set([
-  "not", "no", "isn't", "aren't", "without", "never", "none",
+  "not", "no", "isn't", "aren't", "without", "never", "none", "can't", "cant", "cannot", "don't", "dont", "doesn't", "didn't", "wasn't", "weren't",
   "nao", "nem", "sem", "nenhum", "nenhuma",
   "pas", "aucun", "aucune", "sans", "ni", "jamais",
   "non", "senza", "nessun", "nessuno", "nessuna",
@@ -65,6 +65,18 @@ const FILLERS = new Set([
   "het", "een", "er", "zijn", "is",
   "noe", "noen", "en", "et", "ei", "det", "er",
   "το", "τα", "η", "ο", "οι", "ενα", "μια", "εχει", "υπαρχει", "υπαρχουν",
+  // Verbs that sit between a negation and the answer: "não É boa", "non È buono", "δεν ΕΙΝΑΙ καλή",
+  // "I can't SEE any". Not English "it's": in "no it's a U" the "no" is an interjection.
+  "look", "looks", "see", "spot", "notice",
+  "e", "esta", "sao", "estao", "vejo", "parece", "ve",
+  "sono", "sta", "vedo", "sembra",
+  "voir", "vois", "semble",
+  "zie", "lijkt", "ziet",
+  "ser", "ser ut", "ar",
+  "ειναι", "βλεπω", "φαινεται",
+  // intensifiers: "not VERY good", "não MUITO boa"
+  "very", "really", "so", "too", "that", "quite", "particularly",
+  "muito", "tao", "bem", "molto", "cosi", "troppo", "tres", "vraiment", "si", "heel", "zeer", "erg", "echt", "veldig", "sa", "spesielt", "πολυ", "τοσο",
 ]);
 
 /**
@@ -126,6 +138,43 @@ function matchOptions(text: string, q: QuestionDef, s: Strings): { code: string;
   return hits;
 }
 
+// Tens and approximate numbers across the seven languages ("vinte e cinco", "une quarantaine",
+// "een centimeter of dertig"). Language-agnostic: these words don't collide between languages.
+const TENS: Record<string, number> = {
+  twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+  vinte: 20, trinta: 30, quarenta: 40, cinquenta: 50, sessenta: 60, setenta: 70, oitenta: 80, noventa: 90,
+  vingt: 20, trente: 30, quarante: 40, cinquante: 50, soixante: 60,
+  dizaine: 10, vingtaine: 20, trentaine: 30, quarantaine: 40, cinquantaine: 50, soixantaine: 60,
+  venti: 20, trenta: 30, quaranta: 40, cinquanta: 50, sessanta: 60, settanta: 70, ottanta: 80, novanta: 90,
+  decina: 10, ventina: 20, trentina: 30, quarantina: 40, cinquantina: 50,
+  twintig: 20, dertig: 30, veertig: 40, vijftig: 50, zestig: 60, zeventig: 70, tachtig: 80, negentig: 90,
+  tjue: 20, tjueen: 21, tretti: 30, forti: 40, forty_no: 40, femti: 50, seksti: 60, sytti: 70, atti: 80, nitti: 90,
+  εικοσι: 20, τριαντα: 30, σαραντα: 40, πενηντα: 50, εξηντα: 60, εβδομηντα: 70, ογδοντα: 80, ενενηντα: 90,
+};
+const TENS_PREFIXES = Object.entries(TENS).filter(([w]) => w.length >= 5).sort((a, b) => b[0].length - a[0].length);
+
+function tensValue(t: string, s: Strings): number | null {
+  const tokens = t.split(" ");
+  for (let i = 0; i < tokens.length; i++) {
+    const tok = tokens[i];
+    let tens = TENS[tok];
+    let rest = "";
+    if (tens === undefined) {
+      // One-word compounds: "venticinque", "vingt-cinq", "tjuefem", "vijfentwintig".
+      const pre = TENS_PREFIXES.find(([w]) => tok.startsWith(w));
+      const suf = TENS_PREFIXES.find(([w]) => tok.endsWith(w) && tok.length > w.length);
+      if (pre) [tens, rest] = [pre[1], tok.slice(pre[0].length).replace(/^[-e]+/, "")];
+      else if (suf) [tens, rest] = [suf[1], tok.slice(0, tok.length - suf[0].length).replace(/en$/, "")];
+    }
+    if (tens === undefined) continue;
+    const units = Object.entries(s.numbers).filter(([, v]) => v >= 1 && v <= 9);
+    const unitWord = rest || tokens.slice(i + 1, i + 3).filter((w) => !s.words.and.map(normalize).includes(w) && w !== "e" && w !== "et" && w !== "og" && w !== "και")[0];
+    const unit = units.find(([w]) => normalize(w) === unitWord)?.[1] ?? 0;
+    return tens + unit;
+  }
+  return null;
+}
+
 /** "0.5", "0,5 m", "30 cm", "half a metre", "knee deep", "two" → a number in metres or a count. */
 export function parseNumber(text: string, s: Strings, unit: "metres" | "count"): number | null {
   const t = normalize(text.replace(/(\d),(\d)/g, "$1.$2"));
@@ -134,18 +183,24 @@ export function parseNumber(text: string, s: Strings, unit: "metres" | "count"):
       if (hasPhrase(t, phrase)) return value;
     }
   }
+  const inCentimetres = unit === "metres" && s.units.centimetre.some((c) => hasPhrase(t, c));
   const digits = t.match(/(\d+(?:\.\d+)?)\s*([\p{L}]+)?/u);
   if (digits) {
     let value = Number(digits[1].replace(",", "."));
     const word = digits[2] ?? "";
-    if (unit === "metres" && s.units.centimetre.map(normalize).includes(word)) value = value / 100;
+    if (unit === "metres" && (inCentimetres || s.units.centimetre.map(normalize).includes(word))) value = value / 100;
     else if (unit === "metres" && !word && value > 10) value = value / 100; // "30" almost certainly means cm
     return Number.isFinite(value) ? value : null;
   }
+  const tens = tensValue(t, s);
+  if (tens !== null) return unit === "metres" ? (inCentimetres || tens > 10 ? tens / 100 : tens) : tens;
   if (unit === "metres" && s.units.half.some((h) => hasPhrase(t, h))) return 0.5;
   // Longest phrase first, so "a couple" is 2 and not the 1 of "a".
   for (const [word, value] of Object.entries(s.numbers).sort((a, b) => b[0].length - a[0].length)) {
-    if (hasPhrase(t, word)) return value;
+    if (!hasPhrase(t, word)) continue;
+    if (!inCentimetres) return value;
+    // "one centimetre of water" is not a stream depth anyone measures: ask again rather than guess.
+    return value >= 3 ? value / 100 : null;
   }
   return null;
 }
@@ -178,6 +233,19 @@ export function interpretLocally(q: QuestionDef, raw: string, s: Strings): Local
 
   if (findPhrase(text, w.repeat) && text.split(" ").length <= 4) return { kind: "repeat" };
   if (findPhrase(text, w.back) && text.split(" ").length <= 4) return { kind: "back" };
+
+  // "Not (quite) sure", "não tenho bem a certeza", "je ne suis pas sûr", "vet ikke helt": uncertainty, not "no".
+  const tokens = text.split(" ");
+  const negated = tokens.some((tk) => NEGATIONS.has(tk) || NEGATIONS.has(tk.replace(/^(?:n'|l'|d'|c')/, "")));
+  if (negated && /(sure|certain|certez|cert[oa]\b|\bsur\b|\bsure\b|sicur|zeker|sikker|σιγουρ|\bidea\b|\bidee\b|\bknow\b|\bsei\b|\bsais\b|\bsabe\b|\bweet\b|\bvet\b|ξερω)/u.test(text)) {
+    if (q.allowNotSure) return { kind: "notSure" };
+  }
+  // A question about a term ("what's a riffle?", "hva er et stryk?") is a request for help, not an answer.
+  const helpAtStart = w.help.some((h) => {
+    const nh = normalize(h);
+    return text.startsWith(nh + " ") || text === nh || text.startsWith(nh + "?");
+  });
+  if (helpAtStart && (raw.trim().endsWith("?") || tokens.length <= 6)) return { kind: "help" };
 
   const vocabulary = new Set(
     Object.values(s.q[q.id].options ?? {}).flatMap((o) => [...o.say, o.label].flatMap((p) => normalize(p).split(" "))),

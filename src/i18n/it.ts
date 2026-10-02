@@ -7,7 +7,10 @@ type DeepPartial<T> = { [K in keyof T]?: T[K] extends (infer U)[] ? U[] : T[K] e
 // where it drifts from the English (see "banchi", "acqua piovana" and
 // "ruscellamenti"); Brook's plain `ask` and `label` say what is really meant.
 // The yes list avoids bare "c'è" / "ci sono" / "vedo", because "non c'è" /
-// "non vedo" would then match both yes and no.
+// "non vedo" would then match both yes and no; no phrase uses "senza" or "non"
+// (the matcher reads them as negations). Phrases like "è buono" / "sta bene"
+// put the copula into each question's vocabulary, so "non è buono" drops
+// "buono" instead of recording it.
 const strings: DeepPartial<Strings> = {
   langName: "Italiano",
   words: {
@@ -26,7 +29,7 @@ const strings: DeepPartial<Strings> = {
     // Not bare "mezzo": "in mezzo" (in the middle) would read as half a metre.
     half: ["mezzo metro", "metà"],
     depth: {
-      // "A few centimetres" comes first, or "qualche" would count as 3 metres.
+      // "A few centimetres", or "qualche" would count as 3 metres.
       "qualche centimetro": 0.05,
       "pochi centimetri": 0.05,
       "alla caviglia": 0.1,
@@ -48,7 +51,7 @@ const strings: DeepPartial<Strings> = {
       petto: 1.3,
     },
   },
-  // Order matters: the first phrase found wins, so "un paio" comes before "un".
+  // The matcher tries longer phrases first, so "un paio" is 2 and not the 1 of "un".
   numbers: { "un paio": 2, "una decina": 10, qualche: 3, alcuni: 3, alcune: 3, zero: 0, uno: 1, una: 1, un: 1, due: 2, tre: 3, quattro: 4, cinque: 5, sei: 6, sette: 7, otto: 8, nove: 9, dieci: 10 },
   sections: {
     see: { title: "Cosa vedi", intro: "Prima di tutto, cosa vedi da dove ti trovi: circa cento metri di corso d'acqua." },
@@ -67,7 +70,7 @@ const strings: DeepPartial<Strings> = {
       help: "Immagina di tagliare il corso d'acqua di traverso. Piatta: larga e poco profonda, le sponde si alzano appena. A U: una conca arrotondata, con sponde ripide. A V: stretta e profonda, con le sponde che scendono fino a un punto, spesso nei torrenti ripidi e veloci.",
       official: "La forma del canale è…",
       options: {
-        FLAT: { label: "Piatta", official: "Piatta (A)", say: ["piatta", "piatto", "larga", "largo", "bassa", "poco profonda", "pianeggiante", "piana", "piatta e larga"] },
+        FLAT: { label: "Piatta", official: "Piatta (A)", say: ["piatta", "è piatta", "piatto", "larga", "largo", "bassa", "poco profonda", "pianeggiante", "piana", "piatta e larga"] },
         U: { label: "A U", official: "Forma a U (B)", say: ["u", "a u", "forma a u", "a forma di u", "arrotondata", "arrotondato", "tonda", "conca", "catino", "scodella"] },
         V: { label: "A V", official: "Forma a V (C)", say: ["v", "vu", "vi", "a v", "a vu", "forma a v", "a forma di v", "stretta", "stretto", "profonda e stretta", "incassata", "a punta"] },
       },
@@ -78,7 +81,7 @@ const strings: DeepPartial<Strings> = {
       help: "Guarda il fondo dove scorre l'acqua. Naturale vuol dire sassi, ghiaia, sabbia, fango o piante. Artificiale vuol dire cemento, oppure pietre tenute insieme dal cemento.",
       official: "Il fondo del canale umido è…",
       options: {
-        NAT: { label: "Naturale", official: "Naturale (A)", say: ["naturale", "ghiaia", "sassi", "sassoso", "ciottoli", "sabbia", "sabbioso", "fango", "fangoso", "terra", "rocce", "pietre"] },
+        NAT: { label: "Naturale", official: "Naturale (A)", say: ["naturale", "è naturale", "ghiaia", "sassi", "ciottoli", "sabbia", "sabbioso", "fango", "fangoso", "terra", "rocce", "pietre"] },
         ART: { label: "Artificiale", official: "Artificiale (cemento o pietre con cemento) (B)", say: ["artificiale", "cemento", "calcestruzzo", "cementato", "asfalto", "lastricato", "pavimentato", "fatto dall'uomo", "pietre con cemento", "pietre cementate", "tubo", "tombino"] },
       },
     },
@@ -88,9 +91,9 @@ const strings: DeepPartial<Strings> = {
       help: "Le sponde sono i lati che contengono l'acqua. Naturali: terra, radici e piante. Artificiali: cemento, oppure pietre tenute insieme dal cemento. Pietre posate: sassi o massi sciolti messi dall'uomo, senza cemento in mezzo.",
       official: "I banchi del canale sono…",
       options: {
-        NAT: { label: "Naturali", official: "Naturale (A)", say: ["naturali", "naturale", "terra", "erba", "erbose", "piante", "radici", "fango", "vegetazione", "terra e piante"] },
+        NAT: { label: "Naturali", official: "Naturale (A)", say: ["naturali", "sono naturali", "naturale", "terra", "erba", "erbose", "piante", "radici", "fango", "vegetazione", "terra e piante"] },
         ART: { label: "Artificiali", official: "Artificiale (cemento o pietre con cemento) (B)", say: ["artificiali", "artificiale", "cemento", "calcestruzzo", "muro", "muri", "muraglione", "cementate", "muri di cemento", "argini in cemento", "pietre con cemento", "pietre cementate"] },
-        LAS: { label: "Pietre posate", official: "Pietre posate senza cemento (C)", say: ["pietre posate", "pietre", "pietra", "sassi", "massi", "rocce", "scogliera", "massicciata", "muro a secco", "muretto a secco", "pietre senza cemento", "senza cemento"] },
+        LAS: { label: "Pietre posate", official: "Pietre posate senza cemento (C)", say: ["pietre posate", "pietre", "pietra", "sassi", "massi", "rocce", "scogliera", "massicciata", "muro a secco", "muretto a secco", "pietre a secco", "pietrame"] },
       },
     },
     habitats: {
@@ -101,7 +104,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         SB: { label: "Banchi di sabbia", official: "Banchi di sabbia (A)", say: ["banco di sabbia", "banchi di sabbia", "sabbia sul bordo", "sabbia lungo la riva", "sabbia sulla riva", "riva sabbiosa", "bordo sabbioso", "spiaggetta", "spiaggia"] },
         SI: { label: "Isole di sabbia", official: "Isole di sabbia (B)", say: ["isola di sabbia", "isole di sabbia", "isola", "isole", "isolotto", "isolotti", "sabbia in mezzo", "sabbia al centro"] },
-        SD: { label: "Depositi di sassi", official: "Depositi di sassi (C)", say: ["deposito di sassi", "depositi di sassi", "sassi", "ghiaia", "ciottoli", "pietre", "mucchio di sassi", "mucchi di sassi", "massi", "rocce", "sassaia"] },
+        SD: { label: "Depositi di sassi", official: "Depositi di sassi (C)", say: ["deposito di sassi", "depositi di sassi", "sassi", "ghiaia", "ciottoli", "pietre", "mucchio di sassi", "mucchi di sassi", "massi", "rocce", "sassaia", "ci sono sassi"] },
         RF: { label: "Rapide", official: "Ruscellamenti, rapide, cascate (D)", say: ["rapide", "rapida", "raschi", "raschio", "cascata", "cascate", "cascatella", "salti", "acqua mossa", "acqua increspata", "acqua veloce", "mulinelli"] },
         AV: { label: "Piante acquatiche", official: "Vegetazione acquatica (E)", say: ["piante acquatiche", "pianta acquatica", "piante nell'acqua", "piante in acqua", "vegetazione acquatica", "alghe", "giunchi", "canne palustri", "erba nell'acqua", "muschio", "crescione", "lenticchia d'acqua"] },
       },
@@ -114,7 +117,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         FT: { label: "Alberi caduti", official: "Alberi caduti (A)", say: ["albero caduto", "alberi caduti", "albero", "alberi", "tronco", "tronchi", "tronco caduto", "ceppo", "ceppi"] },
         FB: { label: "Rami caduti", official: "Rami caduti (B)", say: ["ramo", "rami", "rami caduti", "ramoscelli", "bastoni", "legnetti", "legna", "legno", "frasche"] },
-        FL: { label: "Foglie cadute", official: "Depositi di foglie cadute (C)", say: ["foglie", "foglia", "foglie cadute", "fogliame", "mucchio di foglie", "mucchi di foglie", "foglie secche", "lettiera"] },
+        FL: { label: "Foglie cadute", official: "Depositi di foglie cadute (C)", say: ["foglie", "foglia", "foglie cadute", "fogliame", "mucchio di foglie", "mucchi di foglie", "foglie secche", "lettiera", "ci sono foglie"] },
       },
     },
     waterFlow: {
@@ -125,8 +128,8 @@ const strings: DeepPartial<Strings> = {
       options: {
         FAS: { label: "Veloce", official: "Veloce (con onde o alta velocità) (A)", say: ["veloce", "veloci", "rapida", "rapido", "forte", "onde", "con le onde", "impetuosa", "corrente forte", "scorre veloce", "va veloce", "spumeggiante"] },
         NOR: { label: "Lenta", official: "Lento (B)", say: ["lenta", "lento", "piano", "pianino", "piano piano", "calma", "tranquilla", "normale", "regolare", "dolce", "scorre piano", "scorre lenta"] },
-        STA: { label: "Ferma", official: "Stagnante/intermittente (C)", say: ["ferma", "fermo", "stagnante", "stagnata", "immobile", "pozze", "pozzanghere", "ristagno", "intermittente", "quasi ferma", "acqua ferma", "a malapena"] },
-        DRY: { label: "Asciutto", official: "Secco (D)", say: ["asciutto", "asciutta", "secco", "secca", "senz'acqua", "senza acqua", "vuoto", "prosciugato", "in secca", "a secco"] },
+        STA: { label: "Ferma", official: "Stagnante/intermittente (C)", say: ["ferma", "fermo", "stagnante", "stagnata", "immobile", "pozze", "pozzanghere", "ristagno", "intermittente", "quasi ferma", "acqua ferma", "è ferma"] },
+        DRY: { label: "Asciutto", official: "Secco (D)", say: ["asciutto", "asciutta", "secco", "secca", "senz'acqua", "letto asciutto", "vuoto", "prosciugato", "in secca", "a secco"] },
       },
     },
     waterColor: {
@@ -136,7 +139,7 @@ const strings: DeepPartial<Strings> = {
       official: "Com'è l'acqua?",
       options: {
         CL: { label: "Limpida", official: "Chiara/trasparente (A)", say: ["limpida", "chiara", "trasparente", "pulita", "cristallina", "si vede il fondo", "limpidissima"] },
-        MU: { label: "Torbida", official: "Fangoso/torbido (B)", say: ["torbida", "torbido", "fangosa", "fangoso", "marrone", "sporca", "melmosa", "opaca", "scura", "terrosa", "color fango"] },
+        MU: { label: "Torbida", official: "Fangoso/torbido (B)", say: ["torbida", "è torbida", "torbido", "fangosa", "fangoso", "marrone", "sporca", "melmosa", "opaca", "scura", "terrosa", "color fango"] },
         FO: { label: "Schiuma", official: "Ha schiuma (C)", say: ["schiuma", "schiumosa", "con schiuma", "schiuma bianca", "spuma", "bolle", "bollicine", "sapone", "saponosa"] },
         CO: { label: "Colore strano", official: "Ha colori/colore alterato (D)", say: ["colore", "colorata", "colore strano", "colore alterato", "verde", "verdastra", "rossa", "rossastra", "lattiginosa", "oleosa", "olio", "arcobaleno"] },
       },
@@ -209,7 +212,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         H: { label: "Erba e piante basse", official: "Erbe (A)", say: ["erbe", "erba", "erbacce", "prato", "erba alta", "piante basse", "erbacee", "erbetta", "fieno"] },
         B: { label: "Arbusti", official: "Arbusti (B)", say: ["arbusti", "arbusto", "cespugli", "cespuglio", "siepe", "siepi", "rovi", "roveto", "macchia", "sterpaglia"] },
-        T: { label: "Alberi", official: "Alberi (C)", say: ["alberi", "albero", "bosco", "boschetto", "foresta", "pioppi", "salici", "ontani", "alberato"] },
+        T: { label: "Alberi", official: "Alberi (C)", say: ["alberi", "sono alberi", "albero", "bosco", "boschetto", "foresta", "pioppi", "salici", "ontani", "alberato"] },
       },
     },
     isVegetationCoveredRight: {
@@ -226,7 +229,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         H: { label: "Erba e piante basse", official: "Erbe (A)", say: ["erbe", "erba", "erbacce", "prato", "erba alta", "piante basse", "erbacee", "erbetta", "fieno"] },
         B: { label: "Arbusti", official: "Arbusti (B)", say: ["arbusti", "arbusto", "cespugli", "cespuglio", "siepe", "siepi", "rovi", "roveto", "macchia", "sterpaglia"] },
-        T: { label: "Alberi", official: "Alberi (C)", say: ["alberi", "albero", "bosco", "boschetto", "foresta", "pioppi", "salici", "ontani", "alberato"] },
+        T: { label: "Alberi", official: "Alberi (C)", say: ["alberi", "sono alberi", "albero", "bosco", "boschetto", "foresta", "pioppi", "salici", "ontani", "alberato"] },
       },
     },
     hasInvasivePlantSpecies: {
@@ -253,7 +256,7 @@ const strings: DeepPartial<Strings> = {
       help: "Buono: canale naturale, piante sulle sponde, acqua dall'aspetto pulito, vita tutto intorno. Moderato: qualche cambiamento, ma ancora verde e vivace. Scarso: molto modificato, con cemento, poche piante o inquinamento.",
       official: "Fornire una valutazione complessiva dello stato di salute dell'ecosistema del corso d'acqua",
       options: {
-        GOOD: { label: "Buono", official: "Buona qualità", say: ["buono", "buona", "sano", "sana", "bene", "ottimo", "ottima", "eccellente", "molto buono", "bello", "in salute", "buona qualità"] },
+        GOOD: { label: "Buono", official: "Buona qualità", say: ["buono", "buona", "è buono", "sta bene", "sano", "sana", "bene", "ottimo", "ottima", "eccellente", "in salute", "buona qualità"] },
         MODERATE: { label: "Moderato", official: "Moderata qualità", say: ["moderato", "moderata", "medio", "media", "discreto", "discreta", "così così", "insomma", "né buono né scarso", "normale", "accettabile", "nella media"] },
         POOR: { label: "Scarso", official: "Povera qualità", say: ["scarso", "scarsa", "pessimo", "pessima", "brutto", "cattivo", "cattiva", "malsano", "inquinato", "inquinata", "male", "degradato"] },
       },
@@ -407,7 +410,7 @@ const strings: DeepPartial<Strings> = {
     heard: "Ho sentito",
     searchPlaceholder: "Nome del corso d'acqua o del sito",
     useThisPlace: "Usa la mia posizione attuale per questo corso d'acqua",
-    sendFailed: "Non è stato possibile inviarla ora. La tua osservazione è salvata su questo telefono.",
+    sendFailed: "Al momento l'invio non è riuscito. La tua osservazione è salvata su questo telefono.",
     retry: "Riprova",
     left: "Sinistra",
     right: "Destra",

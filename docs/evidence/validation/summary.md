@@ -57,8 +57,3 @@ Information, bundles/gap-location-referenceForm.json:
 
 - 8× Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location\|4.0.1
 
-Information, public/fhir/CodeSystem-oah-citizen-answers.json:
-
-- 1× This property has only a code ('field') and not a URI, so it has no clearly defined meaning in the terminology ecosystem
-- 1× This property has only a code ('appValue') and not a URI, so it has no clearly defined meaning in the terminology ecosystem
-

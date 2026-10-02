@@ -1,6 +1,10 @@
 {
   "resourceType": "ValueSet",
   "id": "answer-source",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Answer sources</b></p><p>All answer source codes.</p><p>All codes from <code>https://brook-oah.vercel.app/fhir/CodeSystem/answer-source</code> version 0.1.0.</p></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/ValueSet/answer-source",
   "version": "0.1.0",
   "name": "AnswerSourceValueSet",
@@ -25,7 +29,8 @@
   "compose": {
     "include": [
       {
-        "system": "https://brook-oah.vercel.app/fhir/CodeSystem/answer-source"
+        "system": "https://brook-oah.vercel.app/fhir/CodeSystem/answer-source",
+        "version": "0.1.0"
       }
     ]
   }

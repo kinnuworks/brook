@@ -53,3 +53,26 @@ describe("numbers", () => {
     expect(parseNumber("a couple of them", en, "count")).toBe(2);
   });
 });
+
+import it_ from "../src/i18n/it";
+import el from "../src/i18n/el";
+import pt from "../src/i18n/pt";
+
+describe("negation across a verb (pt, it, el) and in English", () => {
+  const T = { pt: compose("pt", pt), it: compose("it", it_), el: compose("el", el) };
+  it.each([
+    ["pt", "não é boa", "GOOD"],
+    ["it", "non è buono", "GOOD"],
+    ["el", "δεν είναι καλή", "GOOD"],
+  ] as const)("%s “%s” is not %s", (lang, text, code) => {
+    const r = interpretLocally(QUESTION_BY_ID.overallAssessment, text, T[lang]);
+    expect(r.kind === "answer" && r.value === code).toBe(false);
+  });
+  it("English 'not very good' is not GOOD, and 'I can't see any riffles' is not RF", () => {
+    expect(picks(ask("en", "overallAssessment", "not very good"), "GOOD")).toBe(false);
+    expect(picks(ask("en", "habitats", "I can't see any riffles"), "RF")).toBe(false);
+  });
+  it("number words in centimetres", () => {
+    expect(parseNumber("about ten centimetres", en, "metres")).toBe(0.1);
+  });
+});

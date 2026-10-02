@@ -1,6 +1,10 @@
 {
   "resourceType": "ConceptMap",
   "id": "oah-citizen-fields-to-oah-indicators",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Citizen check fields to OneAquaHealth indicators</b></p><p>Brook's grouping of the OneAquaHealth app fields under the indicator codes of the OneAquaHealth FHIR IG (hl7.eu.fhir.oah): the code of the Observation each field becomes a component of. 'wider' means the indicator includes what the field records; 'relatedto' marks a field the IG has no closer indicator for.</p><table><tr><th>Field</th><th>OAH indicator</th><th>Relationship</th></tr><tr><td>channelForm</td><td>morophology (Morphology of the streams)</td><td>wider</td></tr><tr><td>bottomChannelType</td><td>morophology (Morphology of the streams)</td><td>wider</td></tr><tr><td>banksChannelType</td><td>morophology (Morphology of the streams)</td><td>wider</td></tr><tr><td>habitats</td><td>morophology (Morphology of the streams)</td><td>wider</td></tr><tr><td>fallenBiomassTypes</td><td>morophology (Morphology of the streams)</td><td>wider</td></tr><tr><td>waterFlow</td><td>hydrology (Hydrology of the stream)</td><td>wider</td></tr><tr><td>waterHeight</td><td>hydrology (Hydrology of the stream)</td><td>wider</td></tr><tr><td>hasDams</td><td>hydrology (Hydrology of the stream)</td><td>wider</td></tr><tr><td>numberOfDams</td><td>hydrology (Hydrology of the stream)</td><td>wider</td></tr><tr><td>waterAbstraction</td><td>hydrology (Hydrology of the stream)</td><td>wider</td></tr><tr><td>waterColor</td><td>foam (Foam/colour/smell)</td><td>wider</td></tr><tr><td>pipes</td><td>foam (Foam/colour/smell)</td><td>relatedto</td></tr><tr><td>waterDischarge</td><td>foam (Foam/colour/smell)</td><td>relatedto</td></tr><tr><td>construction</td><td>foam (Foam/colour/smell)</td><td>relatedto</td></tr><tr><td>imperviousAreasLeft</td><td>LandUse (Land use in the margins)</td><td>wider</td></tr><tr><td>imperviousAreasRight</td><td>LandUse (Land use in the margins)</td><td>wider</td></tr><tr><td>recentVegetationCuts</td><td>LandUse (Land use in the margins)</td><td>wider</td></tr><tr><td>isVegetationCoveredLeft</td><td>riparianVegetation (Riparian vegetation)</td><td>wider</td></tr><tr><td>vegetationTypeLeft</td><td>riparianVegetation (Riparian vegetation)</td><td>wider</td></tr><tr><td>isVegetationCoveredRight</td><td>riparianVegetation (Riparian vegetation)</td><td>wider</td></tr><tr><td>vegetationTypeRight</td><td>riparianVegetation (Riparian vegetation)</td><td>wider</td></tr><tr><td>hasInvasivePlantSpecies</td><td>invasiveOrganisms (Invasive invertebrate, plants and fish)</td><td>wider</td></tr><tr><td>invasivePlantSpecies</td><td>invasiveOrganisms (Invasive invertebrate, plants and fish)</td><td>wider</td></tr></table></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/ConceptMap/oah-citizen-fields-to-oah-indicators",
   "version": "0.1.0",
   "name": "OahCitizenFieldsToOahIndicators",
@@ -26,6 +30,7 @@
   "group": [
     {
       "source": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+      "sourceVersion": "0.1.0",
       "target": "http://hl7.eu/fhir/ig/oah/CodeSystem/temporarySystem-oah-eu",
       "element": [
         {

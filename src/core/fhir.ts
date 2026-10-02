@@ -186,8 +186,8 @@ const narrative = (html: string) => ({ status: "generated", div: `<div xmlns="ht
 function valueText(v: Json): string {
   const cc = v.valueCodeableConcept as { coding?: { display?: string }[]; text?: string } | undefined;
   if (cc) return cc.coding?.[0]?.display ?? cc.text ?? "";
-  const qty = v.valueQuantity as { value: number; unit: string } | undefined;
-  if (qty) return `${qty.value} ${qty.unit}`;
+  const qty = v.valueQuantity as { value: number; unit: string; code: string } | undefined;
+  if (qty) return qty.code === "1" ? String(qty.value) : `${qty.value} ${qty.unit}`;
   return String(v.valueString ?? v.valueInteger ?? "");
 }
 const listNarrative = (title: string, rows: [string, string][]) =>
@@ -216,7 +216,8 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     tag: [BROOK_TAG],
     ...(ai ? { security: [AIAST] } : {}),
   });
-  const asked = activeQuestions(answers).filter((q) => q.id in answers);
+  // Asked and answered ("not sure" is null and counts); undefined or "" would make invalid FHIR.
+  const asked = activeQuestions(answers).filter((q) => answers[q.id] !== undefined && answers[q.id] !== "");
   const askedIds = new Set(asked.map((q) => q.id));
   const citizen = { identifier: { system: `${BROOK_FHIR}/citizens`, value: check.citizenRef }, display: "Citizen scientist (pseudonymous)" };
   const performer = [citizen, ...(verified ? [{ display: check.verifiedBy }] : [])];
@@ -362,7 +363,7 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     id: ids.provenance,
     meta: meta(),
     text: narrative(
-      `<p>Recorded ${esc(check.submittedAt)}: a citizen stream check guided by Brook${modelDevice ? `, with suggestions from ${esc(modelDevice.id)}` : ""}; every answer given or confirmed by the citizen.</p>`,
+      `<p>Recorded ${esc(check.submittedAt)}: a citizen stream check guided by Brook${model ? `, with suggestions from the AI model ${esc(model)}` : ""}; every answer given or confirmed by the citizen.</p>`,
     ),
     target: [{ reference: `QuestionnaireResponse/${ids.form}` }, ...observations.map((o) => ({ reference: `Observation/${o.id}` }))],
     occurredPeriod: { start: check.startedAt, end: check.submittedAt },

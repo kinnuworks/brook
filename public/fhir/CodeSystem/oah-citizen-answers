@@ -1,6 +1,10 @@
 {
   "resourceType": "CodeSystem",
   "id": "oah-citizen-answers",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>OneAquaHealth citizen stream check: answers</b></p><p>The coded answers of the OneAquaHealth Citizen Science App's stream check. Each code is the field name and the value the app stores, joined by a dot (e.g. channelForm.FLAT); each display is OneAquaHealth's own English label, including the letter of its illustration. Not an official OneAquaHealth artefact.</p><table><tr><th>Code</th><th>Display</th></tr><tr><td>channelForm.FLAT</td><td>Flat (A)</td></tr><tr><td>channelForm.U</td><td>U Shape (B)</td></tr><tr><td>channelForm.V</td><td>V Shape (C)</td></tr><tr><td>bottomChannelType.NAT</td><td>Natural (A)</td></tr><tr><td>bottomChannelType.ART</td><td>Artificial (concrete or stones with concrete) (B)</td></tr><tr><td>banksChannelType.NAT</td><td>Natural (A)</td></tr><tr><td>banksChannelType.ART</td><td>Artificial (concrete or stones with concrete) (B)</td></tr><tr><td>banksChannelType.LAS</td><td>Laid stones with no concrete (C)</td></tr><tr><td>habitats.SB</td><td>Sand banks (A)</td></tr><tr><td>habitats.SI</td><td>Sand islands (B)</td></tr><tr><td>habitats.SD</td><td>Stone deposits (C)</td></tr><tr><td>habitats.RF</td><td>Riffles, rapids, falls (D)</td></tr><tr><td>habitats.AV</td><td>Aquatic vegetation (E)</td></tr><tr><td>fallenBiomassTypes.FT</td><td>Fallen trees (A)</td></tr><tr><td>fallenBiomassTypes.FB</td><td>Fallen branches (B)</td></tr><tr><td>fallenBiomassTypes.FL</td><td>Deposits of fallen leaves (C)</td></tr><tr><td>waterFlow.FAS</td><td>Fast (with waves or high velocity) (A)</td></tr><tr><td>waterFlow.NOR</td><td>Slow (B)</td></tr><tr><td>waterFlow.STA</td><td>Stagnant/intermittent (C)</td></tr><tr><td>waterFlow.DRY</td><td>Dry (D)</td></tr><tr><td>waterColor.CL</td><td>Clear/transparent (A)</td></tr><tr><td>waterColor.MU</td><td>Muddy/turbid (B)</td></tr><tr><td>waterColor.FO</td><td>Has foam (C)</td></tr><tr><td>waterColor.CO</td><td>Has colors/altered color (D)</td></tr><tr><td>vegetationTypeLeft.H</td><td>Herbs (A)</td></tr><tr><td>vegetationTypeLeft.B</td><td>Shrubs (B)</td></tr><tr><td>vegetationTypeLeft.T</td><td>Trees (C)</td></tr><tr><td>vegetationTypeRight.H</td><td>Herbs (A)</td></tr><tr><td>vegetationTypeRight.B</td><td>Shrubs (B)</td></tr><tr><td>vegetationTypeRight.T</td><td>Trees (C)</td></tr><tr><td>overallAssessment.GOOD</td><td>Good quality</td></tr><tr><td>overallAssessment.MODERATE</td><td>Moderate quality</td></tr><tr><td>overallAssessment.POOR</td><td>Poor quality</td></tr></table></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
   "version": "0.1.0",
   "name": "OahCitizenAnswers",
@@ -20,17 +24,19 @@
       ]
     }
   ],
-  "description": "The coded answers of the OneAquaHealth Citizen Science App's stream check. Each code is '<field>.<app value>', where the app value is exactly what the app stores (e.g. channelForm.FLAT); each display is OneAquaHealth's own English label, including the letter of its illustration. Not an official OneAquaHealth artefact.",
+  "description": "The coded answers of the OneAquaHealth Citizen Science App's stream check. Each code is the field name and the value the app stores, joined by a dot (e.g. channelForm.FLAT); each display is OneAquaHealth's own English label, including the letter of its illustration. Not an official OneAquaHealth artefact.",
   "caseSensitive": true,
   "content": "complete",
   "property": [
     {
       "code": "field",
+      "uri": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers#field",
       "description": "The OneAquaHealth app field this answer belongs to (a code in oah-citizen-fields).",
       "type": "Coding"
     },
     {
       "code": "appValue",
+      "uri": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers#appValue",
       "description": "The value exactly as the OneAquaHealth app stores it.",
       "type": "string"
     }

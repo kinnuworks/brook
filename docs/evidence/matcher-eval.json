@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-02T11:08:01.089Z",
+  "total": {
+    "n": 238,
+    "correct": 228,
+    "deferred": 10,
+    "wrong": 0
+  },
+  "byLanguage": {
+    "en": {
+      "n": 34,
+      "correct": 31,
+      "deferred": 3,
+      "wrong": 0,
+      "wrongExamples": []
+    },
+    "pt": {
+      "n": 34,
+      "correct": 31,
+      "deferred": 3,
+      "wrong": 0,
+      "wrongExamples": []
+    },
+    "fr": {
+      "n": 34,
+      "correct": 34,
+      "deferred": 0,
+      "wrong": 0,
+      "wrongExamples": []
+    },
+    "it": {
+      "n": 34,
+      "correct": 34,
+      "deferred": 0,
+      "wrong": 0,
+      "wrongExamples": []
+    },
+    "nl": {
+      "n": 34,
+      "correct": 33,
+      "deferred": 1,
+      "wrong": 0,
+      "wrongExamples": []
+    },
+    "no": {
+      "n": 34,
+      "correct": 32,
+      "deferred": 2,
+      "wrong": 0,
+      "wrongExamples": []
+    },
+    "el": {
+      "n": 34,
+      "correct": 33,
+      "deferred": 1,
+      "wrong": 0,
+      "wrongExamples": []
+    }
+  }
+}

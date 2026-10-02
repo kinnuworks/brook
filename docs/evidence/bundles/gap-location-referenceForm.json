@@ -684,7 +684,7 @@
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Hydrology of the stream (preliminary)</b></p><ul><li>Water flow: Slow (B)</li><li>Water depth: 0.4 m</li><li>Barriers: Yes</li><li>Number of barriers: 1 dams</li><li>Water taken out: No</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Hydrology of the stream (preliminary)</b></p><ul><li>Water flow: Slow (B)</li><li>Water depth: 0.4 m</li><li>Barriers: Yes</li><li>Number of barriers: 1</li><li>Water taken out: No</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -1820,7 +1820,7 @@
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Recorded 2026-10-01T07:49:55.000Z: a citizen stream check guided by Brook, with suggestions from brook-ai-gpt-6-luna; every answer given or confirmed by the citizen.</p></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Recorded 2026-10-01T07:49:55.000Z: a citizen stream check guided by Brook, with suggestions from the AI model gpt-6-luna; every answer given or confirmed by the citizen.</p></div>"
         },
         "target": [
           {

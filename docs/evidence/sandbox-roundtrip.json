@@ -2,7 +2,7 @@
   "server": "https://sandbox.hl7europe.eu/oneaquahealth/fhir",
   "software": "HAPI FHIR Server 8.2.0",
   "fhirVersion": "4.0.1",
-  "ran": "2026-10-02T10:52:05.202Z",
+  "ran": "2026-10-02T10:56:11.124Z",
   "request": {
     "method": "POST",
     "url": "https://sandbox.hl7europe.eu/oneaquahealth/fhir",
@@ -23,62 +23,62 @@
   },
   "response": {
     "status": 200,
-    "ms": 566,
+    "ms": 535,
     "entries": [
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Location/oah-site-o17/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
-        "location": "Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+        "status": "200 OK",
+        "location": "Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/2"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Device/brook-app/_history/1"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Device/brook-ai-gpt-6-luna/_history/1"
       },
       {
-        "status": "201 Created",
-        "location": "Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+        "status": "200 OK",
+        "location": "Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/2"
       },
       {
-        "status": "201 Created",
+        "status": "200 OK",
         "location": "Provenance/8554e96e-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
       }
     ]
@@ -112,8 +112,8 @@
     {
       "url": "https://sandbox.hl7europe.eu/oneaquahealth/fhir/Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "status": 200,
-      "versionId": "1",
-      "lastUpdated": "2026-10-02T10:52:05.584+00:00",
+      "versionId": "2",
+      "lastUpdated": "2026-10-02T10:56:11.521+00:00",
       "sameAsSent": true,
       "stored": {
         "resourceType": "Observation",

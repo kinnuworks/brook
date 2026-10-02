@@ -34,7 +34,7 @@ export default defineConfig({
         // The research hub (maps, charts) is for desks, not streams: keep it out of the offline bundle.
         globIgnores: ["**/HubPage-*.js", "**/fhir/**"],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
-        navigateFallbackDenylist: [/^\/api\//],
+        navigateFallbackDenylist: [/^\/api\//, /^\/fhir\//],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => url.hostname.endsWith("openfreemap.org"),

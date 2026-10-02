@@ -4,9 +4,11 @@ type DeepPartial<T> = { [K in keyof T]?: T[K] extends (infer U)[] ? U[] : T[K] e
 
 // European Portuguese (pt-PT), for the Coimbra volunteers. Every `official`
 // field is the OneAquaHealth Citizen Science App's own Portuguese wording.
-// Matching lists avoid the contraction "no" (it is also a negation word, and
-// the matcher drops the word after it), and avoid bare "há" / "vejo" in the
-// yes list, because "não há" / "não vejo" would then match both yes and no.
+// Matching lists avoid "no", "sem" and "nem" (the matcher reads them as
+// negations and drops the answer words after them), and the yes list avoids
+// bare "há" / "vejo", because "não há" / "não vejo" would match yes and no.
+// Phrases like "é boa" / "está turva" also put the copula into each question's
+// vocabulary, so "não é boa" drops "boa" instead of recording it.
 const strings: DeepPartial<Strings> = {
   langName: "Português",
   words: {
@@ -25,7 +27,7 @@ const strings: DeepPartial<Strings> = {
     // Not bare "meio": "no meio" (in the middle) would read as half a metre.
     half: ["meio metro", "metade"],
     depth: {
-      // "A few centimetres" comes first, or "alguns" would count as 3 metres.
+      // "A few centimetres", or "alguns" would count as 3 metres.
       "uns centímetros": 0.05,
       "alguns centímetros": 0.05,
       "poucos centímetros": 0.05,
@@ -47,7 +49,7 @@ const strings: DeepPartial<Strings> = {
       peito: 1.3,
     },
   },
-  // Order matters: the first phrase found wins, so "um par" comes before "um".
+  // The matcher tries longer phrases first, so "um par" is 2 and not the 1 of "um".
   numbers: { "um par": 2, "uns quantos": 3, "umas quantas": 3, alguns: 3, algumas: 3, zero: 0, um: 1, uma: 1, dois: 2, duas: 2, três: 3, quatro: 4, cinco: 5, seis: 6, sete: 7, oito: 8, nove: 9, dez: 10 },
   sections: {
     see: { title: "O que vê", intro: "Primeiro, o que vê de onde está: cerca de cem metros de ribeira." },
@@ -66,7 +68,7 @@ const strings: DeepPartial<Strings> = {
       help: "Imagine que corta a ribeira de lado a lado. Plano: largo e pouco fundo, as margens quase não sobem. Em U: uma calha arredondada, com margens íngremes. Em V: estreito e fundo, com as margens a descer até um ponto, comum em ribeiras íngremes e rápidas.",
       official: "A forma do canal é…",
       options: {
-        FLAT: { label: "Plano", official: "Plano (A)", say: ["plano", "plana", "largo", "larga", "pouco fundo", "raso", "rasa", "chato", "achatado", "plano e largo"] },
+        FLAT: { label: "Plano", official: "Plano (A)", say: ["plano", "é plano", "plana", "largo", "larga", "pouco fundo", "raso", "rasa", "chato", "achatado", "plano e largo"] },
         U: { label: "Em U", official: "Forma de U (B)", say: ["u", "em u", "forma de u", "formato de u", "arredondado", "arredondada", "redondo", "calha", "bacia", "tigela"] },
         V: { label: "Em V", official: "Forma de V (C)", say: ["v", "vê", "em v", "em vê", "forma de v", "formato de v", "estreito", "estreita", "apertado", "fundo e estreito", "encaixado", "bico"] },
       },
@@ -77,7 +79,7 @@ const strings: DeepPartial<Strings> = {
       help: "Olhe para o leito por onde a água corre. Natural quer dizer pedras, cascalho, areia, lama ou plantas. Artificial quer dizer betão, ou pedras unidas com cimento.",
       official: "O fundo do canal molhado é…",
       options: {
-        NAT: { label: "Natural", official: "Natural (A)", say: ["natural", "cascalho", "pedras", "pedregoso", "areia", "arenoso", "lama", "lodo", "terra", "seixos", "calhaus", "rochas"] },
+        NAT: { label: "Natural", official: "Natural (A)", say: ["natural", "é natural", "cascalho", "pedras", "areia", "arenoso", "lama", "lodo", "terra", "seixos", "calhaus", "rochas"] },
         ART: { label: "Artificial", official: "Artificial (betão ou pedras com betão) (B)", say: ["artificial", "betão", "cimento", "cimentado", "alcatrão", "pavimentado", "feito pelo homem", "lajes", "manilha", "encanado", "pedras com cimento", "pedras com betão"] },
       },
     },
@@ -87,9 +89,9 @@ const strings: DeepPartial<Strings> = {
       help: "As margens são os lados que seguram a água. Naturais: terra, raízes e plantas. Artificiais: betão, ou pedras unidas com betão. Pedras colocadas: pedras ou rochas soltas, postas por pessoas, sem betão entre elas.",
       official: "As margens do canal são…",
       options: {
-        NAT: { label: "Naturais", official: "Natural (A)", say: ["naturais", "natural", "terra", "erva", "ervas", "relva", "plantas", "raízes", "lama", "vegetação", "terra e plantas"] },
+        NAT: { label: "Naturais", official: "Natural (A)", say: ["naturais", "são naturais", "natural", "terra", "erva", "ervas", "relva", "plantas", "raízes", "lama", "vegetação", "terra e plantas"] },
         ART: { label: "Artificiais", official: "Artificial (betão ou pedras com betão) (B)", say: ["artificiais", "artificial", "betão", "cimento", "muro", "muros", "paredão", "parede", "cimentado", "muros de betão", "pedras com cimento", "pedras com betão"] },
-        LAS: { label: "Pedras colocadas", official: "Pedras sobrepostas sem betão (C)", say: ["pedras colocadas", "pedras soltas", "pedras sobrepostas", "pedras", "pedra", "rochas", "enrocamento", "muro de pedra", "pedras sem cimento", "sem cimento", "sem betão", "gabiões"] },
+        LAS: { label: "Pedras colocadas", official: "Pedras sobrepostas sem betão (C)", say: ["pedras colocadas", "pedras soltas", "pedras sobrepostas", "pedras", "pedra", "pedra solta", "pedras empilhadas", "pedra seca", "rochas", "enrocamento", "muro de pedra", "gabiões"] },
       },
     },
     habitats: {
@@ -124,8 +126,8 @@ const strings: DeepPartial<Strings> = {
       options: {
         FAS: { label: "Rápida", official: "Rápido (com ondas ou alta velocidade) (A)", say: ["rápida", "rápido", "depressa", "veloz", "forte", "ondas", "com ondas", "corrente forte", "corre muito", "a correr depressa", "agitada", "impetuosa"] },
         NOR: { label: "Lenta", official: "Lento (B)", say: ["lenta", "lento", "devagar", "devagarinho", "calma", "calmo", "suave", "normal", "tranquila", "mansa", "corre devagar", "a correr devagar"] },
-        STA: { label: "Parada", official: "Estagnado/intermitente (C)", say: ["parada", "parado", "estagnada", "estagnado", "quieta", "imóvel", "poças", "charcos", "intermitente", "quase parada", "água parada", "sem corrente"] },
-        DRY: { label: "Seca", official: "Seco (D)", say: ["seca", "seco", "sem água", "vazia", "vazio", "secou", "está seca", "completamente seca", "sequinha"] },
+        STA: { label: "Parada", official: "Estagnado/intermitente (C)", say: ["parada", "parado", "estagnada", "estagnado", "quieta", "imóvel", "poças", "charcos", "intermitente", "quase parada", "água parada", "poça"] },
+        DRY: { label: "Seca", official: "Seco (D)", say: ["seca", "seco", "leito seco", "vazia", "vazio", "secou", "está seca", "completamente seca", "sequinha"] },
       },
     },
     waterColor: {
@@ -135,7 +137,7 @@ const strings: DeepPartial<Strings> = {
       official: "Como está a água?",
       options: {
         CL: { label: "Transparente", official: "Transparente (A)", say: ["transparente", "límpida", "limpa", "limpinha", "clara", "cristalina", "vê-se o fundo", "dá para ver o fundo"] },
-        MU: { label: "Turva", official: "Turva (B)", say: ["turva", "turvo", "barrenta", "lamacenta", "castanha", "suja", "enlameada", "escura", "opaca", "cor de lama", "cor de terra", "cor de barro"] },
+        MU: { label: "Turva", official: "Turva (B)", say: ["turva", "turvo", "barrenta", "lamacenta", "castanha", "suja", "enlameada", "escura", "opaca", "está turva", "cor de lama", "cor de terra"] },
         FO: { label: "Espuma", official: "Tem espuma (C)", say: ["espuma", "espumosa", "com espuma", "espuma branca", "bolhas", "bolhinhas", "sabão", "ensaboada", "detergente"] },
         CO: { label: "Cor estranha", official: "Tem cores / cor alterada (D)", say: ["cor", "com cor", "colorida", "cor estranha", "cor esquisita", "cor alterada", "verde", "esverdeada", "vermelha", "leitosa", "oleosa", "arco-íris"] },
       },
@@ -208,7 +210,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         H: { label: "Ervas e relva", official: "Ervas (A)", say: ["ervas", "erva", "relva", "relvado", "ervado", "plantas baixas", "ervas daninhas", "erva alta", "prado", "herbáceas", "ervinhas"] },
         B: { label: "Arbustos", official: "Arbustos (B)", say: ["arbustos", "arbusto", "mato", "silvas", "silvado", "silveiras", "sebe", "moitas", "moita", "giestas", "arbustivo"] },
-        T: { label: "Árvores", official: "Árvores (C)", say: ["árvores", "árvore", "arvoredo", "bosque", "mata", "floresta", "choupos", "amieiros", "salgueiros", "freixos"] },
+        T: { label: "Árvores", official: "Árvores (C)", say: ["árvores", "são árvores", "árvore", "arvoredo", "bosque", "mata", "floresta", "choupos", "amieiros", "salgueiros", "freixos"] },
       },
     },
     isVegetationCoveredRight: {
@@ -225,7 +227,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         H: { label: "Ervas e relva", official: "Ervas (A)", say: ["ervas", "erva", "relva", "relvado", "ervado", "plantas baixas", "ervas daninhas", "erva alta", "prado", "herbáceas", "ervinhas"] },
         B: { label: "Arbustos", official: "Arbustos (B)", say: ["arbustos", "arbusto", "mato", "silvas", "silvado", "silveiras", "sebe", "moitas", "moita", "giestas", "arbustivo"] },
-        T: { label: "Árvores", official: "Árvores (C)", say: ["árvores", "árvore", "arvoredo", "bosque", "mata", "floresta", "choupos", "amieiros", "salgueiros", "freixos"] },
+        T: { label: "Árvores", official: "Árvores (C)", say: ["árvores", "são árvores", "árvore", "arvoredo", "bosque", "mata", "floresta", "choupos", "amieiros", "salgueiros", "freixos"] },
       },
     },
     hasInvasivePlantSpecies: {
@@ -252,8 +254,8 @@ const strings: DeepPartial<Strings> = {
       help: "Boa: canal natural, plantas nas margens, água com bom aspeto, vida à volta. Moderada: algumas alterações, mas ainda verde e com vida. Má: muito alterada, com betão, poucas plantas ou poluição.",
       official: "Forneça uma avaliação geral da saúde do ecossistema da ribeira",
       options: {
-        GOOD: { label: "Boa", official: "Boa qualidade", say: ["boa", "bom", "saudável", "ótima", "ótimo", "excelente", "muito boa", "muito bom", "bonita", "em bom estado", "boa qualidade"] },
-        MODERATE: { label: "Moderada", official: "Qualidade moderada", say: ["moderada", "moderado", "média", "médio", "razoável", "mais ou menos", "assim assim", "nem boa nem má", "regular", "aceitável", "qualidade moderada"] },
+        GOOD: { label: "Boa", official: "Boa qualidade", say: ["boa", "bom", "é boa", "está boa", "saudável", "ótima", "ótimo", "excelente", "muito boa", "bonita", "em bom estado", "boa qualidade"] },
+        MODERATE: { label: "Moderada", official: "Qualidade moderada", say: ["moderada", "moderado", "média", "médio", "razoável", "mais ou menos", "assim assim", "intermédia", "regular", "aceitável", "qualidade moderada"] },
         POOR: { label: "Má", official: "Má qualidade", say: ["má", "mau", "fraca", "fraco", "pobre", "poluída", "suja", "péssima", "horrível", "degradada", "muito má", "má qualidade"] },
       },
     },
@@ -376,7 +378,7 @@ const strings: DeepPartial<Strings> = {
     about: "Sobre",
     speechUnsupported: "A voz não está disponível neste navegador. Toque nas respostas ou escreva-as.",
     offline: "Sem ligação",
-    handsFree: "Mãos livres",
+    handsFree: "Mãos-livres",
     handsFreeHint: "O Brook ouve depois de cada pergunta, para que possa ter as mãos livres.",
     question: "Pergunta",
     sources: {

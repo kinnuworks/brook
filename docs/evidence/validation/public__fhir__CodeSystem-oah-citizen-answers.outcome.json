@@ -2,7 +2,7 @@
   "resourceType": "OperationOutcome",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>OperationOutcome </b></p><p>All OK</p><table class=\"grid\"><tr><td><b>Severity</b></td><td><b>Location</b></td><td><b>Code</b></td><td><b>Details</b></td><td><b>Diagnostics</b></td><td><b>Source</b></td></tr><tr><td>Information</td><td>CodeSystem</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/CodeSystem|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>CodeSystem.property[0]</td><td>Business Rule Violation</td><td>This property has only a code ('field') and not a URI, so it has no clearly defined meaning in the terminology ecosystem</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>CodeSystem.property[1]</td><td>Business Rule Violation</td><td>This property has only a code ('appValue') and not a URI, so it has no clearly defined meaning in the terminology ecosystem</td><td/><td>InstanceValidator</td></tr></table></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>OperationOutcome </b></p><p>All OK</p><table class=\"grid\"><tr><td><b>Severity</b></td><td><b>Location</b></td><td><b>Code</b></td><td><b>Details</b></td><td><b>Diagnostics</b></td><td><b>Source</b></td></tr><tr><td>Information</td><td>CodeSystem</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/CodeSystem|4.0.1</td><td/><td>InstanceValidator</td></tr></table></div>"
   },
   "extension": [
     {
@@ -37,62 +37,6 @@
       },
       "expression": [
         "CodeSystem"
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-          "valueInteger": 1
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-          "valueInteger": 2
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
-          "valueString": "InstanceValidator"
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-          "valueCode": "CODESYSTEM_PROPERTY_UNKNOWN_CODE"
-        }
-      ],
-      "severity": "information",
-      "code": "business-rule",
-      "details": {
-        "text": "This property has only a code ('field') and not a URI, so it has no clearly defined meaning in the terminology ecosystem"
-      },
-      "expression": [
-        "CodeSystem.property[0]"
-      ]
-    },
-    {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-          "valueInteger": 1
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-          "valueInteger": 2
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
-          "valueString": "InstanceValidator"
-        },
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-          "valueCode": "CODESYSTEM_PROPERTY_UNKNOWN_CODE"
-        }
-      ],
-      "severity": "information",
-      "code": "business-rule",
-      "details": {
-        "text": "This property has only a code ('appValue') and not a URI, so it has no clearly defined meaning in the terminology ecosystem"
-      },
-      "expression": [
-        "CodeSystem.property[1]"
       ]
     }
   ]

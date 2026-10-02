@@ -1,6 +1,10 @@
 {
   "resourceType": "ValueSet",
   "id": "oah-citizen-fields",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Citizen check fields</b></p><p>All codes of the oah-citizen-fields CodeSystem.</p><p>All codes from <code>https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields</code> version 0.1.0.</p></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/ValueSet/oah-citizen-fields",
   "version": "0.1.0",
   "name": "OahCitizenFieldsValueSet",
@@ -25,7 +29,8 @@
   "compose": {
     "include": [
       {
-        "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields"
+        "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+        "version": "0.1.0"
       }
     ]
   }

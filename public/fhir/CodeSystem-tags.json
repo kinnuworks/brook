@@ -1,6 +1,10 @@
 {
   "resourceType": "CodeSystem",
   "id": "tags",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Brook resource tags</b></p><p>Tags Brook puts in meta.tag of every resource it creates.</p><table><tr><th>Code</th><th>Display</th></tr><tr><td>brook-citizen-check</td><td>Brook citizen stream check</td></tr></table></div>"
+  },
   "url": "https://brook-oah.vercel.app/fhir/CodeSystem/tags",
   "version": "0.1.0",
   "name": "BrookTags",
