@@ -100,6 +100,7 @@ At pilot scale hosting is **€0** (static app, serverless functions, free datab
 
 ## Honest limits
 
+- Brook **hasn't been tried by volunteers at a real stream yet**. Everything in the evidence table was tested by machines and held-out test sets; a pilot with OneAquaHealth's citizen-science teams is the first next step.
 - The research hub starts with **simulated checks** (`scripts/seed-demo.mjs`), clearly marked, so it has something to show. Their question-difficulty figures are stated assumptions, not findings. Checks made with the sample photos are marked **Trial**; only checks with people's own photos count as **Field**.
 - Translations were prepared for this prototype and have not yet been reviewed by native-speaking volunteers.
 - Voice depends on the browser's speech engine: none in Firefox (tap and typing still work); in Chrome, recognition runs on Google's servers.

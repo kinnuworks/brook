@@ -366,6 +366,9 @@ export default function AboutPage() {
         <Section id="limits" eyebrow="Honesty" title="What we don't claim">
           <ul className="list-disc space-y-2 pl-5">
             <li>
+              Brook <b>hasn't been tried by volunteers at a real stream yet</b>. We tested it with automatic tests and test sets; a pilot with OneAquaHealth's teams is the next step.
+            </li>
+            <li>
               The research hub starts with <b>made-up example checks</b>, clearly marked “Simulated”, so you can see how it works. Real checks are marked “Field”.
             </li>
             <li>The seven languages haven't yet been checked by native-speaking volunteers.</li>
