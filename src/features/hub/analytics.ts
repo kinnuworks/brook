@@ -17,6 +17,7 @@ export interface HubRow {
   id: string;
   created_at: string;
   is_demo: boolean;
+  trial?: boolean;
   site_code: string;
   site_name: string;
   city: string | null;

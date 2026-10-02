@@ -2,6 +2,7 @@ import { Check, Image as ImageIcon, Minus, Plus, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FEELINGS, QUESTION_BY_ID, type AnswerValue, type Feelings, type QuestionId } from "@/core/protocol";
 import type { Suggestion } from "@/lib/api";
+import { DownstreamDiagram, Pictogram, hasPictogram } from "@/components/Pictogram";
 import { useStrings } from "@/i18n";
 import { describe, useCheck } from "../store";
 
@@ -17,12 +18,23 @@ interface Props {
 const same = (a: AnswerValue | undefined, b: AnswerValue | undefined) =>
   Array.isArray(a) && Array.isArray(b) ? a.length === b.length && a.every((x) => b.includes(x)) : a === b;
 
-function OptionChip({ label, official, on, onClick, suggested }: { label: string; official?: string; on?: boolean; onClick: () => void; suggested?: boolean }) {
+function OptionChip({ label, official, on, onClick, suggested, picture }: { label: string; official?: string; on?: boolean; onClick: () => void; suggested?: boolean; picture?: React.ReactNode }) {
   return (
     <button className={`chip ${on ? "chip-on" : ""}`} onClick={onClick} aria-pressed={on}>
-      <span className={`grid size-6 shrink-0 place-items-center rounded-full ring-[1.5px] ${on ? "bg-aqua ring-aqua text-white" : "ring-line"}`}>
-        {on && <Check className="size-4" strokeWidth={3} />}
-      </span>
+      {picture ? (
+        <span className="relative shrink-0">
+          {picture}
+          {on && (
+            <span className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-aqua text-white ring-2 ring-white">
+              <Check className="size-3.5" strokeWidth={3} />
+            </span>
+          )}
+        </span>
+      ) : (
+        <span className={`grid size-6 shrink-0 place-items-center rounded-full ring-[1.5px] ${on ? "bg-aqua ring-aqua text-white" : "ring-line"}`}>
+          {on && <Check className="size-4" strokeWidth={3} />}
+        </span>
+      )}
       <span className="min-w-0 flex-1">
         <span className="block text-[17px] font-semibold leading-tight">{label}</span>
         {official && official !== label && <span className="mt-0.5 block text-[12.5px] text-ink-soft">{official}</span>}
@@ -69,11 +81,20 @@ export function AnswerInput({ qid, suggestion, onAnswer, onRejectSuggestion, dra
     </div>
   );
 
+  const side = /Left$/.test(qid) ? "left" : /Right$/.test(qid) ? "right" : undefined;
+  const marginDiagram = q.section === "margins" && side && (
+    <div className="mb-3 flex items-center gap-3 rounded-2xl bg-aqua-50 p-2 pr-3">
+      <DownstreamDiagram side={side} leftLabel={s.ui.left} rightLabel={s.ui.right} />
+      <p className="text-[13.5px] font-medium leading-snug text-deep-900">{s.ui.facingDownstream}</p>
+    </div>
+  );
+
   switch (q.kind) {
     case "single":
     case "rating":
       return (
         <div>
+          {marginDiagram}
           {offeredBox}
           <div className={`grid gap-2 ${q.kind === "rating" ? "" : (q.codes?.length ?? 0) > 3 ? "sm:grid-cols-2" : ""}`}>
             {q.codes!.map((code) => (
@@ -82,6 +103,7 @@ export function AnswerInput({ qid, suggestion, onAnswer, onRejectSuggestion, dra
                 label={text.options?.[code]?.label ?? code}
                 official={q.kind === "rating" ? undefined : text.options?.[code]?.official}
                 suggested={same(suggestion?.value, code)}
+                picture={hasPictogram(qid, code) ? <Pictogram qid={qid} code={code} /> : undefined}
                 onClick={() => onAnswer(code)}
               />
             ))}
@@ -122,6 +144,7 @@ export function AnswerInput({ qid, suggestion, onAnswer, onRejectSuggestion, dra
     case "yesno":
       return (
         <div>
+          {marginDiagram}
           {suggestion && (
             <p className="mb-2 flex items-center gap-1.5 text-[13.5px] text-aqua-600">
               <ImageIcon className="size-4" aria-hidden /> {s.ui.fromYourPhoto}: {describe(lang, qid, suggestion.value)}

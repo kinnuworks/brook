@@ -6,7 +6,7 @@ export function Logo({ compact = false }: { compact?: boolean }) {
       <BrookAvatar size={compact ? 32 : 38} />
       <span className="leading-none">
         <span className="block text-[22px] font-bold tracking-tight text-deep-900">Brook</span>
-        {!compact && <span className="mt-0.5 block text-[11.5px] font-medium text-ink-soft">for OneAquaHealth citizen science</span>}
+        {!compact && <span className="mt-0.5 hidden text-[11.5px] font-medium text-ink-soft sm:block">for OneAquaHealth citizen science</span>}
       </span>
     </span>
   );

@@ -71,8 +71,11 @@ export async function submitCurrentCheck(): Promise<StoredCheck> {
   const thumbs: Record<string, string> = {};
   for (const [slot, p] of photoEntries) thumbs[slot] = await thumbnail(p.dataUrl);
 
+  // A check made with Brook's sample photos is a trial, not a field observation.
+  const trial = photoEntries.some(([, p]) => p.sample);
   const payload = {
     submission: {
+      trial,
       site_code: st.site.code,
       site_name: st.site.name,
       city: st.site.city ?? null,

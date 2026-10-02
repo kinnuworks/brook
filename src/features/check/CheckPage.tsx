@@ -360,17 +360,9 @@ export default function CheckPage() {
             </button>
           )}
 
-          {step === "site" && (
-            <SiteStep
-              onPick={(picked) => {
-                stopSpeaking();
-                useCheck.getState().chooseSite(picked);
-              }}
-            />
-          )}
           {step === "site" && demo && (
             <button
-              className="btn-ghost mt-2 w-full"
+              className="btn-primary mb-3 w-full"
               onClick={() => {
                 const c = SITE_BY_CODE.get("O17")!;
                 useCheck.getState().chooseSite({ code: c.code, name: c.name, lat: c.lat, lon: c.lon, city: c.cityName });
@@ -378,6 +370,14 @@ export default function CheckPage() {
             >
               Demo: {SITE_BY_CODE.get("O17")?.name}, Oslo
             </button>
+          )}
+          {step === "site" && (
+            <SiteStep
+              onPick={(picked) => {
+                stopSpeaking();
+                useCheck.getState().chooseSite(picked);
+              }}
+            />
           )}
 
           {step === "photos" && <PhotoStep onContinue={() => void continueFromPhotos()} />}
@@ -404,8 +404,8 @@ export default function CheckPage() {
                     {s.ui.notSure}
                   </button>
                 )}
-                <button className="btn-ghost !min-h-11 !px-3.5 text-[15px]" onClick={() => useCheck.getState().help("tap")}>
-                  <HelpCircle className="size-4.5" /> <span className="hidden min-[400px]:inline">{s.ui.whatDoesItMean}</span>
+                <button className="btn-ghost !min-h-11 !px-3.5 text-[15px]" onClick={() => useCheck.getState().help("tap")} aria-label={s.ui.whatDoesItMean} title={s.ui.whatDoesItMean}>
+                  <HelpCircle className="size-4.5" aria-hidden /> <span className="hidden min-[400px]:inline" aria-hidden>{s.ui.whatDoesItMean}</span>
                 </button>
                 <div className="flex-1" />
                 <button className="grid size-12 place-items-center rounded-full text-ink-soft ring-1 ring-line hover:ring-aqua" onClick={() => setTyping((t) => !t)} aria-label={s.ui.typeInstead}>

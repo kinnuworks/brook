@@ -53,7 +53,8 @@ export default function HubPage() {
   }, []);
 
   const shown = useMemo(() => (rows ?? []).filter((r) => withSim || !r.is_demo), [rows, withSim]);
-  const live = (rows ?? []).filter((r) => !r.is_demo).length;
+  const live = (rows ?? []).filter((r) => !r.is_demo && !r.trial).length;
+  const trials = (rows ?? []).filter((r) => !r.is_demo && r.trial).length;
   const k = useMemo(() => kpis(shown), [shown]);
   const clarity = useMemo(() => questionClarity(shown).slice(0, 8), [shown]);
   const agreement = useMemo(() => aiAgreement(shown), [shown]);
@@ -94,7 +95,7 @@ export default function HubPage() {
         <p className="flex items-start gap-2 rounded-2xl bg-sun-100 px-4 py-3 text-[14px] text-[#6b4700]">
           <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
           <span>
-            {s.hub.simulatedNote} ({s.hub.live}: {live})
+            {s.hub.simulatedNote} ({s.hub.live}: {live} · {s.hub.trial}: {trials})
           </span>
         </p>
       )}
@@ -239,6 +240,8 @@ export default function HubPage() {
                           <div className="font-semibold">{r.site_name}</div>
                           <div className="text-[12.5px] text-ink-soft">
                             {r.city} · {r.site_code} {r.is_demo && <span className="ml-1 rounded bg-sun-100 px-1.5 py-0.5 text-[11px] font-semibold text-[#8a5a00]">{s.hub.simulated}</span>}
+                            {!r.is_demo && r.trial && <span className="ml-1 rounded bg-aqua-100 px-1.5 py-0.5 text-[11px] font-semibold text-deep">{s.hub.trial}</span>}
+                            {!r.is_demo && !r.trial && <span className="ml-1 rounded bg-leaf-100 px-1.5 py-0.5 text-[11px] font-semibold text-leaf-700">{s.hub.live}</span>}
                           </div>
                         </td>
                         <td className="px-3 py-2.5">

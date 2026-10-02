@@ -165,6 +165,9 @@ export interface Strings {
     useThisPlace: string;
     sendFailed: string;
     retry: string;
+    left: string;
+    right: string;
+    facingDownstream: string;
   };
   home: {
     trust: string[];
@@ -184,6 +187,7 @@ export interface Strings {
     simulatedNote: string;
     simulated: string;
     live: string;
+    trial: string;
     checks: string;
     sitesCovered: string;
     medianTime: string;

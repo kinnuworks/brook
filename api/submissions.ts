@@ -13,6 +13,7 @@ const BROOK_TAG_CODE = "brook-citizen-check";
 interface Body {
   submission: {
     is_demo?: boolean;
+    trial?: boolean;
     site_code: string;
     site_name: string;
     city?: string | null;
@@ -97,6 +98,7 @@ export async function POST(request: Request): Promise<Response> {
   const id = await rpc<string>("brook_insert_submission", {
     p: {
       is_demo: Boolean(s.is_demo),
+      trial: Boolean(s.trial),
       site_code: String(s.site_code).slice(0, 64),
       site_name: String(s.site_name).slice(0, 160),
       city: s.city ?? null,
