@@ -129,6 +129,7 @@ export default function AboutPage() {
             ["how", "How it works"],
             ["ai", "Responsible AI"],
             ["oah", "Built on OneAquaHealth"],
+            ["adoption", "Adoption & cost"],
             ["privacy", "Privacy & security"],
             ["evidence", "Evidence"],
             ["limits", "Honest limits"],
@@ -221,6 +222,39 @@ export default function AboutPage() {
             <b>Cost:</b> a web app with no install, on free tiers; the optional AI costs about one cent per check, capped.
           </li>
         </ul>
+      </Section>
+
+      <Section id="adoption" eyebrow="Sustainability" title="How OneAquaHealth could adopt it, and what it costs">
+        <ol className="list-decimal space-y-2 pl-5">
+          <li>
+            <b>Embed it.</b> Brook already allows itself to be framed by OneAquaHealth's own app domains, so the Citizen Science App can open it as a “talk me
+            through it” mode without any change to its back office.
+          </li>
+          <li>
+            <b>Send straight to OneAquaHealth.</b> Each check is already the exact <code>CitizenSubmissionPutDTO</code> body; with a service account, one POST to{" "}
+            <code>/api/citizens/submit</code> puts it in GEOSSIP next to the lab data.
+          </li>
+          <li>
+            <b>Let volunteers check the words.</b> Brook's lines live in one file per language, so a local partner can review a language in an afternoon.
+          </li>
+        </ol>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+            <div className="text-[28px] font-bold text-deep-900">€0</div>
+            <div className="text-[14px] text-ink-soft">hosting at pilot scale (static app, serverless functions, free database tiers)</div>
+          </div>
+          <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+            <div className="text-[28px] font-bold text-deep-900">≈ 1 ¢</div>
+            <div className="text-[14px] text-ink-soft">AI per check, capped; zero if the AI is switched off</div>
+          </div>
+          <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+            <div className="text-[28px] font-bold text-deep-900">≈ €100</div>
+            <div className="text-[14px] text-ink-soft">AI for 10,000 checks a year across five cities</div>
+          </div>
+        </div>
+        <p className="text-[15px] text-ink-soft">
+          Open source (MIT), no accounts, no app store, nothing to install: it keeps working after the grant ends for as long as someone keeps the lights on.
+        </p>
       </Section>
 
       <Section id="privacy" eyebrow="Privacy & security" title="Careful with people's data">

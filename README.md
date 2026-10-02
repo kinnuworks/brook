@@ -64,6 +64,14 @@ Phone (PWA, offline-capable)                     Server (Vercel functions)      
 - **Every answer says where it came from:** tapped, said, typed, understood with AI, photo suggestion confirmed, or corrected — stored with the check, exported in FHIR, and measured in the hub.
 - **Cost-capped:** all-time, daily and per-caller limits, failing closed (`api/_lib/ai.ts`). About one cent per check.
 
+## Adoption & cost
+
+1. **Embed it** — Brook's CSP already allows framing by OneAquaHealth's app domains, so the Citizen Science App can open it as a “talk me through it” mode.
+2. **Send straight to OneAquaHealth** — every check is already the exact `CitizenSubmissionPutDTO`; with a service account it is one POST to `/api/citizens/submit`.
+3. **Let local volunteers check the words** — one file per language.
+
+At pilot scale hosting is **€0** (static app, serverless functions, free database tier); the optional AI is **≈1 cent per check**, so **≈€100 for 10,000 checks a year** across five cities — and zero with AI switched off. MIT-licensed, no accounts, no app store.
+
 ## Privacy & security
 
 - Photos are shrunk and re-encoded on the phone (every EXIF field, including GPS, removed) and shared only with consent.
