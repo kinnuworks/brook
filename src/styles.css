@@ -145,6 +145,11 @@
 @utility option-on {
   @apply bg-aqua-50 ring-2 ring-aqua;
 }
+/* A scrolling list fades at its foot, so a row cut by the edge reads as "more below". */
+@utility fade-bottom {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+}
 /* Older messages fade out under the header instead of being cut off. */
 @utility fade-top {
   mask-image: linear-gradient(to bottom, transparent 0, #000 28px);

@@ -1,4 +1,4 @@
-import { LocateFixed, MapPin, Plus, Search } from "lucide-react";
+import { ChevronRight, LocateFixed, MapPin, Plus, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CITIES, formatDistance, nearestSites, searchSites, SITES, type OahSite } from "@/core/sites";
 import type { SiteRef } from "@/core/protocol";
@@ -87,32 +87,37 @@ export function SiteStep({ onPick }: Props) {
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       <div className="flex gap-2">
         <label className="relative flex-1">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4.5 -translate-y-1/2 text-ink-faint" aria-hidden />
+          <Search className="pointer-events-none absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-ink-faint" aria-hidden />
           <span className="sr-only">{s.ui.searchSites}</span>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={s.ui.searchSites}
-            className="w-full rounded-2xl bg-white py-3.5 pl-10 pr-3 text-[16px] ring-[1.5px] ring-line outline-none focus:ring-aqua"
+            className="h-12 w-full rounded-full border-[1.5px] border-line bg-mist pl-11 pr-4 text-[16px] outline-none transition focus:border-aqua focus:bg-white"
           />
         </label>
-        <button className="btn-secondary !px-4" onClick={locate} aria-label={s.ui.useMyLocation} title={s.ui.useMyLocation}>
+        <button
+          className="grid size-12 shrink-0 place-items-center rounded-full border-[1.5px] border-line bg-white text-deep transition hover:border-aqua hover:bg-aqua-50"
+          onClick={locate}
+          aria-label={s.ui.useMyLocation}
+          title={s.ui.useMyLocation}
+        >
           <LocateFixed className={`size-5 ${locating ? "animate-pulse" : ""}`} />
         </button>
       </div>
       {denied && <p className="text-[14px] text-clay-700">{s.ui.locationDenied}</p>}
       {!here && !query && (
-        <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist">
+        <div className="flex flex-wrap gap-1.5" role="tablist">
           {CITIES.map((c) => (
             <button
               key={c.id}
               role="tab"
               aria-selected={city === c.id}
               onClick={() => setCity(c.id)}
-              className={`shrink-0 rounded-full px-3.5 py-2 text-[14px] font-semibold ring-1 transition ${city === c.id ? "bg-deep text-white ring-deep" : "bg-white text-deep ring-line"}`}
+              className={`h-9 shrink-0 rounded-full border-[1.5px] px-3.5 text-[14px] font-semibold transition ${city === c.id ? "border-deep bg-deep text-white" : "border-line bg-white text-deep hover:border-aqua"}`}
             >
               {c.name}
             </button>
@@ -120,24 +125,29 @@ export function SiteStep({ onPick }: Props) {
         </div>
       )}
       {here && !query && <p className="eyebrow">{s.ui.nearest}</p>}
-      <ul className="max-h-[38vh] space-y-2 overflow-y-auto pr-1">
+      {/* The list scrolls on its own and fades at the bottom, so a cut-off row reads as "more below". */}
+      <ul className="fade-bottom grid max-h-[min(15rem,calc(46vh-9.5rem))] gap-1.5 overflow-y-auto overscroll-contain pb-5 sm:grid-cols-2 lg:max-h-[min(17rem,calc(42vh-9.5rem))]">
         {list.map((site) => (
           <li key={site.code}>
-            <button className="chip" onClick={() => pick(site)}>
+            <button
+              className="flex w-full items-center gap-3 rounded-2xl border-[1.5px] border-line bg-white px-3.5 py-2.5 text-left transition hover:border-aqua hover:bg-aqua-50"
+              onClick={() => pick(site)}
+            >
               <MapPin className="size-5 shrink-0 text-aqua-700" aria-hidden />
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-[16.5px] font-semibold">{site.name}</span>
-                <span className="block text-[13px] text-ink-soft">
+                <span className="block truncate text-[16px] font-semibold leading-tight text-deep-900">{site.name}</span>
+                <span className="mt-0.5 block truncate text-[13px] text-ink-soft">
                   {site.cityName} · {site.code}
                   {"distance" in site && typeof site.distance === "number" ? ` · ${formatDistance(site.distance)} ${s.ui.away}` : ""}
                 </span>
               </span>
+              <ChevronRight className="size-4 shrink-0 text-ink-faint" aria-hidden />
             </button>
           </li>
         ))}
       </ul>
-      <button className="btn-ghost w-full" onClick={() => setCustom(true)}>
-        <Plus className="size-5" /> {s.ui.customSite}
+      <button className="mx-auto flex min-h-10 items-center gap-1.5 px-3 text-[14.5px] font-semibold text-deep hover:underline" onClick={() => setCustom(true)}>
+        <Plus className="size-4.5" /> {s.ui.customSite}
       </button>
     </div>
   );

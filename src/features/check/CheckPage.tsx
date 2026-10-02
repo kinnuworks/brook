@@ -431,7 +431,7 @@ export default function CheckPage() {
 
           <div className="z-10 border-t border-line bg-white/95 shadow-[0_-12px_30px_-20px_rgb(16_40_58/0.3)] backdrop-blur">
             <div className="mx-auto w-full max-w-3xl px-3 pb-[max(12px,env(safe-area-inset-bottom))] pt-2 sm:px-5 lg:pb-4">
-              <div tabIndex={-1} className="-mx-1.5 max-h-[46vh] overflow-y-auto overscroll-contain px-1.5 py-1 lg:max-h-[42vh]">
+              <div tabIndex={-1} className={`-mx-1.5 overflow-y-auto overscroll-contain px-1.5 py-1 ${step === "review" || step === "submitting" ? "max-h-[62vh]" : "max-h-[46vh] lg:max-h-[42vh]"}`}>
                 {step === "intro" && (
                   <button className="btn-primary w-full" onClick={() => useCheck.getState().begin(lang)}>
                     {s.ui.start}

@@ -78,23 +78,29 @@ export function PhotoStep({ onContinue }: { onContinue: () => void }) {
                   e.target.value = "";
                 }}
               />
-              <button
-                onClick={() => inputs.current[slot]?.click()}
-                className={`group relative grid aspect-square w-full place-items-center overflow-hidden rounded-2xl text-center transition ${photo ? "ring-2 ring-aqua" : "border-[1.5px] border-dashed border-aqua-600/45 bg-white hover:border-aqua-600 hover:bg-aqua-50"}`}
-              >
-                {photo ? (
-                  <>
-                    <img src={photo.dataUrl} alt={s.brook[key]} className="absolute inset-0 size-full object-cover" />
-                    <span className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-1 bg-gradient-to-t from-black/65 to-transparent px-2 pb-1.5 pt-5 text-left text-[11.5px] font-semibold leading-tight text-white">
-                      <span className="truncate">{s.brook[key]}</span>
-                      <RotateCcw className="size-3.5 shrink-0" aria-label={s.ui.retake} />
-                    </span>
-                  </>
-                ) : (
-                  <span className="px-1">
-                    {busy === slot ? <Loader2 className="mx-auto size-5 animate-spin text-aqua-700" /> : <Camera className="mx-auto size-5 text-aqua-700" />}
-                    <span className="mt-1 block text-[12px] font-semibold leading-tight text-deep-900">{s.brook[key]}</span>
-                    {optional && <span className="block text-[11px] text-ink-faint">{s.ui.optional}</span>}
+              <button onClick={() => inputs.current[slot]?.click()} className="group block w-full text-center" aria-label={photo ? `${s.brook[key]} · ${s.ui.retake}` : s.brook[key]}>
+                <span
+                  className={`relative grid aspect-square w-full place-items-center overflow-hidden rounded-2xl transition ${photo ? "ring-2 ring-aqua" : "border-[1.5px] border-dashed border-aqua-600/45 bg-white group-hover:border-aqua-600 group-hover:bg-aqua-50"}`}
+                >
+                  {photo ? (
+                    <>
+                      <img src={photo.dataUrl} alt="" className="absolute inset-0 size-full object-cover" />
+                      <span className="absolute right-1.5 top-1.5 grid size-6 place-items-center rounded-full bg-black/45 text-white" aria-hidden>
+                        <RotateCcw className="size-3.5" />
+                      </span>
+                    </>
+                  ) : busy === slot ? (
+                    <Loader2 className="size-5 animate-spin text-aqua-700" aria-hidden />
+                  ) : (
+                    <Camera className="size-5 text-aqua-700" aria-hidden />
+                  )}
+                </span>
+                <span className="mt-1 block text-[12px] font-semibold leading-tight text-deep-900" aria-hidden>
+                  {s.brook[key]}
+                </span>
+                {optional && (
+                  <span className="block text-[11px] leading-tight text-ink-faint" aria-hidden>
+                    {s.ui.optional}
                   </span>
                 )}
               </button>

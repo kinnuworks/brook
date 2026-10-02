@@ -1,4 +1,4 @@
-import { Camera, CheckCircle2, ChevronDown, HelpCircle, Info, Keyboard, Mic, MousePointerClick, PencilLine, ShieldAlert, Sparkles } from "lucide-react";
+import { Camera, CheckCircle2, ChevronDown, HelpCircle, ImageOff, Info, Keyboard, Mic, MousePointerClick, ShieldAlert, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { BrookAvatar, type AvatarState } from "@/components/BrookAvatar";
 import { activeQuestions, QUESTION_BY_ID, type QuestionId } from "@/core/protocol";
@@ -12,7 +12,7 @@ export const SOURCE_ICON = {
   "voice-ai": Sparkles,
   "text-ai": Sparkles,
   "photo-confirmed": Camera,
-  "photo-corrected": PencilLine,
+  "photo-corrected": ImageOff,
 } as const;
 
 type BrookMsg = Extract<Msg, { from: "brook" }>;

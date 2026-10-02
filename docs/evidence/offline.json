@@ -1,11 +1,11 @@
 {
-  "at": "2026-10-02T14:43:55.850Z",
+  "at": "2026-10-02T15:45:29.697Z",
   "ok": true,
   "log": [
     "network OFF after the first question appeared",
-    "story page shown offline; offline note visible: false; stored: [{\"id\":\"61ad3811-6ffa-490f-b96e-32f66d1f0454\",\"status\":\"pending\"}]",
+    "story page shown offline; offline note visible: false; stored: [{\"id\":\"8d6f8004-89da-4fb9-946e-b1e699bc0910\",\"status\":\"pending\"}]",
     "network ON",
-    "after reconnecting: [{\"id\":\"61ad3811-6ffa-490f-b96e-32f66d1f0454\",\"status\":\"sent\",\"serverId\":\"a5f40688-0dbd-459f-aa88-b576e180b146\"}]",
+    "after reconnecting: [{\"id\":\"8d6f8004-89da-4fb9-946e-b1e699bc0910\",\"status\":\"sent\",\"serverId\":\"0538c81d-fcdf-4612-b141-9d185f69e28d\"}]",
     "PASS: kept offline, sent on reconnect"
   ]
 }

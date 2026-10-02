@@ -64,7 +64,7 @@ export function SidePanel() {
   const shots = Object.entries(photos);
 
   return (
-    <aside className="hidden w-[340px] shrink-0 flex-col gap-4 overflow-y-auto pb-1 lg:flex" aria-label={s.ui.yourCheck}>
+    <aside className="hidden min-h-0 w-[340px] shrink-0 flex-col gap-4 overflow-y-auto pb-1 lg:flex" aria-label={s.ui.yourCheck}>
       <section className="card p-5">
         <p className="eyebrow">{s.ui.yourCheck}</p>
         {site ? (
@@ -96,10 +96,10 @@ export function SidePanel() {
         </ol>
       </section>
 
-      <section className="card min-h-0 p-5">
+      <section className="card flex min-h-40 flex-1 flex-col p-5">
         <p className="eyebrow">{s.ui.answersSoFar}</p>
         {answered.length ? (
-          <ul className="mt-2 divide-y divide-line">
+          <ul className="fade-bottom mt-2 min-h-0 flex-1 divide-y divide-line overflow-y-auto pb-4">
             {answered.map((q) => {
               const src = sources[q.id];
               const Icon = src ? SOURCE_ICON[src] : null;
