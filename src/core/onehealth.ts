@@ -7,7 +7,7 @@ import type { AnswerValues } from "./protocol";
 import type { OahSite } from "./sites";
 import type { RecentWeather } from "./weather";
 
-export type TipKey = "faecal" | "pathogens" | "foam" | "discharge" | "heat" | "shade" | "invasive" | "natural" | "concrete" | "generic" | "litter";
+export type TipKey = "faecal" | "dogs" | "pathogens" | "foam" | "discharge" | "heat" | "shade" | "invasive" | "natural" | "concrete" | "generic" | "litter";
 
 export interface OneHealthTips {
   people: { tip: TipKey; because: string[] };
@@ -74,7 +74,7 @@ export function oneHealthTips(a: AnswerValues, site: OahSite | null | undefined,
 
   const animals: OneHealthTips["animals"] =
     faecal || discharge
-      ? { tip: "faecal", because: [faecal ? "lab:fecal" : "waterDischarge"] }
+      ? { tip: "dogs", because: [faecal ? "lab:fecal" : "waterDischarge"] }
       : foam
         ? { tip: "foam", because: ["waterColor"] }
         : hot && !trees

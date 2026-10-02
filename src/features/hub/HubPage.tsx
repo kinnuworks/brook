@@ -165,18 +165,31 @@ export default function HubPage() {
               <div className="card p-6">
                 <h2 className="text-[20px] font-bold text-deep-900">{s.hub.agreementTitle}</h2>
                 <p className="mt-1 text-[14.5px] text-ink-soft">{s.hub.agreementIntro}</p>
-                <div className="mt-3 h-[300px]">
-                  <ResponsiveContainer>
-                    <BarChart data={agreement.map((a) => ({ name: s.q[a.qid].title, [s.hub.accepted]: a.accepted, [s.hub.corrected]: a.corrected }))} layout="vertical" margin={{ left: 8, right: 8 }}>
-                      <CartesianGrid horizontal={false} stroke="#dbe8ed" />
-                      <XAxis type="number" tick={{ fontSize: 12, fill: "#4b6474" }} allowDecimals={false} />
-                      <YAxis type="category" dataKey="name" width={130} tick={{ fontSize: 12, fill: "#10283a" }} />
-                      <Tooltip cursor={{ fill: "#f1fafb" }} />
-                      <Legend wrapperStyle={{ fontSize: 13 }} />
-                      <Bar dataKey={s.hub.accepted} stackId="a" fill="#6bc7d4" radius={[4, 0, 0, 4]} />
-                      <Bar dataKey={s.hub.corrected} stackId="a" fill="#216b8c" radius={[0, 4, 4, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                <ul className="mt-4 space-y-2.5">
+                  {agreement.map((a) => (
+                    <li key={a.qid}>
+                      <div className="flex items-baseline justify-between gap-2 text-[14px]">
+                        <span className="font-semibold">{s.q[a.qid].title}</span>
+                        <span className="tabular-nums text-ink-soft">
+                          <b className="text-deep-900">{pct(a.rate)}</b> · n={a.shown}
+                        </span>
+                      </div>
+                      <div className="mt-1 flex h-2.5 overflow-hidden rounded-full bg-white ring-1 ring-line" aria-hidden>
+                        <span className="bg-aqua" style={{ width: `${a.rate * 100}%` }} />
+                        <span className="bg-deep" style={{ width: `${(1 - a.rate) * 100}%` }} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-3 flex gap-4 text-[12.5px] text-ink-soft">
+                  <span>
+                    <i className="mr-1 inline-block size-2 rounded-full bg-aqua" />
+                    {s.hub.accepted}
+                  </span>
+                  <span>
+                    <i className="mr-1 inline-block size-2 rounded-full bg-deep" />
+                    {s.hub.corrected}
+                  </span>
                 </div>
               </div>
               <div className="card p-6">

@@ -484,7 +484,8 @@ const en: Strings = {
       fish: "Which fish live here, and how many kinds.",
     },
     tips: {
-      faecal: "Keep dogs from drinking or swimming here, and wash your hands after touching the water.",
+      faecal: "Wash your hands after touching the water, and keep it away from your mouth and any cuts.",
+      dogs: "Keep dogs from drinking or swimming here, especially after rain.",
       pathogens: "Avoid swallowing the water or getting it in cuts.",
       foam: "Don't let children or pets play in foam on the water.",
       discharge: "If you saw a discharge, report it to the city so it can be traced.",

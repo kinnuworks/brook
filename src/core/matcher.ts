@@ -24,6 +24,7 @@ export function normalize(text: string): string {
     .replace(/ς/g, "σ")
     .replace(/[’'`]/g, "'")
     .replace(/[^\p{L}\p{N}'.,\- ]+/gu, " ")
+    .replace(/(\d),(\d)/g, "$1.$2") // European decimal comma: "0,8" is 0.8
     .replace(/[,]/g, " , ")
     .replace(/\s+/g, " ")
     .trim();
@@ -83,13 +84,13 @@ function matchOptions(text: string, q: QuestionDef, s: Strings): { code: string;
 
 /** "0.5", "0,5 m", "30 cm", "half a metre", "knee deep", "two" → a number in metres or a count. */
 export function parseNumber(text: string, s: Strings, unit: "metres" | "count"): number | null {
-  const t = normalize(text);
+  const t = normalize(text.replace(/(\d),(\d)/g, "$1.$2"));
   if (unit === "metres") {
     for (const [phrase, value] of Object.entries(s.units.depth)) {
       if (hasPhrase(t, phrase)) return value;
     }
   }
-  const digits = t.match(/(\d+(?:[.,]\d+)?)\s*([\p{L}]+)?/u);
+  const digits = t.match(/(\d+(?:\.\d+)?)\s*([\p{L}]+)?/u);
   if (digits) {
     let value = Number(digits[1].replace(",", "."));
     const word = digits[2] ?? "";
