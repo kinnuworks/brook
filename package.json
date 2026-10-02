@@ -19,7 +19,8 @@
     "a11y": "node scripts/a11y.mjs",
     "offline": "node scripts/offline-test.mjs",
     "eval:vision": "node scripts/eval-vision.mjs",
-    "seed:demo": "node scripts/seed-demo.mjs"
+    "seed:demo": "node scripts/seed-demo.mjs",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
