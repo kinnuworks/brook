@@ -69,9 +69,12 @@ Most data-quality problems in citizen science are language problems. A volunteer
 ## Built with (tags)
 react, typescript, vite, tailwindcss, maplibre, recharts, dexie, supabase, postgresql, vercel, openai, web-speech-api, hl7-fhir, playwright, vitest, open-meteo
 
+## Thumbnail
+docs/img/devpost-thumbnail.png (1500×1000)
+
 ## Image gallery (upload in this order)
-1. docs/img/hero.png — Brook on a phone (question, margins diagram, story, review)
-2. Story page screenshot (you vs the lab)
-3. Research hub screenshot (map + confusing questions)
-4. About page architecture diagram
-5. FHIR validation result (from docs/FHIR.md)
+1. docs/img/hero.png — Brook on four phones: a question with a photo suggestion, the face-downstream diagram, your stream's story, the review
+2. docs/img/desktop-check.png — the conversation on a laptop, with progress and answers beside it
+3. docs/img/desktop-story.png — your stream's story next to OneAquaHealth's lab results
+4. docs/img/desktop-hub.png — the research hub: map, questions people find hard, AI agreement
+5. docs/img/desktop-home.png — the home page

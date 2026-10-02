@@ -28,17 +28,24 @@ export interface VisionResult {
 }
 
 async function post<T>(path: string, body: unknown, timeoutMs: number): Promise<T | null> {
+  // At a stream the signal comes and goes: give up the moment the phone goes offline, not after the timeout.
+  if (!navigator.onLine) return null;
+  const offline = new AbortController();
+  const abort = () => offline.abort();
+  window.addEventListener("offline", abort, { once: true });
   try {
     const res = await fetch(path, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(timeoutMs),
+      signal: typeof AbortSignal.any === "function" ? AbortSignal.any([AbortSignal.timeout(timeoutMs), offline.signal]) : AbortSignal.timeout(timeoutMs),
     });
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
     return null;
+  } finally {
+    window.removeEventListener("offline", abort);
   }
 }
 

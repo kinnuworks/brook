@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 // Small drawings that carry the meaning of an answer before the words do:
 // the shape of the channel, what the banks are made of, the colour of the
 // water. OneAquaHealth's own app uses lettered illustrations for the same
@@ -52,19 +54,45 @@ export function Pictogram({ qid, code }: { qid: string; code: string }) {
 export const hasPictogram = (qid: string, code: string) =>
   Boolean(DRAWINGS[qid.startsWith("vegetationType") ? `vegetation.${code}` : `${qid}.${code}`]);
 
-/** Facing downstream, left is left: the one idea the margin questions depend on. */
+/**
+ * Facing downstream, left is left: the one idea the margin questions depend on.
+ * Drawn from behind a person standing at the water: the stream runs away from
+ * them, so their left hand is the left margin.
+ */
 export function DownstreamDiagram({ side, leftLabel, rightLabel }: { side?: "left" | "right"; leftLabel: string; rightLabel: string }) {
+  const gid = `dd-water-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
+  const bank = (on: boolean) => (on ? "#8cc740" : "#e2ebe6");
+  const label = {
+    fontSize: 12.5,
+    fontWeight: 700,
+    fill: "#0d3245",
+    fontFamily: "DM Sans, sans-serif",
+    textAnchor: "middle" as const,
+  };
   return (
-    <svg viewBox="0 0 220 86" className="h-[86px] w-full max-w-[260px]" role="img" aria-label={`${leftLabel} / ${rightLabel}`}>
-      <rect x="0" y="0" width="220" height="86" rx="14" fill="#f1fafb" />
-      <rect x="18" y="8" width="40" height="70" rx="6" fill={side === "left" ? "#8cc740" : "#dbe8ed"} opacity={side === "left" ? 0.9 : 1} />
-      <rect x="162" y="8" width="40" height="70" rx="6" fill={side === "right" ? "#8cc740" : "#dbe8ed"} opacity={side === "right" ? 0.9 : 1} />
-      <rect x="66" y="8" width="88" height="70" rx="8" fill="#6bc7d4" opacity="0.55" />
-      <path d="M110 16 V58" stroke="#216b8c" strokeWidth="3" strokeLinecap="round" />
-      <path d="M100 50 L110 62 L120 50" fill="none" stroke="#216b8c" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="110" cy="12" r="0" />
-      <text x="38" y="47" textAnchor="middle" fontSize="12" fontWeight="700" fill="#0d3245" fontFamily="DM Sans, sans-serif">{leftLabel}</text>
-      <text x="182" y="47" textAnchor="middle" fontSize="12" fontWeight="700" fill="#0d3245" fontFamily="DM Sans, sans-serif">{rightLabel}</text>
+    <svg viewBox="0 0 200 104" className="h-[92px] w-auto shrink-0" role="img" aria-label={`${leftLabel} / ${rightLabel}`}>
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#216b8c" />
+          <stop offset="1" stopColor="#6bc7d4" />
+        </linearGradient>
+      </defs>
+      {/* the stream narrows into the distance: you look downstream along it */}
+      <path d="M76 4 H124 L150 78 H50 Z" fill={`url(#${gid})`} />
+      <path d="M4 4 H72 L46 78 H4 Z" fill={bank(side === "left")} />
+      <path d="M128 4 H196 V78 H154 Z" fill={bank(side === "right")} />
+      <path d="M100 62 V22" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M91 31 L100 20 L109 31" fill="none" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M68 66 q6 -4 12 0 M118 66 q6 -4 12 0" stroke="#fff" strokeOpacity="0.55" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <text x="30" y="46" {...label}>
+        {leftLabel}
+      </text>
+      <text x="170" y="46" {...label}>
+        {rightLabel}
+      </text>
+      {/* you, seen from behind */}
+      <circle cx="100" cy="84" r="6.5" fill="#0d3245" />
+      <path d="M86 104 Q86 92 100 92 Q114 92 114 104 Z" fill="#0d3245" />
     </svg>
   );
 }

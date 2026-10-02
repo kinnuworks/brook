@@ -27,7 +27,7 @@ export type Step = "intro" | "safety" | "site" | "photos" | "analyzing" | "quest
 export type Via = "voice" | "tap" | "text";
 
 export type Msg =
-  | { id: string; from: "brook"; text: string; tone?: "help" | "safety" | "section" | "info" | "warm"; qid?: QuestionId }
+  | { id: string; from: "brook"; text: string; tone?: "help" | "safety" | "section" | "info" | "warm"; qid?: QuestionId; section?: Section }
   | { id: string; from: "user"; text: string; via: Via }
   | { id: string; from: "receipt"; qid: QuestionId; value: AnswerValue; source: AnswerSource };
 
@@ -177,7 +177,7 @@ export const useCheck = create<CheckState>()(
         const msgs: Msg[] = [];
         const spoken: string[] = [...prefix];
         if (q.section !== previousSection && s.sections[q.section].intro) {
-          msgs.push(brook(s.sections[q.section].intro, "section"));
+          msgs.push({ ...brook(s.sections[q.section].intro, "section"), section: q.section } as Msg);
           spoken.push(s.sections[q.section].intro);
         }
         msgs.push(brook(s.q[qid].ask, undefined, qid));

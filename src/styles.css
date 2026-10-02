@@ -26,6 +26,7 @@
   --color-sun: #f2b33d;
   --color-sun-100: #fdf3dc;
   --color-clay: #c9603d;
+  --color-clay-700: #a5452a;
   --color-clay-100: #fbe9e2;
 
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -127,6 +128,27 @@
 }
 @utility chip-on {
   @apply ring-2 ring-aqua bg-aqua-50;
+}
+/* Answer options in the check: picture tiles and word rows. */
+@utility option-tile {
+  @apply relative flex min-h-[96px] w-full flex-col items-center justify-center gap-1.5 rounded-2xl bg-white px-2 pb-2.5 pt-3.5 text-center text-deep-900 ring-[1.5px] ring-line transition hover:bg-aqua-50 hover:ring-aqua;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+@utility option-row {
+  @apply flex min-h-12 w-full items-center gap-2.5 rounded-2xl bg-white px-3.5 py-2.5 text-left text-deep-900 ring-[1.5px] ring-line transition hover:bg-aqua-50 hover:ring-aqua;
+  &:active {
+    transform: scale(0.99);
+  }
+}
+@utility option-on {
+  @apply bg-aqua-50 ring-2 ring-aqua;
+}
+/* Older messages fade out under the header instead of being cut off. */
+@utility fade-top {
+  mask-image: linear-gradient(to bottom, transparent 0, #000 28px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 28px);
 }
 @utility eyebrow {
   @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-aqua-700;

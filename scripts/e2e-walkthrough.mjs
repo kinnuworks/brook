@@ -34,7 +34,7 @@ const snap = async (name) => {
 };
 const state = () => page.evaluate(() => JSON.parse(sessionStorage.getItem("brook-check") ?? "{}").state ?? {});
 const tap = (text) => page.getByRole("button", { name: text, exact: false }).first().click();
-const chip = (text) => page.locator("button.chip", { hasText: text }).first().click();
+const chip = (text) => page.locator("button[data-option]", { hasText: text }).first().click();
 const type = async (text) => {
   if (!(await page.getByPlaceholder("Type an answer").isVisible().catch(() => false))) await page.getByLabel("Type an answer").click();
   await page.getByPlaceholder("Type an answer").fill(text);

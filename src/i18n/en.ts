@@ -381,6 +381,13 @@ const en: Strings = {
     left: "Left",
     right: "Right",
     facingDownstream: "Facing downstream, the way the water flows",
+    typeOrTalk: "Type an answer, or tap the mic",
+    yourCheck: "Your check",
+    answersSoFar: "Your answers so far",
+    nothingYet: "Your answers will appear here as you go.",
+    stageSafety: "Safety",
+    stageStream: "Your stream",
+    stagePhotos: "Photos",
   },
   home: {
     whatTitle: "What is a stream check?",

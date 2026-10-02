@@ -39,7 +39,7 @@ const waitFor = async (pred, timeout = 30_000) => {
 };
 const hear = (text) => page.evaluate((t) => window.__brookHear(t), text);
 const tap = (name) => page.getByRole("button", { name, exact: false }).first().click();
-const chip = (text) => page.locator("button.chip", { hasText: text }).first().click();
+const chip = (text) => page.locator("button[data-option]", { hasText: text }).first().click();
 const answered = (qid) => waitFor((s) => s.current !== qid || s.step !== "question");
 
 let rec;

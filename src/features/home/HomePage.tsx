@@ -1,8 +1,10 @@
-import { ArrowRight, Camera, CheckCircle2, ImageIcon, MessagesSquare, Mic, ShieldCheck, Sparkles, Waves } from "lucide-react";
+import { ArrowRight, Camera, Check, CheckCircle2, ChevronDown, Ear, ImageIcon, Languages, MessagesSquare, Mic, ShieldCheck, Sparkles, Volume2, Waves, X } from "lucide-react";
 import { Link } from "react-router";
 import { BrookAvatar } from "@/components/BrookAvatar";
+import { PhoneFrame } from "@/components/PhoneFrame";
+import { Pictogram } from "@/components/Pictogram";
 import { CITIES, SITES } from "@/core/sites";
-import { useStrings } from "@/i18n";
+import { fmt, useStrings } from "@/i18n";
 
 const FEATURE_ICONS = [MessagesSquare, Camera, Sparkles, Waves];
 
@@ -17,50 +19,131 @@ function WaveBand({ className = "" }: { className?: string }) {
   );
 }
 
-function PhonePreview() {
+/** The check as it looks on a phone, drawn at real size inside the frame, in the site's language. */
+function HeroScreen() {
+  const s = useStrings();
+  const q = s.q.banksChannelType;
+  const laid = q.options?.LAS?.label ?? "";
+  const letter = (code: string) => q.options?.[code]?.official?.match(/\(([A-Z])\)\s*$/)?.[1];
   return (
-    <div className="relative mx-auto w-[300px] animate-float">
-      <div className="rounded-[44px] bg-deep-900 p-2.5 shadow-[var(--shadow-lift)]">
-        <div className="overflow-hidden rounded-[36px] bg-mist">
-          <div className="flex items-center justify-between bg-white px-4 pb-3 pt-4">
-            <div className="flex items-center gap-2">
-              <BrookAvatar size={30} state="speaking" />
-              <div className="leading-tight">
-                <div className="text-[13px] font-bold text-deep-900">Ribeira de Coselhas</div>
-                <div className="text-[11px] text-ink-soft">Coimbra · step 7 of 22</div>
-              </div>
-            </div>
-            <Mic className="size-4 text-leaf-700" />
-          </div>
-          <div className="h-1 bg-aqua-100">
-            <div className="h-1 w-1/3 rounded-r-full bg-aqua" />
-          </div>
-          <div className="space-y-2.5 p-3 text-[13px]">
-            <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-white px-3 py-2 shadow-sm">
-              And the banks: natural, artificial like concrete walls, or stones laid without concrete?
-            </div>
-            <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-aqua-50 px-3 py-2 ring-1 ring-aqua-200">
-              <div className="mb-1 flex items-center gap-1 text-[11px] font-semibold text-aqua-700">
-                <ImageIcon className="size-3" /> From your photo
-              </div>
-              Looks like <b>laid stones</b>: loose rocks along both banks, no mortar.
-            </div>
-            <div className="ml-auto max-w-[70%] rounded-2xl rounded-tr-md bg-deep px-3 py-2 text-white">Yes, loose stones.</div>
-            <div className="mx-auto flex w-fit items-center gap-1.5 rounded-full bg-leaf-100 px-2.5 py-1 text-[11px] font-semibold text-leaf-700">
-              <CheckCircle2 className="size-3" /> Banks · Laid stones
-            </div>
-            <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-white px-3 py-2 shadow-sm">
-              Do you see any of these: sand banks, stone deposits, riffles, or plants growing in the water?
+    <div className="absolute inset-0 flex flex-col pt-[50px] text-left">
+      <div className="border-b border-line bg-white px-2 pt-1.5">
+        <div className="flex items-center gap-1.5">
+          <span className="grid size-11 place-items-center text-ink-soft">
+            <X className="size-5" />
+          </span>
+          <div className="min-w-0 flex-1 leading-tight">
+            <div className="truncate text-[16px] font-bold text-deep-900">Alna – Bryn stasjon</div>
+            <div className="truncate text-[13px] text-ink-soft">
+              {s.sections.see.title} · 3 {s.ui.of} 21
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-1.5 px-3 pb-4">
-            {["Stone deposits", "Riffles", "Water plants", "None"].map((c) => (
-              <div key={c} className="rounded-xl bg-white px-2.5 py-2 text-[12px] font-semibold ring-1 ring-line">
-                {c}
-              </div>
-            ))}
+          <span className="grid size-11 place-items-center text-ink-soft">
+            <Ear className="size-5" />
+          </span>
+          <span className="grid size-11 place-items-center text-ink-soft">
+            <Volume2 className="size-5" />
+          </span>
+        </div>
+        <div className="px-2 pb-2.5 pt-2">
+          <div className="h-1.5 rounded-full bg-aqua-100">
+            <div className="h-full w-[14%] rounded-full bg-gradient-to-r from-aqua to-deep" />
           </div>
         </div>
+      </div>
+
+      <div className="fade-top flex min-h-0 flex-1 flex-col justify-end overflow-hidden px-3 pb-3">
+        <div className="flex justify-center">
+          <span className="flex items-center gap-2 rounded-full bg-leaf-100 px-3 py-1.5 text-[13.5px] font-semibold text-leaf-700">
+            <CheckCircle2 className="size-4" /> {s.q.bottomChannelType.title} · {s.q.bottomChannelType.options?.NAT?.label}
+            <Mic className="size-3.5 opacity-70" />
+          </span>
+        </div>
+        <div className="mt-4 flex items-end gap-2.5">
+          <span className="w-8 shrink-0" />
+          <div className="max-w-[88%] rounded-[22px] rounded-bl-md bg-white px-4 pb-3 pt-3 shadow-[var(--shadow-card)] ring-2 ring-aqua/50">
+            <p className="text-[12px] font-bold uppercase tracking-[0.08em] text-aqua-700">
+              {s.ui.question} 3 {s.ui.of} 21 · {s.sections.see.title}
+            </p>
+            <p className="mt-1 text-[18px] font-semibold leading-snug text-deep-900">{q.ask}</p>
+            <p className="mt-1.5 flex items-center gap-1 text-[13.5px] font-semibold text-ink-soft">
+              {s.ui.officialQuestion} <ChevronDown className="size-4" />
+            </p>
+          </div>
+        </div>
+        <div className="mt-1.5 flex items-end gap-2.5">
+          <BrookAvatar size={32} state="speaking" />
+          <div className="max-w-[85%] rounded-[20px] rounded-bl-md bg-aqua-50 px-4 py-2.5 text-[17px] leading-snug ring-1 ring-aqua-200">
+            <Camera className="mr-1.5 inline size-4 -translate-y-px text-aqua-700" />
+            {fmt(s.brook.suggestion, { answer: laid.toLowerCase() })}
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-line bg-white px-3 pb-[30px] pt-3">
+        <div className="rounded-2xl bg-gradient-to-br from-aqua-50 to-white p-3 ring-1 ring-aqua-200">
+          <div className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.07em] text-aqua-700">
+            <Camera className="size-3.5" /> {s.ui.fromYourPhoto}
+          </div>
+          <div className="mt-0.5 text-[17px] font-bold text-deep-900">{laid}</div>
+          <div className="mt-2.5 flex gap-2">
+            <span className="btn-primary !min-h-11 flex-1 !gap-1.5 !px-2.5 !text-[15px]">
+              <Check className="size-4.5" /> {s.ui.confirm}
+            </span>
+            <span className="btn-secondary !min-h-11 flex-1 !gap-1.5 !px-2.5 !text-[15px]">
+              <X className="size-4.5" /> {s.ui.change}
+            </span>
+          </div>
+        </div>
+        <div className="mt-2.5 grid grid-cols-3 gap-2">
+          {(["NAT", "ART", "LAS"] as const).map((code) => (
+            <span key={code} className="option-tile !min-h-[92px]">
+              {code === "LAS" && (
+                <span className="absolute left-2 top-2 grid size-5 place-items-center rounded-full bg-aqua-100 text-aqua-700">
+                  <Camera className="size-3" />
+                </span>
+              )}
+              <span className="absolute right-2.5 top-1.5 text-[11px] font-bold text-ink-faint">{letter(code)}</span>
+              <span className="[&>svg]:h-9 [&>svg]:w-[54px]">
+                <Pictogram qid="banksChannelType" code={code} />
+              </span>
+              <span className="text-[15px] font-semibold leading-tight">{q.options?.[code]?.label}</span>
+            </span>
+          ))}
+        </div>
+        <div className="mt-2.5 flex items-center gap-2">
+          <span className="flex h-[52px] min-w-0 flex-1 items-center truncate rounded-full bg-mist px-4 text-[16px] text-ink-faint ring-[1.5px] ring-line">{s.ui.typeOrTalk}</span>
+          <span className="grid size-[52px] shrink-0 place-items-center rounded-full bg-deep text-white shadow-[0_8px_20px_-8px_rgb(33_107_140/0.6)]">
+            <Mic className="size-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PhonePreview() {
+  const s = useStrings();
+  // The two notes rest against the phone's frame (12 px), never over its screen.
+  const note = "absolute right-[calc(100%-12px)] hidden w-[176px] rounded-2xl bg-white/95 p-3 shadow-[var(--shadow-lift)] ring-1 ring-line backdrop-blur xl:block";
+  return (
+    <div className="relative mx-auto w-[min(300px,82vw)] md:mr-2 md:w-[330px]" aria-hidden>
+      <div className="animate-float">
+        <PhoneFrame>
+          <HeroScreen />
+        </PhoneFrame>
+      </div>
+      <div className={`${note} top-[22%]`}>
+        <div className="flex items-start gap-2 text-[13px] font-bold leading-snug text-leaf-700">
+          <CheckCircle2 className="mt-px size-4 shrink-0" /> {s.q.banksChannelType.title} · {s.q.banksChannelType.options?.LAS?.label}
+        </div>
+        <p className="mt-1 text-[12.5px] leading-snug text-ink-soft">{s.ui.sources["photo-confirmed"]}</p>
+      </div>
+      <div className={`${note} top-[60%]`}>
+        <div className="flex items-center gap-2 text-[13px] font-bold text-deep-900">
+          <Languages className="size-4 shrink-0 text-aqua-700" /> {s.home.trust[2]}
+        </div>
+        <p className="mt-1 text-[12.5px] font-semibold tracking-[0.12em] text-ink-soft">EN PT FR IT NL NO EL</p>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { useStrings } from "@/i18n";
 import { aiAgreement, feelingsByRating, FIXES, kpis, questionClarity, type HubRow } from "./analytics";
 import { HubMap } from "./HubMap";
 
-const RATING_TONE: Record<string, string> = { GOOD: "bg-leaf-100 text-leaf-700", MODERATE: "bg-sun-100 text-[#8a5a00]", POOR: "bg-clay-100 text-clay" };
+const RATING_TONE: Record<string, string> = { GOOD: "bg-leaf-100 text-leaf-700", MODERATE: "bg-sun-100 text-[#8a5a00]", POOR: "bg-clay-100 text-clay-700" };
 const pct = (v: number | null) => (v === null ? "—" : `${Math.round(v * 100)}%`);
 
 function Kpi({ label, value, hint }: { label: string; value: string; hint?: string }) {

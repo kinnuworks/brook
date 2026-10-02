@@ -8,6 +8,8 @@ Built for the **OneAquaHealth IEEE Global Hackathon 2026** · *Healthy Waters, H
 
 ![Brook on a phone: a question with pictograms, the face-downstream margin diagram, the story page comparing your check with OneAquaHealth's lab results, and the review screen](docs/img/hero.png)
 
+![Brook on a laptop: the conversation, with the check's progress and every answer so far beside it](docs/img/desktop-check.png)
+
 | | |
 |---|---|
 | **Live app** | https://brook-oah.vercel.app |

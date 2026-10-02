@@ -78,7 +78,7 @@ export function SiteStep({ onPick }: Props) {
         >
           <LocateFixed className="size-5" /> {locating ? s.ui.locating : s.ui.useThisPlace}
         </button>
-        {denied && <p className="text-[14px] text-clay">{s.ui.locationDenied}</p>}
+        {denied && <p className="text-[14px] text-clay-700">{s.ui.locationDenied}</p>}
         <button className="btn-ghost w-full" onClick={() => setCustom(false)}>
           {s.ui.back}
         </button>
@@ -103,7 +103,7 @@ export function SiteStep({ onPick }: Props) {
           <LocateFixed className={`size-5 ${locating ? "animate-pulse" : ""}`} />
         </button>
       </div>
-      {denied && <p className="text-[14px] text-clay">{s.ui.locationDenied}</p>}
+      {denied && <p className="text-[14px] text-clay-700">{s.ui.locationDenied}</p>}
       {!here && !query && (
         <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist">
           {CITIES.map((c) => (

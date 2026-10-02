@@ -168,6 +168,13 @@ export interface Strings {
     left: string;
     right: string;
     facingDownstream: string;
+    typeOrTalk: string;
+    yourCheck: string;
+    answersSoFar: string;
+    nothingYet: string;
+    stageSafety: string;
+    stageStream: string;
+    stagePhotos: string;
   };
   home: {
     whatTitle: string;

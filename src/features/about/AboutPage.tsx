@@ -1,5 +1,5 @@
 import { BadgeCheck, Brain, Camera, ChevronDown, Globe2, HeartHandshake, Lock, MapPin, MessagesSquare, ShieldCheck, Sparkles, WifiOff } from "lucide-react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { SITES_FETCHED_AT } from "@/core/sites";
 
@@ -122,227 +122,270 @@ const STEPS = [
   { icon: HeartHandshake, title: "See your stream's story", body: "What scientists found there, next to what you saw, with simple health tips." },
 ];
 
+const TOC = [
+  ["why", "Why we built it"],
+  ["how", "What happens in a check"],
+  ["ai", "How we use AI safely"],
+  ["oah", "Built on OneAquaHealth"],
+  ["cost", "What it costs"],
+  ["privacy", "Your data"],
+  ["tests", "How we tested it"],
+  ["limits", "What we don't claim"],
+] as const;
+
+/** Which section is being read, for the side menu on wide screens. */
+function useActiveSection() {
+  const [active, setActive] = useState<string>(TOC[0][0]);
+  useEffect(() => {
+    const els = TOC.map(([id]) => document.getElementById(id)).filter((el): el is HTMLElement => Boolean(el));
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -65% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+  return active;
+}
+
 export default function AboutPage() {
+  const active = useActiveSection();
   return (
-    <div className="mx-auto max-w-4xl space-y-14 px-4 pb-20 pt-10">
-      <header>
-        <p className="eyebrow">How Brook works</p>
-        <h1 className="mt-2 font-serif text-[44px] leading-[1.05] text-deep-900">A friendly guide for OneAquaHealth's stream check</h1>
-        <p className="mt-4 text-[18px] leading-relaxed text-ink-soft">
-          OneAquaHealth asks people to check the health of streams in their city by answering about twenty questions. The questions are useful, but many use hard
-          words. Brook turns them into a simple conversation on your phone. It doesn't replace OneAquaHealth's app; it helps more people use it, and use it well.
-        </p>
-        <nav className="mt-6 flex flex-wrap gap-2 text-[14px] font-semibold" aria-label="On this page">
-          {[
-            ["why", "Why we built it"],
-            ["how", "What happens in a check"],
-            ["ai", "How we use AI safely"],
-            ["oah", "Built on OneAquaHealth"],
-            ["cost", "What it costs"],
-            ["privacy", "Your data"],
-            ["tests", "How we tested it"],
-            ["limits", "What we don't claim"],
-          ].map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="rounded-full bg-white px-3.5 py-2 text-deep ring-1 ring-line hover:ring-aqua">
-              {label}
-            </a>
-          ))}
+    <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-14">
+      <aside className="hidden lg:block">
+        <nav className="sticky top-24" aria-label="On this page">
+          <p className="eyebrow">On this page</p>
+          <ul className="mt-3 space-y-0.5 border-l border-line">
+            {TOC.map(([id, label]) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className={`-ml-px block border-l-2 py-1.5 pl-4 text-[15px] transition ${active === id ? "border-deep font-semibold text-deep-900" : "border-transparent text-ink-soft hover:text-deep"}`}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Link to="/check" className="btn-primary mt-6 !min-h-11 w-full !px-4 !text-[15px]">
+            Start a stream check
+          </Link>
         </nav>
-      </header>
+      </aside>
+      <div className="min-w-0 max-w-3xl space-y-14">
+        <header>
+          <p className="eyebrow">How Brook works</p>
+          <h1 className="mt-2 font-serif text-[44px] leading-[1.05] text-deep-900">A friendly guide for OneAquaHealth's stream check</h1>
+          <p className="mt-4 text-[18px] leading-relaxed text-ink-soft">
+            OneAquaHealth asks people to check the health of streams in their city by answering about twenty questions. The questions are useful, but many use hard
+            words. Brook turns them into a simple conversation on your phone. It doesn't replace OneAquaHealth's app; it helps more people use it, and use it well.
+          </p>
+          <nav className="mt-6 flex flex-wrap gap-2 text-[14px] font-semibold lg:hidden" aria-label="On this page">
+            {TOC.map(([id, label]) => (
+              <a key={id} href={`#${id}`} className="rounded-full bg-white px-3.5 py-2 text-deep ring-1 ring-line hover:ring-aqua">
+                {label}
+              </a>
+            ))}
+          </nav>
+        </header>
 
-      <Section id="why" eyebrow="The problem" title="Why we built it">
-        <p>
-          Imagine standing by a stream and reading: <em>“Is more than one third of the left margin covered by impervious areas?”</em> What is a margin? What does
-          impervious mean? And left of what? (It means left when you face the way the water flows, which almost nobody knows.)
-        </p>
-        <p>
-          When questions are confusing, people guess or give up, and scientists get answers they can't fully trust. OneAquaHealth's own hackathon brief says
-          it: <em>“complex tools, confusing terminology, and low participation.”</em> Brook is our answer to that sentence.
-        </p>
-      </Section>
+        <Section id="why" eyebrow="The problem" title="Why we built it">
+          <p>
+            Imagine standing by a stream and reading: <em>“Is more than one third of the left margin covered by impervious areas?”</em> What is a margin? What does
+            impervious mean? And left of what? (It means left when you face the way the water flows, which almost nobody knows.)
+          </p>
+          <p>
+            When questions are confusing, people guess or give up, and scientists get answers they can't fully trust. OneAquaHealth's own hackathon brief says
+            it: <em>“complex tools, confusing terminology, and low participation.”</em> Brook is our answer to that sentence.
+          </p>
+        </Section>
 
-      <Section id="how" eyebrow="Step by step" title="What happens in a check">
-        <ol className="grid gap-3 sm:grid-cols-2">
-          {STEPS.map((s, i) => (
-            <li key={s.title} className="flex gap-3 rounded-2xl bg-white p-4 ring-1 ring-line">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-deep text-[14px] font-bold text-white">{i + 1}</span>
-              <div>
-                <div className="flex items-center gap-1.5 font-bold text-deep-900">
-                  <s.icon className="size-4.5 text-deep" aria-hidden /> {s.title}
+        <Section id="how" eyebrow="Step by step" title="What happens in a check">
+          <ol className="grid gap-3 sm:grid-cols-2">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="flex gap-3 rounded-2xl bg-white p-4 ring-1 ring-line">
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-deep text-[14px] font-bold text-white">{i + 1}</span>
+                <div>
+                  <div className="flex items-center gap-1.5 font-bold text-deep-900">
+                    <s.icon className="size-4.5 text-deep" aria-hidden /> {s.title}
+                  </div>
+                  <div className="mt-0.5 text-[15.5px] text-ink-soft">{s.body}</div>
                 </div>
-                <div className="mt-0.5 text-[15.5px] text-ink-soft">{s.body}</div>
-              </div>
+              </li>
+            ))}
+          </ol>
+          <p>
+            Along the way, if two answers don't fit together (say, “good” health but a pipe pouring dirty water in), Brook gently asks you to look again. It never
+            changes your answer. You always have the final say.
+          </p>
+          <Technical title="Technical details: how the pieces fit">
+            <Architecture />
+            <p>
+              The conversation is a fixed script that follows OneAquaHealth's questions in order (<code>src/core/protocol.ts</code>). Most replies are understood on
+              the phone with word lists in seven languages (<code>src/core/matcher.ts</code>); only replies it can't understand are sent to the AI. Photos go to
+              the AI only to suggest answers (<code>api/vision.ts</code>).
+            </p>
+          </Technical>
+        </Section>
+
+        <Section id="ai" eyebrow="Responsible AI" title="How we use AI safely">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Point icon={BadgeCheck} title="AI never decides">
+              Every answer comes from the person, or is confirmed by them. The final “how healthy is this stream?” rating is always theirs.
+            </Point>
+            <Point icon={ShieldCheck} title="AI can only pick real answers">
+              The AI can only choose from OneAquaHealth's own list of answers for that question. Anything else is thrown away.
+            </Point>
+            <Point icon={Brain} title="Works without AI">
+              Brook understands most replies on the phone, with no AI. If the AI is switched off or its budget runs out, the check still works.
+            </Point>
+            <Point icon={Sparkles} title="Every answer is labelled">
+              Brook records how each answer was given: tapped, spoken, or a photo suggestion the person accepted or corrected. Scientists can see this too.
+            </Point>
+          </div>
+          <Technical>
+            <p>
+              The model (OpenAI <code>gpt-6-luna</code>) must reply in a strict JSON schema whose only allowed values are the current question's OneAquaHealth codes;
+              the server checks again with the same validator the app uses. Citizen text is treated as data, never as instructions. Answer sources travel in the
+              FHIR data as an extension and a Provenance record; values proposed by AI carry the HL7 security label <code>AIAST</code>.
+            </p>
+          </Technical>
+        </Section>
+
+        <Section id="oah" eyebrow="Fits what exists" title="Built on OneAquaHealth's own tools">
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <b>The same questions and answers</b> as OneAquaHealth's Citizen Science App. A Brook check can be sent to OneAquaHealth without any changes.
             </li>
-          ))}
-        </ol>
-        <p>
-          Along the way, if two answers don't fit together (say, “good” health but a pipe pouring dirty water in), Brook gently asks you to look again. It never
-          changes your answer. You always have the final say.
-        </p>
-        <Technical title="Technical details: how the pieces fit">
-          <Architecture />
-          <p>
-            The conversation is a fixed script that follows OneAquaHealth's questions in order (<code>src/core/protocol.ts</code>). Most replies are understood on
-            the phone with word lists in seven languages (<code>src/core/matcher.ts</code>); only replies it can't understand are sent to the AI. Photos go to
-            the AI only to suggest answers (<code>api/vision.ts</code>).
-          </p>
-        </Technical>
-      </Section>
+            <li>
+              <b>Their 106 research streams</b> in Coimbra, Toulouse, Ghent, Benevento and Oslo, with their latest lab results and health-risk scores (data from{" "}
+              {SITES_FETCHED_AT.slice(0, 10)}).
+            </li>
+            <li>
+              <b>Their health-data standard.</b> Each check is also saved in the format health systems use to share data, following OneAquaHealth's own rules for
+              it, and sent to their health-data server.
+            </li>
+          </ul>
+          <Technical>
+            <p>
+              Questions, codes and the submission body (<code>CitizenSubmissionPutDTO</code>) come from the public API at <code>api.enora-oah.eu</code>; unit tests
+              check our codes against their published lists. FHIR: R4 transaction shaped by the OneAquaHealth Implementation Guide (HL7 Europe): Location profile,
+              the guide's indicator codes, validated with the official HL7 validator with 0 errors, and posted to the guide's sandbox. A citizen check is
+              “preliminary”; once a researcher verifies it, it also passes the guide's indicator profile. See{" "}
+              <a className="font-semibold text-deep underline" href="https://github.com/kinnuworks/brook/blob/main/docs/FHIR.md">docs/FHIR.md</a>.
+            </p>
+          </Technical>
+        </Section>
 
-      <Section id="ai" eyebrow="Responsible AI" title="How we use AI safely">
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Point icon={BadgeCheck} title="AI never decides">
-            Every answer comes from the person, or is confirmed by them. The final “how healthy is this stream?” rating is always theirs.
-          </Point>
-          <Point icon={ShieldCheck} title="AI can only pick real answers">
-            The AI can only choose from OneAquaHealth's own list of answers for that question. Anything else is thrown away.
-          </Point>
-          <Point icon={Brain} title="Works without AI">
-            Brook understands most replies on the phone, with no AI. If the AI is switched off or its budget runs out, the check still works.
-          </Point>
-          <Point icon={Sparkles} title="Every answer is labelled">
-            Brook records how each answer was given: tapped, spoken, or a photo suggestion the person accepted or corrected. Scientists can see this too.
-          </Point>
-        </div>
-        <Technical>
-          <p>
-            The model (OpenAI <code>gpt-6-luna</code>) must reply in a strict JSON schema whose only allowed values are the current question's OneAquaHealth codes;
-            the server checks again with the same validator the app uses. Citizen text is treated as data, never as instructions. Answer sources travel in the
-            FHIR data as an extension and a Provenance record; values proposed by AI carry the HL7 security label <code>AIAST</code>.
-          </p>
-        </Technical>
-      </Section>
-
-      <Section id="oah" eyebrow="Fits what exists" title="Built on OneAquaHealth's own tools">
-        <ul className="list-disc space-y-2 pl-5">
-          <li>
-            <b>The same questions and answers</b> as OneAquaHealth's Citizen Science App. A Brook check can be sent to OneAquaHealth without any changes.
-          </li>
-          <li>
-            <b>Their 106 research streams</b> in Coimbra, Toulouse, Ghent, Benevento and Oslo, with their latest lab results and health-risk scores (data from{" "}
-            {SITES_FETCHED_AT.slice(0, 10)}).
-          </li>
-          <li>
-            <b>Their health-data standard.</b> Each check is also saved in the format health systems use to share data, following OneAquaHealth's own rules for
-            it, and sent to their health-data server.
-          </li>
-        </ul>
-        <Technical>
-          <p>
-            Questions, codes and the submission body (<code>CitizenSubmissionPutDTO</code>) come from the public API at <code>api.enora-oah.eu</code>; unit tests
-            check our codes against their published lists. FHIR: R4 transaction shaped by the OneAquaHealth Implementation Guide (HL7 Europe): Location profile,
-            the guide's indicator codes, validated with the official HL7 validator with 0 errors, and posted to the guide's sandbox. A citizen check is
-            “preliminary”; once a researcher verifies it, it also passes the guide's indicator profile. See{" "}
-            <a className="font-semibold text-deep underline" href="https://github.com/kinnuworks/brook/blob/main/docs/FHIR.md">docs/FHIR.md</a>.
-          </p>
-        </Technical>
-      </Section>
-
-      <Section id="cost" eyebrow="Sustainability" title="What it costs, and how OneAquaHealth could use it">
-        <div className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
-            <div className="text-[28px] font-bold text-deep-900">€0</div>
-            <div className="text-[14.5px] text-ink-soft">to host for a pilot (free plans)</div>
+        <Section id="cost" eyebrow="Sustainability" title="What it costs, and how OneAquaHealth could use it">
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+              <div className="text-[28px] font-bold text-deep-900">€0</div>
+              <div className="text-[14.5px] text-ink-soft">to host for a pilot (free plans)</div>
+            </div>
+            <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+              <div className="text-[28px] font-bold text-deep-900">≈ 0.1 ¢</div>
+              <div className="text-[14.5px] text-ink-soft">of AI per check, measured; €0 with AI off</div>
+            </div>
+            <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+              <div className="text-[28px] font-bold text-deep-900">≈ €15</div>
+              <div className="text-[14.5px] text-ink-soft">of AI for 10,000 checks a year</div>
+            </div>
           </div>
-          <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
-            <div className="text-[28px] font-bold text-deep-900">≈ 0.1 ¢</div>
-            <div className="text-[14.5px] text-ink-soft">of AI per check, measured; €0 with AI off</div>
-          </div>
-          <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
-            <div className="text-[28px] font-bold text-deep-900">≈ €15</div>
-            <div className="text-[14.5px] text-ink-soft">of AI for 10,000 checks a year</div>
-          </div>
-        </div>
-        <ol className="list-decimal space-y-2 pl-5">
-          <li>
-            <b>Open it from their app.</b> OneAquaHealth's app could show a “talk me through it” button that opens Brook. (Brook already allows this.)
-          </li>
-          <li>
-            <b>Send answers straight in.</b> Brook's answers are already in their format; it only needs a login from OneAquaHealth.
-          </li>
-          <li>
-            <b>Check the words.</b> Each language is one file, so a local volunteer can review it in an afternoon.
-          </li>
-        </ol>
-        <p className="text-[15px] text-ink-soft">No app store, nothing to install, open source. It can keep running after the project's funding ends.</p>
-      </Section>
+          <ol className="list-decimal space-y-2 pl-5">
+            <li>
+              <b>Open it from their app.</b> OneAquaHealth's app could show a “talk me through it” button that opens Brook. (Brook already allows this.)
+            </li>
+            <li>
+              <b>Send answers straight in.</b> Brook's answers are already in their format; it only needs a login from OneAquaHealth.
+            </li>
+            <li>
+              <b>Check the words.</b> Each language is one file, so a local volunteer can review it in an afternoon.
+            </li>
+          </ol>
+          <p className="text-[15px] text-ink-soft">No app store, nothing to install, open source. It can keep running after the project's funding ends.</p>
+        </Section>
 
-      <Section id="privacy" eyebrow="Privacy & security" title="Your data">
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Point icon={Camera} title="Photos">
-            Shrunk on your phone, with their location removed, before anything is sent. Shared with researchers only if you tick the box.
-          </Point>
-          <Point icon={Globe2} title="No accounts">
-            No sign-up. Your phone gets a random code, which is scrambled before it leaves. We never store your internet address.
-          </Point>
-          <Point icon={Lock} title="Kept in Europe, locked">
-            Answers are stored in the EU. Only Brook's own server, with a secret key, can read or write them.
-          </Point>
-          <Point icon={WifiOff} title="Works with no signal">
-            If you lose signal at the stream, your check is kept on your phone and sent when you're back online.
-          </Point>
-        </div>
-        <Technical>
-          <p>
-            Photos are re-encoded through a canvas (all EXIF/GPS dropped). Supabase Postgres in Frankfurt; every table has row-level security with no public
-            policies; access only through <code>SECURITY DEFINER</code> functions that check a server-only secret. Rate limits use a salted daily hash of the IP,
-            never the IP itself. Strict Content-Security-Policy, same-origin checks, size limits and server-side validation of every field.
+        <Section id="privacy" eyebrow="Privacy & security" title="Your data">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Point icon={Camera} title="Photos">
+              Shrunk on your phone, with their location removed, before anything is sent. Shared with researchers only if you tick the box.
+            </Point>
+            <Point icon={Globe2} title="No accounts">
+              No sign-up. Your phone gets a random code, which is scrambled before it leaves. We never store your internet address.
+            </Point>
+            <Point icon={Lock} title="Kept in Europe, locked">
+              Answers are stored in the EU. Only Brook's own server, with a secret key, can read or write them.
+            </Point>
+            <Point icon={WifiOff} title="Works with no signal">
+              If you lose signal at the stream, your check is kept on your phone and sent when you're back online.
+            </Point>
+          </div>
+          <Technical>
+            <p>
+              Photos are re-encoded through a canvas (all EXIF/GPS dropped). Supabase Postgres in Frankfurt; every table has row-level security with no public
+              policies; access only through <code>SECURITY DEFINER</code> functions that check a server-only secret. Rate limits use a salted daily hash of the IP,
+              never the IP itself. Strict Content-Security-Policy, same-origin checks, size limits and server-side validation of every field.
+            </p>
+          </Technical>
+        </Section>
+
+        <Section id="tests" eyebrow="Evidence" title="How we tested it">
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              <b>Understanding replies:</b> 238 realistic replies in seven languages, written by someone who never saw Brook's word lists. Brook understood 93%
+              correctly on first sight, with no AI. After fixing three general problems it found, 96%, with none recorded wrongly.
+            </li>
+            <li>
+              <b>Photo suggestions:</b> 36 real photos of streams in Oslo, Toulouse and near Ghent that Brook had never seen. We wrote down only what each
+              photo clearly shows. Brook's suggestions were right 132 times out of 134. For three pictures that weren't streams (two maps and a plant), it
+              said so and suggested nothing.
+            </li>
+            <li>
+              <b>Health-data format:</b> checked with the official HL7 validator against OneAquaHealth's own rules: 0 errors.
+            </li>
+            <li>
+              <b>Everyone can use it:</b> an automatic accessibility scan (WCAG 2.1 AA) found 0 problems on every screen.
+            </li>
+            <li>
+              <b>No signal:</b> a test cuts the internet mid-check. The check is kept and sent when the connection returns.
+            </li>
+            <li>
+              <b>Over 100 automatic tests</b> run on every change, and a robot walks through a full check on a phone-sized screen.
+            </li>
+          </ul>
+          <p className="text-[15px] text-ink-soft">
+            Everything is in the code, with the commands to repeat it:{" "}
+            <a className="font-semibold text-deep underline" href="https://github.com/kinnuworks/brook">github.com/kinnuworks/brook</a>.
           </p>
-        </Technical>
-      </Section>
+        </Section>
 
-      <Section id="tests" eyebrow="Evidence" title="How we tested it">
-        <ul className="list-disc space-y-2 pl-5">
-          <li>
-            <b>Understanding replies:</b> 238 realistic replies in seven languages, written by someone who never saw Brook's word lists. Brook understood 93%
-            correctly on first sight, with no AI. After fixing three general problems it found, 96%, with none recorded wrongly.
-          </li>
-          <li>
-            <b>Photo suggestions:</b> 36 real photos of streams in Oslo, Toulouse and near Ghent that Brook had never seen. We wrote down only what each
-            photo clearly shows. Brook's suggestions were right 132 times out of 134. For three pictures that weren't streams (two maps and a plant), it
-            said so and suggested nothing.
-          </li>
-          <li>
-            <b>Health-data format:</b> checked with the official HL7 validator against OneAquaHealth's own rules: 0 errors.
-          </li>
-          <li>
-            <b>Everyone can use it:</b> an automatic accessibility scan (WCAG 2.1 AA) found 0 problems on every screen.
-          </li>
-          <li>
-            <b>No signal:</b> a test cuts the internet mid-check. The check is kept and sent when the connection returns.
-          </li>
-          <li>
-            <b>Over 100 automatic tests</b> run on every change, and a robot walks through a full check on a phone-sized screen.
-          </li>
-        </ul>
-        <p className="text-[15px] text-ink-soft">
-          Everything is in the code, with the commands to repeat it:{" "}
-          <a className="font-semibold text-deep underline" href="https://github.com/kinnuworks/brook">github.com/kinnuworks/brook</a>.
-        </p>
-      </Section>
+        <Section id="limits" eyebrow="Honesty" title="What we don't claim">
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              The research hub starts with <b>made-up example checks</b>, clearly marked “Simulated”, so you can see how it works. Real checks are marked “Field”.
+            </li>
+            <li>The seven languages haven't yet been checked by native-speaking volunteers.</li>
+            <li>Voice needs a browser that supports it (Chrome, Edge or Safari). In Firefox you tap or type instead.</li>
+            <li>
+              Photo suggestions can be wrong. Our photo test only scored things a photo shows clearly; harder things, like the shape of the channel, weren't
+              scored. That's why they are only suggestions, and why we measure how often people accept them.
+            </li>
+            <li>The health tips are simple, careful advice based on OneAquaHealth's own data. They are not medical advice.</li>
+          </ul>
+        </Section>
 
-      <Section id="limits" eyebrow="Honesty" title="What we don't claim">
-        <ul className="list-disc space-y-2 pl-5">
-          <li>
-            The research hub starts with <b>made-up example checks</b>, clearly marked “Simulated”, so you can see how it works. Real checks are marked “Field”.
-          </li>
-          <li>The seven languages haven't yet been checked by native-speaking volunteers.</li>
-          <li>Voice needs a browser that supports it (Chrome, Edge or Safari). In Firefox you tap or type instead.</li>
-          <li>
-            Photo suggestions can be wrong. Our photo test only scored things a photo shows clearly; harder things, like the shape of the channel, weren't
-            scored. That's why they are only suggestions, and why we measure how often people accept them.
-          </li>
-          <li>The health tips are simple, careful advice based on OneAquaHealth's own data. They are not medical advice.</li>
-        </ul>
-      </Section>
-
-      <div className="flex flex-wrap gap-3">
-        <Link to="/check" className="btn-primary">
-          Start a stream check
-        </Link>
-        <Link to="/hub" className="btn-secondary">
-          Research hub
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link to="/check" className="btn-primary">
+            Start a stream check
+          </Link>
+          <Link to="/hub" className="btn-secondary">
+            Research hub
+          </Link>
+        </div>
       </div>
     </div>
   );
