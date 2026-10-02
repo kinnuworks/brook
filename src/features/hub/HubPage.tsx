@@ -36,6 +36,13 @@ export default function HubPage() {
   const s = useStrings();
   const [rows, setRows] = useState<HubRow[] | null>(null);
   const [withSim, setWithSim] = useState(true);
+  const [sus, setSus] = useState<{ n: number; mean: number | null; nField: number; meanField: number | null } | null>(null);
+  useEffect(() => {
+    fetch("/api/feedback")
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setSus)
+      .catch(() => setSus(null));
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -112,7 +119,7 @@ export default function HubPage() {
             <Kpi label={s.hub.medianTime} value={k.medianMinutes ? `${k.medianMinutes} ${s.hub.minutes}` : "—"} />
             <Kpi label={s.hub.voiceShare} value={pct(k.voiceShare)} />
             <Kpi label={s.hub.aiAccepted} value={pct(k.acceptRate)} />
-            <Kpi label={s.hub.languages} value={String(k.languages)} />
+            <Kpi label={s.sus.score} value={sus?.n ? `${sus.mean}` : "—"} hint={sus?.n ? `SUS · n=${sus.n}` : "SUS"} />
           </section>
 
           <section>

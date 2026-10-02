@@ -12,6 +12,8 @@ export interface StoredCheck {
   serverId?: string;
   createdAt: string;
   status: "pending" | "sent" | "failed";
+  /** Made with Brook's sample photos rather than at a real stream. */
+  trial?: boolean;
   lang: string;
   mode: "voice" | "tap" | "mixed";
   durationS: number;

@@ -100,6 +100,7 @@ export async function submitCurrentCheck(): Promise<StoredCheck> {
     id: st.id,
     createdAt: submittedAt,
     status: "pending",
+    trial,
     lang: st.lang,
     mode,
     durationS,

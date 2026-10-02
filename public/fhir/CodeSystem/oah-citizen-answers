@@ -1,0 +1,668 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "oah-citizen-answers",
+  "url": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+  "version": "0.1.0",
+  "name": "OahCitizenAnswers",
+  "title": "OneAquaHealth citizen stream check: answers",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "The coded answers of the OneAquaHealth Citizen Science App's stream check. Each code is '<field>.<app value>', where the app value is exactly what the app stores (e.g. channelForm.FLAT); each display is OneAquaHealth's own English label, including the letter of its illustration. Not an official OneAquaHealth artefact.",
+  "caseSensitive": true,
+  "content": "complete",
+  "property": [
+    {
+      "code": "field",
+      "description": "The OneAquaHealth app field this answer belongs to (a code in oah-citizen-fields).",
+      "type": "Coding"
+    },
+    {
+      "code": "appValue",
+      "description": "The value exactly as the OneAquaHealth app stores it.",
+      "type": "string"
+    }
+  ],
+  "concept": [
+    {
+      "code": "channelForm.FLAT",
+      "display": "Flat (A)",
+      "definition": "Answer FLAT to \"The channel form is…\" (OneAquaHealth app field 'channelForm').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "channelForm",
+            "display": "Channel form"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "FLAT"
+        }
+      ]
+    },
+    {
+      "code": "channelForm.U",
+      "display": "U Shape (B)",
+      "definition": "Answer U to \"The channel form is…\" (OneAquaHealth app field 'channelForm').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "channelForm",
+            "display": "Channel form"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "U"
+        }
+      ]
+    },
+    {
+      "code": "channelForm.V",
+      "display": "V Shape (C)",
+      "definition": "Answer V to \"The channel form is…\" (OneAquaHealth app field 'channelForm').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "channelForm",
+            "display": "Channel form"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "V"
+        }
+      ]
+    },
+    {
+      "code": "bottomChannelType.NAT",
+      "display": "Natural (A)",
+      "definition": "Answer NAT to \"The bottom of the wet channel is…\" (OneAquaHealth app field 'bottomChannelType').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "bottomChannelType",
+            "display": "Stream bed"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "NAT"
+        }
+      ]
+    },
+    {
+      "code": "bottomChannelType.ART",
+      "display": "Artificial (concrete or stones with concrete) (B)",
+      "definition": "Answer ART to \"The bottom of the wet channel is…\" (OneAquaHealth app field 'bottomChannelType').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "bottomChannelType",
+            "display": "Stream bed"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "ART"
+        }
+      ]
+    },
+    {
+      "code": "banksChannelType.NAT",
+      "display": "Natural (A)",
+      "definition": "Answer NAT to \"The banks of the channel are…\" (OneAquaHealth app field 'banksChannelType').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "banksChannelType",
+            "display": "Banks"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "NAT"
+        }
+      ]
+    },
+    {
+      "code": "banksChannelType.ART",
+      "display": "Artificial (concrete or stones with concrete) (B)",
+      "definition": "Answer ART to \"The banks of the channel are…\" (OneAquaHealth app field 'banksChannelType').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "banksChannelType",
+            "display": "Banks"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "ART"
+        }
+      ]
+    },
+    {
+      "code": "banksChannelType.LAS",
+      "display": "Laid stones with no concrete (C)",
+      "definition": "Answer LAS to \"The banks of the channel are…\" (OneAquaHealth app field 'banksChannelType').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "banksChannelType",
+            "display": "Banks"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "LAS"
+        }
+      ]
+    },
+    {
+      "code": "habitats.SB",
+      "display": "Sand banks (A)",
+      "definition": "Answer SB to \"The habitats present are…\" (OneAquaHealth app field 'habitats').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "habitats",
+            "display": "Habitats"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "SB"
+        }
+      ]
+    },
+    {
+      "code": "habitats.SI",
+      "display": "Sand islands (B)",
+      "definition": "Answer SI to \"The habitats present are…\" (OneAquaHealth app field 'habitats').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "habitats",
+            "display": "Habitats"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "SI"
+        }
+      ]
+    },
+    {
+      "code": "habitats.SD",
+      "display": "Stone deposits (C)",
+      "definition": "Answer SD to \"The habitats present are…\" (OneAquaHealth app field 'habitats').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "habitats",
+            "display": "Habitats"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "SD"
+        }
+      ]
+    },
+    {
+      "code": "habitats.RF",
+      "display": "Riffles, rapids, falls (D)",
+      "definition": "Answer RF to \"The habitats present are…\" (OneAquaHealth app field 'habitats').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "habitats",
+            "display": "Habitats"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "RF"
+        }
+      ]
+    },
+    {
+      "code": "habitats.AV",
+      "display": "Aquatic vegetation (E)",
+      "definition": "Answer AV to \"The habitats present are…\" (OneAquaHealth app field 'habitats').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "habitats",
+            "display": "Habitats"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "AV"
+        }
+      ]
+    },
+    {
+      "code": "fallenBiomassTypes.FT",
+      "display": "Fallen trees (A)",
+      "definition": "Answer FT to \"There are…\" (OneAquaHealth app field 'fallenBiomassTypes').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "fallenBiomassTypes",
+            "display": "Natural debris"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "FT"
+        }
+      ]
+    },
+    {
+      "code": "fallenBiomassTypes.FB",
+      "display": "Fallen branches (B)",
+      "definition": "Answer FB to \"There are…\" (OneAquaHealth app field 'fallenBiomassTypes').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "fallenBiomassTypes",
+            "display": "Natural debris"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "FB"
+        }
+      ]
+    },
+    {
+      "code": "fallenBiomassTypes.FL",
+      "display": "Deposits of fallen leaves (C)",
+      "definition": "Answer FL to \"There are…\" (OneAquaHealth app field 'fallenBiomassTypes').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "fallenBiomassTypes",
+            "display": "Natural debris"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "FL"
+        }
+      ]
+    },
+    {
+      "code": "waterFlow.FAS",
+      "display": "Fast (with waves or high velocity) (A)",
+      "definition": "Answer FAS to \"How is the water flowing?\" (OneAquaHealth app field 'waterFlow').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterFlow",
+            "display": "Water flow"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "FAS"
+        }
+      ]
+    },
+    {
+      "code": "waterFlow.NOR",
+      "display": "Slow (B)",
+      "definition": "Answer NOR to \"How is the water flowing?\" (OneAquaHealth app field 'waterFlow').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterFlow",
+            "display": "Water flow"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "NOR"
+        }
+      ]
+    },
+    {
+      "code": "waterFlow.STA",
+      "display": "Stagnant/intermittent (C)",
+      "definition": "Answer STA to \"How is the water flowing?\" (OneAquaHealth app field 'waterFlow').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterFlow",
+            "display": "Water flow"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "STA"
+        }
+      ]
+    },
+    {
+      "code": "waterFlow.DRY",
+      "display": "Dry (D)",
+      "definition": "Answer DRY to \"How is the water flowing?\" (OneAquaHealth app field 'waterFlow').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterFlow",
+            "display": "Water flow"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "DRY"
+        }
+      ]
+    },
+    {
+      "code": "waterColor.CL",
+      "display": "Clear/transparent (A)",
+      "definition": "Answer CL to \"How is the water?\" (OneAquaHealth app field 'waterColor').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterColor",
+            "display": "Water look"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "CL"
+        }
+      ]
+    },
+    {
+      "code": "waterColor.MU",
+      "display": "Muddy/turbid (B)",
+      "definition": "Answer MU to \"How is the water?\" (OneAquaHealth app field 'waterColor').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterColor",
+            "display": "Water look"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "MU"
+        }
+      ]
+    },
+    {
+      "code": "waterColor.FO",
+      "display": "Has foam (C)",
+      "definition": "Answer FO to \"How is the water?\" (OneAquaHealth app field 'waterColor').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterColor",
+            "display": "Water look"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "FO"
+        }
+      ]
+    },
+    {
+      "code": "waterColor.CO",
+      "display": "Has colors/altered color (D)",
+      "definition": "Answer CO to \"How is the water?\" (OneAquaHealth app field 'waterColor').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "waterColor",
+            "display": "Water look"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "CO"
+        }
+      ]
+    },
+    {
+      "code": "vegetationTypeLeft.H",
+      "display": "Herbs (A)",
+      "definition": "Answer H to \"Which vegetation is dominant in the left margin?\" (OneAquaHealth app field 'vegetationTypeLeft').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "vegetationTypeLeft",
+            "display": "Main plants, left"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "H"
+        }
+      ]
+    },
+    {
+      "code": "vegetationTypeLeft.B",
+      "display": "Shrubs (B)",
+      "definition": "Answer B to \"Which vegetation is dominant in the left margin?\" (OneAquaHealth app field 'vegetationTypeLeft').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "vegetationTypeLeft",
+            "display": "Main plants, left"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "B"
+        }
+      ]
+    },
+    {
+      "code": "vegetationTypeLeft.T",
+      "display": "Trees (C)",
+      "definition": "Answer T to \"Which vegetation is dominant in the left margin?\" (OneAquaHealth app field 'vegetationTypeLeft').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "vegetationTypeLeft",
+            "display": "Main plants, left"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "T"
+        }
+      ]
+    },
+    {
+      "code": "vegetationTypeRight.H",
+      "display": "Herbs (A)",
+      "definition": "Answer H to \"Which vegetation is dominant in the right margin?\" (OneAquaHealth app field 'vegetationTypeRight').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "vegetationTypeRight",
+            "display": "Main plants, right"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "H"
+        }
+      ]
+    },
+    {
+      "code": "vegetationTypeRight.B",
+      "display": "Shrubs (B)",
+      "definition": "Answer B to \"Which vegetation is dominant in the right margin?\" (OneAquaHealth app field 'vegetationTypeRight').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "vegetationTypeRight",
+            "display": "Main plants, right"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "B"
+        }
+      ]
+    },
+    {
+      "code": "vegetationTypeRight.T",
+      "display": "Trees (C)",
+      "definition": "Answer T to \"Which vegetation is dominant in the right margin?\" (OneAquaHealth app field 'vegetationTypeRight').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "vegetationTypeRight",
+            "display": "Main plants, right"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "T"
+        }
+      ]
+    },
+    {
+      "code": "overallAssessment.GOOD",
+      "display": "Good quality",
+      "definition": "Answer GOOD to \"Provide an overall assessment of the stream ecosystem health\" (OneAquaHealth app field 'overallAssessment').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "overallAssessment",
+            "display": "Overall health"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "GOOD"
+        }
+      ]
+    },
+    {
+      "code": "overallAssessment.MODERATE",
+      "display": "Moderate quality",
+      "definition": "Answer MODERATE to \"Provide an overall assessment of the stream ecosystem health\" (OneAquaHealth app field 'overallAssessment').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "overallAssessment",
+            "display": "Overall health"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "MODERATE"
+        }
+      ]
+    },
+    {
+      "code": "overallAssessment.POOR",
+      "display": "Poor quality",
+      "definition": "Answer POOR to \"Provide an overall assessment of the stream ecosystem health\" (OneAquaHealth app field 'overallAssessment').",
+      "property": [
+        {
+          "code": "field",
+          "valueCoding": {
+            "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+            "code": "overallAssessment",
+            "display": "Overall health"
+          }
+        },
+        {
+          "code": "appValue",
+          "valueString": "POOR"
+        }
+      ]
+    }
+  ],
+  "count": 33
+}

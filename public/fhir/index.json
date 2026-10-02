@@ -1,0 +1,72 @@
+{
+  "index-version": 1,
+  "canonical": "https://brook-oah.vercel.app/fhir",
+  "note": "Brook's FHIR R4 definitions. Each file is also served at its canonical URL, e.g. /fhir/CodeSystem/oah-citizen-fields.",
+  "files": [
+    {
+      "filename": "CodeSystem-oah-citizen-fields.json",
+      "resourceType": "CodeSystem",
+      "id": "oah-citizen-fields",
+      "url": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "CodeSystem-oah-citizen-answers.json",
+      "resourceType": "CodeSystem",
+      "id": "oah-citizen-answers",
+      "url": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "CodeSystem-tags.json",
+      "resourceType": "CodeSystem",
+      "id": "tags",
+      "url": "https://brook-oah.vercel.app/fhir/CodeSystem/tags",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "CodeSystem-answer-source.json",
+      "resourceType": "CodeSystem",
+      "id": "answer-source",
+      "url": "https://brook-oah.vercel.app/fhir/CodeSystem/answer-source",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "ValueSet-answer-source.json",
+      "resourceType": "ValueSet",
+      "id": "answer-source",
+      "url": "https://brook-oah.vercel.app/fhir/ValueSet/answer-source",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "ValueSet-oah-citizen-fields.json",
+      "resourceType": "ValueSet",
+      "id": "oah-citizen-fields",
+      "url": "https://brook-oah.vercel.app/fhir/ValueSet/oah-citizen-fields",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "StructureDefinition-answer-source.json",
+      "resourceType": "StructureDefinition",
+      "id": "answer-source",
+      "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
+      "version": "0.1.0",
+      "kind": "complex-type",
+      "type": "Extension"
+    },
+    {
+      "filename": "Questionnaire-oah-citizen-check.json",
+      "resourceType": "Questionnaire",
+      "id": "oah-citizen-check",
+      "url": "https://brook-oah.vercel.app/fhir/Questionnaire/oah-citizen-check",
+      "version": "0.1.0"
+    },
+    {
+      "filename": "ConceptMap-oah-citizen-fields-to-oah-indicators.json",
+      "resourceType": "ConceptMap",
+      "id": "oah-citizen-fields-to-oah-indicators",
+      "url": "https://brook-oah.vercel.app/fhir/ConceptMap/oah-citizen-fields-to-oah-indicators",
+      "version": "0.1.0"
+    }
+  ]
+}

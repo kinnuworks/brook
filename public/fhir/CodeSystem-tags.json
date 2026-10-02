@@ -1,0 +1,34 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tags",
+  "url": "https://brook-oah.vercel.app/fhir/CodeSystem/tags",
+  "version": "0.1.0",
+  "name": "BrookTags",
+  "title": "Brook resource tags",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "Tags Brook puts in meta.tag of every resource it creates.",
+  "caseSensitive": true,
+  "content": "complete",
+  "concept": [
+    {
+      "code": "brook-citizen-check",
+      "display": "Brook citizen stream check",
+      "definition": "Created by Brook from a citizen stream check that follows the OneAquaHealth citizen science protocol. Brook only forwards a bundle when every resource in it carries this tag."
+    }
+  ],
+  "count": 1
+}

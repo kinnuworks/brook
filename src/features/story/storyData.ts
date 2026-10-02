@@ -20,6 +20,7 @@ export interface StoryData {
   photos: { slot: string; src: string }[];
   biodiversity?: string | null;
   status: "pending" | "sent" | "failed" | "server";
+  trial: boolean;
   durationS?: number;
   mode?: string;
 }
@@ -55,6 +56,7 @@ interface ServerRow {
   weather: RecentWeather | null;
   fhir_result: StoryData["fhirResult"];
   photos: { id: string; slot: string }[];
+  trial?: boolean;
 }
 
 export async function loadStory(id: string): Promise<StoryData | null> {
@@ -74,6 +76,7 @@ export async function loadStory(id: string): Promise<StoryData | null> {
       photos: Object.entries(local.thumbs).map(([slot, src]) => ({ slot, src })),
       biodiversity: local.biodiversity,
       status: local.status,
+      trial: Boolean(local.trial),
       durationS: local.durationS,
       mode: local.mode,
     };
@@ -97,6 +100,7 @@ export async function loadStory(id: string): Promise<StoryData | null> {
       weather: row.weather,
       photos: (row.photos ?? []).map((p) => ({ slot: p.slot, src: `/api/photo?id=${p.id}` })),
       status: "server",
+      trial: Boolean(row.trial),
       durationS: row.duration_s ?? undefined,
       mode: row.mode,
     };

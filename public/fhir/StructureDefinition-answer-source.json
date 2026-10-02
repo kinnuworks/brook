@@ -1,0 +1,75 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "answer-source",
+  "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
+  "version": "0.1.0",
+  "name": "AnswerSource",
+  "title": "Answer source",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "How the citizen's answer behind an Observation component (or, for a single-valued Observation, the Observation itself) reached the record. Lets a researcher separate answers a person gave unaided from those an AI model suggested or interpreted.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Observation.component"
+    },
+    {
+      "type": "element",
+      "expression": "Observation"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "How the answer reached the record",
+        "definition": "How the citizen's answer reached the record.",
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://brook-oah.vercel.app/fhir/ValueSet/answer-source"
+        }
+      }
+    ]
+  }
+}

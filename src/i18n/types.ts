@@ -222,6 +222,17 @@ export interface Strings {
     downloadCsv: string;
     loading: string;
   };
+  sus: {
+    title: string;
+    intro: string;
+    items: string[];
+    disagree: string;
+    agree: string;
+    comment: string;
+    send: string;
+    thanks: string;
+    score: string;
+  };
   story: {
     title: string;
     youSaw: string;

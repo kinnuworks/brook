@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "answer-source",
+  "url": "https://brook-oah.vercel.app/fhir/ValueSet/answer-source",
+  "version": "0.1.0",
+  "name": "AnswerSourceValueSet",
+  "title": "Answer sources",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "All answer source codes.",
+  "immutable": false,
+  "compose": {
+    "include": [
+      {
+        "system": "https://brook-oah.vercel.app/fhir/CodeSystem/answer-source"
+      }
+    ]
+  }
+}

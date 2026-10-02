@@ -10,6 +10,7 @@ import { speak, stopSpeaking } from "@/lib/speech";
 import { useSettings } from "@/lib/settings";
 import { describe } from "../check/store";
 import { loadStory, type StoryData } from "./storyData";
+import { SusCard } from "./SusCard";
 
 const QUALITY_TONE: Record<string, string> = {
   High: "bg-leaf-100 text-leaf-700",
@@ -336,6 +337,8 @@ export default function StoryPage() {
             </div>
           </div>
         </section>
+
+        {data.status !== "server" && <SusCard submissionId={data.status === "sent" ? data.id : undefined} trial={data.trial} />}
 
         <div className="flex flex-wrap justify-center gap-3 pt-2">
           <Link to="/check" className="btn-primary">

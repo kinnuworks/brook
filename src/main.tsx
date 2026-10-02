@@ -27,6 +27,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Checks saved while offline are sent the moment the connection returns, wherever you are in the app.
+const flush = () => void import("@/features/check/submit").then((m) => m.flushPending());
+window.addEventListener("online", flush);
+window.setTimeout(flush, 2500);
+
 const lang = useSettings.getState().lang;
 document.documentElement.lang = lang;
 void loadLang(lang).then(() => useSettings.setState((s) => ({ langLoaded: s.langLoaded + 1 })));

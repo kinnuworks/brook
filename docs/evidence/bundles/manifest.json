@@ -1,0 +1,37 @@
+[
+  {
+    "file": "a-citizen-check-o17.json",
+    "expect": "valid",
+    "about": "Citizen check at O17 as submitted: preliminary, no Observation profile claimed"
+  },
+  {
+    "file": "b-verified-check-o17.json",
+    "expect": "valid",
+    "about": "The same check after review: final, Observations claim observation-indicators-oah"
+  },
+  {
+    "file": "c-custom-site.json",
+    "expect": "valid",
+    "about": "Check at a volunteer-added stream; tap and voice only, so no AI label"
+  },
+  {
+    "file": "broken-1-unknown-answer-code.json",
+    "expect": "invalid",
+    "about": "Copy of a with channelForm.W, a code not in oah-citizen-answers"
+  },
+  {
+    "file": "broken-2-verified-without-performer.json",
+    "expect": "invalid",
+    "about": "Copy of b whose final hydrology Observation has no performer"
+  },
+  {
+    "file": "broken-3-preliminary-claims-oah-profile.json",
+    "expect": "invalid",
+    "about": "Copy of a whose preliminary hydrology Observation claims observation-indicators-oah"
+  },
+  {
+    "file": "gap-location-referenceForm.json",
+    "expect": "probe",
+    "about": "Copy of a using the IG's referenceForm slice (artifact-relatedArtifact) on the Location"
+  }
+]

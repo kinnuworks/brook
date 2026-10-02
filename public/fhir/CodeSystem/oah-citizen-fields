@@ -1,0 +1,177 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "oah-citizen-fields",
+  "url": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+  "version": "0.1.0",
+  "name": "OahCitizenFields",
+  "title": "OneAquaHealth citizen stream check: fields",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "The fields of the OneAquaHealth Citizen Science App's stream check, as Brook asks them, plus the citizen's overall assessment and the four feelings. Each code is the app's own field name (CitizenSubmissionPutDTO). Brook uses them as Observation.component and Questionnaire item codes. Not an official OneAquaHealth artefact.",
+  "caseSensitive": true,
+  "hierarchyMeaning": "part-of",
+  "content": "complete",
+  "concept": [
+    {
+      "code": "channelForm",
+      "display": "Channel form",
+      "definition": "OneAquaHealth app field 'channelForm'. Official question: \"The channel form is…\""
+    },
+    {
+      "code": "bottomChannelType",
+      "display": "Stream bed",
+      "definition": "OneAquaHealth app field 'bottomChannelType'. Official question: \"The bottom of the wet channel is…\""
+    },
+    {
+      "code": "banksChannelType",
+      "display": "Banks",
+      "definition": "OneAquaHealth app field 'banksChannelType'. Official question: \"The banks of the channel are…\""
+    },
+    {
+      "code": "habitats",
+      "display": "Habitats",
+      "definition": "OneAquaHealth app field 'habitats'. Official question: \"The habitats present are…\""
+    },
+    {
+      "code": "fallenBiomassTypes",
+      "display": "Natural debris",
+      "definition": "OneAquaHealth app field 'fallenBiomassTypes'. Official question: \"There are…\""
+    },
+    {
+      "code": "waterFlow",
+      "display": "Water flow",
+      "definition": "OneAquaHealth app field 'waterFlow'. Official question: \"How is the water flowing?\""
+    },
+    {
+      "code": "waterColor",
+      "display": "Water look",
+      "definition": "OneAquaHealth app field 'waterColor'. Official question: \"How is the water?\""
+    },
+    {
+      "code": "waterAbstraction",
+      "display": "Water taken out",
+      "definition": "OneAquaHealth app field 'waterAbstraction'. Official question: \"Is there any kind of obvious water collection, use, removal from the stream?\""
+    },
+    {
+      "code": "hasDams",
+      "display": "Barriers",
+      "definition": "OneAquaHealth app field 'hasDams'. Official question: \"Do you see any dams or other transversal artificial barriers?\""
+    },
+    {
+      "code": "numberOfDams",
+      "display": "Number of barriers",
+      "definition": "OneAquaHealth app field 'numberOfDams'. Official question: \"Number of dams\""
+    },
+    {
+      "code": "pipes",
+      "display": "Polluting pipes",
+      "definition": "OneAquaHealth app field 'pipes'. Official question: \"Are there pipes draining polluted water into the stream?\""
+    },
+    {
+      "code": "waterDischarge",
+      "display": "Sewage discharge",
+      "definition": "OneAquaHealth app field 'waterDischarge'. Official question: \"Is there any kind of water entry or discharge of sewage?\""
+    },
+    {
+      "code": "construction",
+      "display": "Works",
+      "definition": "OneAquaHealth app field 'construction'. Official question: \"Is there any construction/works in stream?\""
+    },
+    {
+      "code": "waterHeight",
+      "display": "Water depth",
+      "definition": "OneAquaHealth app field 'waterHeight'. Official question: \"What is the water height? (in metres)\""
+    },
+    {
+      "code": "imperviousAreasLeft",
+      "display": "Hard surfaces, left",
+      "definition": "OneAquaHealth app field 'imperviousAreasLeft'. Official question: \"Is more than one third of the left margin covered by impervious areas (such as roads, sidewalks or buildings)?\""
+    },
+    {
+      "code": "imperviousAreasRight",
+      "display": "Hard surfaces, right",
+      "definition": "OneAquaHealth app field 'imperviousAreasRight'. Official question: \"Is more than one third of the right margin covered by impervious areas (such as roads, sidewalks or buildings)?\""
+    },
+    {
+      "code": "isVegetationCoveredLeft",
+      "display": "Plants, left",
+      "definition": "OneAquaHealth app field 'isVegetationCoveredLeft'. Official question: \"Is the left margin covered by vegetation?\""
+    },
+    {
+      "code": "vegetationTypeLeft",
+      "display": "Main plants, left",
+      "definition": "OneAquaHealth app field 'vegetationTypeLeft'. Official question: \"Which vegetation is dominant in the left margin?\""
+    },
+    {
+      "code": "isVegetationCoveredRight",
+      "display": "Plants, right",
+      "definition": "OneAquaHealth app field 'isVegetationCoveredRight'. Official question: \"Is the right margin covered by vegetation?\""
+    },
+    {
+      "code": "vegetationTypeRight",
+      "display": "Main plants, right",
+      "definition": "OneAquaHealth app field 'vegetationTypeRight'. Official question: \"Which vegetation is dominant in the right margin?\""
+    },
+    {
+      "code": "hasInvasivePlantSpecies",
+      "display": "Invasive plants",
+      "definition": "OneAquaHealth app field 'hasInvasivePlantSpecies'. Official question: \"Do you see any non-native or invasive plant species?\""
+    },
+    {
+      "code": "invasivePlantSpecies",
+      "display": "Which invasive plants",
+      "definition": "OneAquaHealth app field 'invasivePlantSpecies'. Official question: \"Which ones?\""
+    },
+    {
+      "code": "recentVegetationCuts",
+      "display": "Recent cutting",
+      "definition": "OneAquaHealth app field 'recentVegetationCuts'. Official question: \"Have there been recent cuts of vegetation on the banks of the stream?\""
+    },
+    {
+      "code": "overallAssessment",
+      "display": "Overall health",
+      "definition": "OneAquaHealth app field 'overallAssessment'. Official question: \"Provide an overall assessment of the stream ecosystem health\""
+    },
+    {
+      "code": "feelings",
+      "display": "How it feels",
+      "definition": "OneAquaHealth app field 'feelings'. Official question: \"Which feeling(s) best describe your experience?\"",
+      "concept": [
+        {
+          "code": "feelings.joy",
+          "display": "Joy",
+          "definition": "Joy felt at the stream, rated from 0 to 5 (OneAquaHealth app field 'joy')."
+        },
+        {
+          "code": "feelings.serenity",
+          "display": "Serenity",
+          "definition": "Serenity felt at the stream, rated from 0 to 5 (OneAquaHealth app field 'serenity')."
+        },
+        {
+          "code": "feelings.anger",
+          "display": "Anger",
+          "definition": "Anger felt at the stream, rated from 0 to 5 (OneAquaHealth app field 'anger')."
+        },
+        {
+          "code": "feelings.fear",
+          "display": "Fear",
+          "definition": "Fear felt at the stream, rated from 0 to 5 (OneAquaHealth app field 'fear')."
+        }
+      ]
+    }
+  ],
+  "count": 29
+}

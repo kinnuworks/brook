@@ -1,0 +1,64 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "answer-source",
+  "url": "https://brook-oah.vercel.app/fhir/CodeSystem/answer-source",
+  "version": "0.1.0",
+  "name": "AnswerSourceCodes",
+  "title": "Answer source codes",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "How a citizen's answer reached the record: tapped, spoken or typed and matched by word lists, interpreted by an AI model from free speech or text, or suggested by an AI model from a photo and then confirmed or corrected by the citizen.",
+  "caseSensitive": true,
+  "content": "complete",
+  "concept": [
+    {
+      "code": "tap",
+      "display": "Tapped",
+      "definition": "The citizen chose the answer on screen."
+    },
+    {
+      "code": "voice",
+      "display": "Spoken",
+      "definition": "The citizen said the answer; the browser's speech recognition produced text that Brook's on-phone word matcher recognised. No AI model interpreted it."
+    },
+    {
+      "code": "text",
+      "display": "Typed",
+      "definition": "The citizen typed the answer and Brook's on-phone word matcher recognised it. No AI model interpreted it."
+    },
+    {
+      "code": "voice-ai",
+      "display": "Spoken, interpreted by AI",
+      "definition": "The citizen answered in their own words; the word matcher could not place it, so an AI model mapped the reply to one of the question's own answer codes, which the citizen was then shown."
+    },
+    {
+      "code": "text-ai",
+      "display": "Typed, interpreted by AI",
+      "definition": "The citizen typed a reply in their own words; the word matcher could not place it, so an AI model mapped it to one of the question's own answer codes, which the citizen was then shown."
+    },
+    {
+      "code": "photo-confirmed",
+      "display": "Photo suggestion, confirmed",
+      "definition": "An AI model suggested this answer from the citizen's photo and the citizen gave the same answer."
+    },
+    {
+      "code": "photo-corrected",
+      "display": "Photo suggestion, corrected",
+      "definition": "An AI model suggested an answer from the citizen's photo and the citizen gave a different one; the citizen's answer is the one recorded."
+    }
+  ],
+  "count": 7
+}

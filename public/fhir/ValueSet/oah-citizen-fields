@@ -1,0 +1,32 @@
+{
+  "resourceType": "ValueSet",
+  "id": "oah-citizen-fields",
+  "url": "https://brook-oah.vercel.app/fhir/ValueSet/oah-citizen-fields",
+  "version": "0.1.0",
+  "name": "OahCitizenFieldsValueSet",
+  "title": "Citizen check fields",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "All codes of the oah-citizen-fields CodeSystem.",
+  "immutable": false,
+  "compose": {
+    "include": [
+      {
+        "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields"
+      }
+    ]
+  }
+}

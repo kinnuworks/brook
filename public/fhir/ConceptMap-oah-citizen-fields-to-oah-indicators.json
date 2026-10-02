@@ -1,0 +1,290 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "oah-citizen-fields-to-oah-indicators",
+  "url": "https://brook-oah.vercel.app/fhir/ConceptMap/oah-citizen-fields-to-oah-indicators",
+  "version": "0.1.0",
+  "name": "OahCitizenFieldsToOahIndicators",
+  "title": "Citizen check fields to OneAquaHealth indicators",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-02",
+  "publisher": "Brook (hackathon prototype)",
+  "contact": [
+    {
+      "name": "Brook (hackathon prototype)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://brook-oah.vercel.app"
+        }
+      ]
+    }
+  ],
+  "description": "Brook's grouping of the OneAquaHealth app fields under the indicator codes of the OneAquaHealth FHIR IG (hl7.eu.fhir.oah): the code of the Observation each field becomes a component of. 'wider' means the indicator includes what the field records; 'relatedto' marks a field the IG has no closer indicator for.",
+  "sourceCanonical": "https://brook-oah.vercel.app/fhir/ValueSet/oah-citizen-fields",
+  "targetCanonical": "http://hl7.eu/fhir/ig/oah/ValueSet/temporarySystem-oah-eu",
+  "group": [
+    {
+      "source": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+      "target": "http://hl7.eu/fhir/ig/oah/CodeSystem/temporarySystem-oah-eu",
+      "element": [
+        {
+          "code": "channelForm",
+          "display": "Channel form",
+          "target": [
+            {
+              "code": "morophology",
+              "display": "Morphology of the streams",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "bottomChannelType",
+          "display": "Stream bed",
+          "target": [
+            {
+              "code": "morophology",
+              "display": "Morphology of the streams",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "banksChannelType",
+          "display": "Banks",
+          "target": [
+            {
+              "code": "morophology",
+              "display": "Morphology of the streams",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "habitats",
+          "display": "Habitats",
+          "target": [
+            {
+              "code": "morophology",
+              "display": "Morphology of the streams",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "fallenBiomassTypes",
+          "display": "Natural debris",
+          "target": [
+            {
+              "code": "morophology",
+              "display": "Morphology of the streams",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "waterFlow",
+          "display": "Water flow",
+          "target": [
+            {
+              "code": "hydrology",
+              "display": "Hydrology of the stream",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "waterHeight",
+          "display": "Water depth",
+          "target": [
+            {
+              "code": "hydrology",
+              "display": "Hydrology of the stream",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "hasDams",
+          "display": "Barriers",
+          "target": [
+            {
+              "code": "hydrology",
+              "display": "Hydrology of the stream",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "numberOfDams",
+          "display": "Number of barriers",
+          "target": [
+            {
+              "code": "hydrology",
+              "display": "Hydrology of the stream",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "waterAbstraction",
+          "display": "Water taken out",
+          "target": [
+            {
+              "code": "hydrology",
+              "display": "Hydrology of the stream",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "waterColor",
+          "display": "Water look",
+          "target": [
+            {
+              "code": "foam",
+              "display": "Foam/colour/smell",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "pipes",
+          "display": "Polluting pipes",
+          "target": [
+            {
+              "code": "foam",
+              "display": "Foam/colour/smell",
+              "equivalence": "relatedto",
+              "comment": "Polluting pipes are a pressure on water quality; the IG has no pollution-source indicator, so Brook files them with foam/colour/smell."
+            }
+          ]
+        },
+        {
+          "code": "waterDischarge",
+          "display": "Sewage discharge",
+          "target": [
+            {
+              "code": "foam",
+              "display": "Foam/colour/smell",
+              "equivalence": "relatedto",
+              "comment": "Sewage inflow is a pressure on water quality; the IG has no pollution-source indicator, so Brook files it with foam/colour/smell."
+            }
+          ]
+        },
+        {
+          "code": "construction",
+          "display": "Works",
+          "target": [
+            {
+              "code": "foam",
+              "display": "Foam/colour/smell",
+              "equivalence": "relatedto",
+              "comment": "Works in the stream; the IG has no pressure indicator for them, so Brook files them with foam/colour/smell."
+            }
+          ]
+        },
+        {
+          "code": "imperviousAreasLeft",
+          "display": "Hard surfaces, left",
+          "target": [
+            {
+              "code": "LandUse",
+              "display": "Land use in the margins",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "imperviousAreasRight",
+          "display": "Hard surfaces, right",
+          "target": [
+            {
+              "code": "LandUse",
+              "display": "Land use in the margins",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "recentVegetationCuts",
+          "display": "Recent cutting",
+          "target": [
+            {
+              "code": "LandUse",
+              "display": "Land use in the margins",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "isVegetationCoveredLeft",
+          "display": "Plants, left",
+          "target": [
+            {
+              "code": "riparianVegetation",
+              "display": "Riparian vegetation",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "vegetationTypeLeft",
+          "display": "Main plants, left",
+          "target": [
+            {
+              "code": "riparianVegetation",
+              "display": "Riparian vegetation",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "isVegetationCoveredRight",
+          "display": "Plants, right",
+          "target": [
+            {
+              "code": "riparianVegetation",
+              "display": "Riparian vegetation",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "vegetationTypeRight",
+          "display": "Main plants, right",
+          "target": [
+            {
+              "code": "riparianVegetation",
+              "display": "Riparian vegetation",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "hasInvasivePlantSpecies",
+          "display": "Invasive plants",
+          "target": [
+            {
+              "code": "invasiveOrganisms",
+              "display": "Invasive invertebrate, plants and fish",
+              "equivalence": "wider"
+            }
+          ]
+        },
+        {
+          "code": "invasivePlantSpecies",
+          "display": "Which invasive plants",
+          "target": [
+            {
+              "code": "invasiveOrganisms",
+              "display": "Invasive invertebrate, plants and fish",
+              "equivalence": "wider"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
