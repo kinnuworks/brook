@@ -92,8 +92,9 @@ p, li { font-size: 12.5px; line-height: 1.45 }
 .crit h3 span { font-size: 12px; color: #fff; background: #216b8c; border-radius: 999px; padding: 2px 9px }
 .crit ul { margin: 0; padding-left: 16px }
 .crit li { margin: 2px 0; font-size: 12px }
-.limits { background: #fdf3dc; border: 1px solid #f2d39b; border-radius: 14px; padding: 9px 14px }
-.limits li { font-size: 11.5px; margin: 2px 0 }
+.laptop { margin: 10px 0 0 }
+.laptop img { display: block; height: 252px; width: auto; margin: 0 auto; border-radius: 10px; border: 1px solid #dbe8ed; box-shadow: 0 10px 30px -12px rgba(33,107,140,.35) }
+.laptop figcaption { margin-top: 6px; font-size: 11.5px; color: #4b6474; text-align: center }
 .foot { position: absolute; left: 15mm; right: 15mm; bottom: 8mm; font-size: 9.5px; color: #5d7582; display: flex; justify-content: space-between }
 </style></head><body>
 
@@ -137,14 +138,10 @@ p, li { font-size: 12.5px; line-height: 1.45 }
   <div class="brand">${avatar}<span>Brook</span></div>
   <h1 style="font-size:30px;margin-top:12px">How Brook meets the judging criteria</h1>
   ${CRITERIA.map((c) => `<div class="crit"><h3>${c.name}<span>${c.weight}</span></h3><ul>${c.points.map((p) => `<li>${p}</li>`).join("")}</ul></div>`).join("")}
-  <div class="limits">
-    <b style="font-size:12.5px">What we don't claim</b>
-    <ul style="margin:3px 0 0;padding-left:16px">
-      <li>Brook hasn't been tried by volunteers at a real stream yet; a pilot with OneAquaHealth's citizen-science teams is the next step.</li>
-      <li>The research hub starts with made-up example checks, clearly labelled “Simulated” and never sent to OneAquaHealth.</li>
-      <li>The seven languages haven't yet been reviewed by native speakers.</li>
-    </ul>
-  </div>
+  <figure class="laptop">
+    <img src="${laptop}">
+    <figcaption>Phone first, laptop too: the conversation, with progress, photos and every answer beside it.</figcaption>
+  </figure>
   <div class="foot"><span>Details and the commands to repeat every test: github.com/kinnuworks/brook</span><span>Page 2 of 2</span></div>
 </section>
 </body></html>`;
