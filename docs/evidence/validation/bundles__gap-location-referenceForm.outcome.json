@@ -1,0 +1,779 @@
+{
+  "resourceType": "OperationOutcome",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>OperationOutcome </b></p><table class=\"grid\"><tr><td><b>Severity</b></td><td><b>Location</b></td><td><b>Code</b></td><td><b>Details</b></td><td><b>Diagnostics</b></td><td><b>Source</b></td></tr><tr><td>Information</td><td>Bundle</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[0].resource/*Location/oah-site-o17*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Error</td><td>Bundle.entry[0].resource/*Location/oah-site-o17*/</td><td>Structural Issue</td><td>The extension http://hl7.org/fhir/StructureDefinition/artifact-relatedArtifact v5.3.0 is not allowed to be used at this point (this element is [Bundle.entry.resource, Bundle.entry.resource/*Location/oah-site-o17*/, Location]; allowed for this version = e:CapabilityStatement, e:CodeSystem, e:CompartmentDefinition, e:Composition, e:ConceptMap, e:DeviceDefinition, e:ExampleScenario, e:GraphDefinition, e:Group, e:ImplementationGuide, e:Medication, e:MedicationKnowledge, e:MessageDefinition, e:NamingSystem, e:ObservationDefinition, e:OperationDefinition, e:Questionnaire, e:SearchParameter, e:SpecimenDefinition, e:Substance, e:StructureDefinition, e:StructureMap, e:TerminologyCapabilities, e:ValueSet)</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[0].resource/*Location/oah-site-o17*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah (per meta)</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[1].resource/*QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[2].resource/*Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[2].resource/*Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[4].resource/*Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[4].resource/*Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[5].resource/*Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[5].resource/*Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[6].resource/*Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[6].resource/*Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[7].resource/*Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[7].resource/*Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[8].resource/*Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[8].resource/*Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[9].resource/*Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[9].resource/*Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject</td><td>Structural Issue</td><td>Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[10].resource/*Device/brook-app*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Device|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[11].resource/*Device/brook-ai-gpt-6-luna*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Device|4.0.1</td><td/><td>InstanceValidator</td></tr><tr><td>Information</td><td>Bundle.entry[12].resource/*Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f*/</td><td>Informational Note</td><td>Validate resource against profile http://hl7.org/fhir/StructureDefinition/Provenance|4.0.1</td><td/><td>InstanceValidator</td></tr></table></div>"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-file",
+      "valueString": "./docs/evidence/bundles/gap-location-referenceForm.json"
+    }
+  ],
+  "issue": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 2
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1"
+      },
+      "expression": [
+        "Bundle"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 16
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/Bundle|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[0].resource/*Location/oah-site-o17*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 16
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Extension_EXTP_Context_Wrong_VER"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+        }
+      ],
+      "severity": "error",
+      "code": "structure",
+      "details": {
+        "text": "The extension http://hl7.org/fhir/StructureDefinition/artifact-relatedArtifact v5.3.0 is not allowed to be used at this point (this element is [Bundle.entry.resource, Bundle.entry.resource/*Location/oah-site-o17*/, Location]; allowed for this version = e:CapabilityStatement, e:CodeSystem, e:CompartmentDefinition, e:Composition, e:ConceptMap, e:DeviceDefinition, e:ExampleScenario, e:GraphDefinition, e:Group, e:ImplementationGuide, e:Medication, e:MedicationKnowledge, e:MessageDefinition, e:NamingSystem, e:ObservationDefinition, e:OperationDefinition, e:Questionnaire, e:SearchParameter, e:SpecimenDefinition, e:Substance, e:StructureDefinition, e:StructureMap, e:TerminologyCapabilities, e:ValueSet)"
+      },
+      "expression": [
+        "Bundle.entry[0].resource/*Location/oah-site-o17*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 16
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST_META"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah (per meta)"
+      },
+      "expression": [
+        "Bundle.entry[0].resource/*Location/oah-site-o17*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 69
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[1].resource/*QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 397
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[2].resource/*Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 441
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[2].resource/*Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 666
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 710
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 871
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[4].resource/*Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 915
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[4].resource/*Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1056
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[5].resource/*Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1100
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[5].resource/*Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1213
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[6].resource/*Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1257
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[6].resource/*Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1398
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[7].resource/*Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1435
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[7].resource/*Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1511
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[8].resource/*Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1555
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[8].resource/*Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1592
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Observation|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[9].resource/*Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1637
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 10
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "Details_for__matching_against_Profile_"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        }
+      ],
+      "severity": "information",
+      "code": "structure",
+      "details": {
+        "text": "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[9].resource/*Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.subject"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1738
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Device|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[10].resource/*Device/brook-app*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1776
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/Device|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Device|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[11].resource/*Device/brook-ai-gpt-6-luna*/"
+      ]
+    },
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1809
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 8
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source",
+          "valueString": "InstanceValidator"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+          "valueCode": "VALIDATION_VAL_PROFILE_SIGNPOST"
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-context",
+          "valueString": "http://hl7.org/fhir/StructureDefinition/Device|4.0.1"
+        }
+      ],
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "Validate resource against profile http://hl7.org/fhir/StructureDefinition/Provenance|4.0.1"
+      },
+      "expression": [
+        "Bundle.entry[12].resource/*Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f*/"
+      ]
+    }
+  ]
+}

@@ -60,6 +60,40 @@ const header = (resourceType, id, name, title, description) => ({
   description,
 });
 
+const esc = (v) => String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const table = (head, rows) =>
+  `<table><tr>${head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</table>`;
+const flatConcepts = (concepts) => concepts.flatMap((c) => [c, ...flatConcepts(c.concept ?? [])]);
+const itemList = (items) => `<ol>${items.map((i) => `<li>${esc(i.linkId)} (${esc(i.type)}): ${esc(i.text)}${i.item ? itemList(i.item) : ""}</li>`).join("")}</ol>`;
+
+/** A generated narrative (text.div) for a definition, so it reads without tooling. */
+function withNarrative(r) {
+  let body;
+  switch (r.resourceType) {
+    case "CodeSystem":
+      body = table(["Code", "Display"], flatConcepts(r.concept).map((c) => [c.code, c.display]));
+      break;
+    case "ValueSet":
+      body = `<p>All codes from ${r.compose.include.map((i) => `<code>${esc(i.system)}</code> version ${esc(i.version)}`).join(", ")}.</p>`;
+      break;
+    case "StructureDefinition": {
+      const value = r.differential.element.find((e) => e.path === "Extension.value[x]");
+      body = `<p>Extension <code>${esc(r.url)}</code>: a code from <code>${esc(value.binding.valueSet)}</code> (${esc(value.binding.strength)}), on ${r.context.map((c) => esc(c.expression)).join(" and ")}.</p>`;
+      break;
+    }
+    case "Questionnaire":
+      body = itemList(r.item);
+      break;
+    case "ConceptMap":
+      body = table(["Field", "OAH indicator", "Relationship"], r.group[0].element.map((e) => [e.code, `${e.target[0].code} (${e.target[0].display})`, e.target[0].equivalence]));
+      break;
+    default:
+      throw new Error(`No narrative for ${r.resourceType}`);
+  }
+  const { resourceType, id, ...rest } = r;
+  return { resourceType, id, text: { status: "generated", div: `<div xmlns="http://www.w3.org/1999/xhtml"><p><b>${esc(r.title)}</b></p><p>${esc(r.description)}</p>${body}</div>` }, ...rest };
+}
+
 const countConcepts = (concepts) => concepts.reduce((n, c) => n + 1 + countConcepts(c.concept ?? []), 0);
 const codeSystem = (cs) => ({ ...cs, count: countConcepts(cs.concept) });
 
@@ -176,13 +210,13 @@ export function buildDefinitions() {
       "oah-citizen-answers",
       "OahCitizenAnswers",
       "OneAquaHealth citizen stream check: answers",
-      "The coded answers of the OneAquaHealth Citizen Science App's stream check. Each code is '<field>.<app value>', where the app value is exactly what the app stores (e.g. channelForm.FLAT); each display is OneAquaHealth's own English label, including the letter of its illustration. Not an official OneAquaHealth artefact.",
+      "The coded answers of the OneAquaHealth Citizen Science App's stream check. Each code is the field name and the value the app stores, joined by a dot (e.g. channelForm.FLAT); each display is OneAquaHealth's own English label, including the letter of its illustration. Not an official OneAquaHealth artefact.",
     ),
     caseSensitive: true,
     content: "complete",
     property: [
-      { code: "field", description: "The OneAquaHealth app field this answer belongs to (a code in oah-citizen-fields).", type: "Coding" },
-      { code: "appValue", description: "The value exactly as the OneAquaHealth app stores it.", type: "string" },
+      { code: "field", uri: `${BROOK_ANSWERS}#field`, description: "The OneAquaHealth app field this answer belongs to (a code in oah-citizen-fields).", type: "Coding" },
+      { code: "appValue", uri: `${BROOK_ANSWERS}#appValue`, description: "The value exactly as the OneAquaHealth app stores it.", type: "string" },
     ],
     concept: QUESTIONS.filter((q) => q.codes?.length).flatMap((q) =>
       q.codes.map((c) => ({
@@ -226,7 +260,7 @@ export function buildDefinitions() {
   const sourceValueSet = {
     ...header("ValueSet", "answer-source", "AnswerSourceValueSet", "Answer sources", "All answer source codes."),
     immutable: false,
-    compose: { include: [{ system: BROOK_ANSWER_SOURCE_CODES }] },
+    compose: { include: [{ system: BROOK_ANSWER_SOURCE_CODES, version: DEFINITIONS_VERSION }] },
   };
 
   const extension = {
@@ -288,6 +322,7 @@ export function buildDefinitions() {
     group: [
       {
         source: BROOK_FIELDS,
+        sourceVersion: DEFINITIONS_VERSION,
         target: OAH_CODES,
         element: INDICATOR_GROUPS.flatMap((g) =>
           g.fields.map((f) => {
@@ -313,10 +348,22 @@ export function buildDefinitions() {
   const fieldsValueSet = {
     ...header("ValueSet", "oah-citizen-fields", "OahCitizenFieldsValueSet", "Citizen check fields", "All codes of the oah-citizen-fields CodeSystem."),
     immutable: false,
-    compose: { include: [{ system: BROOK_FIELDS }] },
+    compose: { include: [{ system: BROOK_FIELDS, version: DEFINITIONS_VERSION }] },
   };
 
-  return [fields, answers, tags, sourceCodes, sourceValueSet, fieldsValueSet, extension, questionnaire, conceptMap];
+  // Every canonical the bundle builder points at must be the one published here.
+  for (const [r, url] of [
+    [fields, BROOK_FIELDS],
+    [answers, BROOK_ANSWERS],
+    [tags, BROOK_TAG.system],
+    [sourceCodes, BROOK_ANSWER_SOURCE_CODES],
+    [sourceValueSet, BROOK_ANSWER_SOURCE_VS],
+    [extension, BROOK_ANSWER_SOURCE],
+    [questionnaire, BROOK_QUESTIONNAIRE],
+  ]) {
+    if (r.url !== url) throw new Error(`${r.resourceType}/${r.id} is published at ${r.url}, but bundles reference ${url}`);
+  }
+  return [fields, answers, tags, sourceCodes, sourceValueSet, fieldsValueSet, extension, questionnaire, conceptMap].map(withNarrative);
 }
 
 /** Fields that sit under an indicator only because the IG has no closer one. */

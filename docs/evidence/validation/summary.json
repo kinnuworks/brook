@@ -1,0 +1,263 @@
+{
+  "validator": "HL7 FHIR Validator 6.10.4",
+  "fhirVersion": "4.0.1",
+  "ran": "2026-10-02T10:51:11.731Z",
+  "terminology": "https://tx.fhir.org",
+  "loaded": [
+    "OneAquaHealth IG (hl7.eu.fhir.oah) built from source with SUSHI",
+    "Brook definitions (public/fhir)",
+    "hl7.fhir.r4.core#4.0.1",
+    "hl7.fhir.xver-extensions#0.1.0",
+    "hl7.terminology.r4#6.2.0",
+    "hl7.fhir.uv.extensions.r4#5.2.0",
+    "hl7.terminology#7.4.0",
+    "hl7.fhir.uv.extensions.r5#5.2.0",
+    "hl7.terminology.r5#7.1.0",
+    "hl7.fhir.uv.extensions#5.3.0"
+  ],
+  "options": [
+    "-check-display Check",
+    "-show-message-ids"
+  ],
+  "files": [
+    {
+      "file": "bundles/a-citizen-check-o17.json",
+      "about": "Citizen check at O17 as submitted: preliminary, no Observation profile claimed",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "bundles/b-verified-check-o17.json",
+      "about": "The same check after review: final, Observations claim observation-indicators-oah",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {
+        "None of the codings provided are in the value set 'OAH Indicators (Non-Health)' (http://hl7.eu/fhir/ig/oah/ValueSet/oah-indicators-no-health-oah-vs), and a coding is recommended to come from this value set": 26
+      }
+    },
+    {
+      "file": "bundles/c-custom-site.json",
+      "about": "Check at a volunteer-added stream; tap and voice only, so no AI label",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "bundles/broken-1-unknown-answer-code.json",
+      "about": "Copy of a with channelForm.W, a code not in oah-citizen-answers",
+      "expect": "invalid",
+      "verdict": "invalid",
+      "ok": true,
+      "errors": 1,
+      "warnings": 0,
+      "issues": [
+        {
+          "severity": "error",
+          "id": "Unknown_Code_in_Version",
+          "where": "Bundle.entry[2].resource/*Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.component[0].value.ofType(CodeableConcept).coding[0].code",
+          "text": "Unknown code 'channelForm.W' in the CodeSystem 'https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers' version '0.1.0'"
+        }
+      ],
+      "information": {}
+    },
+    {
+      "file": "bundles/broken-2-verified-without-performer.json",
+      "about": "Copy of b whose final hydrology Observation has no performer",
+      "expect": "invalid",
+      "verdict": "invalid",
+      "ok": true,
+      "errors": 1,
+      "warnings": 1,
+      "issues": [
+        {
+          "severity": "warning",
+          "id": "All_observations_should_have_a_performer",
+          "where": "Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/",
+          "text": "Best Practice Recommendation: In general, all observations should have a performer"
+        },
+        {
+          "severity": "error",
+          "id": "Validation_VAL_Profile_Minimum",
+          "where": "Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/",
+          "text": "Observation.performer: minimum required = 1, but only found 0 (from http://hl7.eu/fhir/ig/oah/StructureDefinition/observation-indicators-oah)"
+        }
+      ],
+      "information": {
+        "None of the codings provided are in the value set 'OAH Indicators (Non-Health)' (http://hl7.eu/fhir/ig/oah/ValueSet/oah-indicators-no-health-oah-vs), and a coding is recommended to come from this value set": 26
+      }
+    },
+    {
+      "file": "bundles/broken-3-preliminary-claims-oah-profile.json",
+      "about": "Copy of a whose preliminary hydrology Observation claims observation-indicators-oah",
+      "expect": "invalid",
+      "verdict": "invalid",
+      "ok": true,
+      "errors": 1,
+      "warnings": 0,
+      "issues": [
+        {
+          "severity": "error",
+          "id": "_DT_Fixed_Wrong",
+          "where": "Bundle.entry[3].resource/*Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.status",
+          "text": "Value is 'preliminary' but is fixed to 'final' in the profile http://hl7.eu/fhir/ig/oah/StructureDefinition/observation-indicators-oah#Observation.status"
+        }
+      ],
+      "information": {
+        "None of the codings provided are in the value set 'OAH Indicators (Non-Health)' (http://hl7.eu/fhir/ig/oah/ValueSet/oah-indicators-no-health-oah-vs), and a coding is recommended to come from this value set": 5
+      }
+    },
+    {
+      "file": "bundles/broken-4-form-answer-wrong-type.json",
+      "about": "Copy of a whose QuestionnaireResponse answers the decimal waterHeight item with a string",
+      "expect": "invalid",
+      "verdict": "invalid",
+      "ok": true,
+      "errors": 1,
+      "warnings": 0,
+      "issues": [
+        {
+          "severity": "error",
+          "id": "Questionnaire_QR_Item_WrongType",
+          "where": "Bundle.entry[1].resource/*QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f*/.item[13].answer[0].value.ofType(string)",
+          "text": "Answer value must be of the type decimal not string"
+        }
+      ],
+      "information": {}
+    },
+    {
+      "file": "bundles/gap-location-referenceForm.json",
+      "about": "Copy of a using the IG's referenceForm slice (artifact-relatedArtifact) on the Location",
+      "expect": "probe",
+      "verdict": "invalid",
+      "ok": null,
+      "errors": 1,
+      "warnings": 0,
+      "issues": [
+        {
+          "severity": "error",
+          "id": "Extension_EXTP_Context_Wrong_VER",
+          "where": "Bundle.entry[0].resource/*Location/oah-site-o17*/",
+          "text": "The extension http://hl7.org/fhir/StructureDefinition/artifact-relatedArtifact v5.3.0 is not allowed to be used at this point (this element is [Bundle.entry.resource, Bundle.entry.resource/*Location/oah-site-o17*/, Location]; allowed for this version = e:CapabilityStatement, e:CodeSystem, e:CompartmentDefinition, e:Composition, e:ConceptMap, e:DeviceDefinition, e:ExampleScenario, e:GraphDefinition, e:Group, e:ImplementationGuide, e:Medication, e:MedicationKnowledge, e:MessageDefinition, e:NamingSystem, e:ObservationDefinition, e:OperationDefinition, e:Questionnaire, e:SearchParameter, e:SpecimenDefinition, e:Substance, e:StructureDefinition, e:StructureMap, e:TerminologyCapabilities, e:ValueSet)"
+        }
+      ],
+      "information": {
+        "Details for Location/oah-site-o17 matching against profile http://hl7.org/fhir/StructureDefinition/Location|4.0.1": 8
+      }
+    },
+    {
+      "file": "public/fhir/CodeSystem-answer-source.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/CodeSystem-oah-citizen-answers.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {
+        "This property has only a code ('field') and not a URI, so it has no clearly defined meaning in the terminology ecosystem": 1,
+        "This property has only a code ('appValue') and not a URI, so it has no clearly defined meaning in the terminology ecosystem": 1
+      }
+    },
+    {
+      "file": "public/fhir/CodeSystem-oah-citizen-fields.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/CodeSystem-tags.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/ConceptMap-oah-citizen-fields-to-oah-indicators.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/Questionnaire-oah-citizen-check.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/StructureDefinition-answer-source.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/ValueSet-answer-source.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    },
+    {
+      "file": "public/fhir/ValueSet-oah-citizen-fields.json",
+      "about": "Brook definition",
+      "expect": "valid",
+      "verdict": "valid",
+      "ok": true,
+      "errors": 0,
+      "warnings": 0,
+      "issues": [],
+      "information": {}
+    }
+  ]
+}

@@ -179,6 +179,19 @@ function formAnswers(q: QuestionDef, value: unknown): Json[] {
 }
 
 const sourceExt = (source?: AnswerSource): Json => (source ? { extension: [{ url: BROOK_ANSWER_SOURCE, valueCode: source }] } : {});
+
+// A short human-readable narrative per resource (text.div), generated from the same data.
+const esc = (s: unknown) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const narrative = (html: string) => ({ status: "generated", div: `<div xmlns="http://www.w3.org/1999/xhtml">${html}</div>` });
+function valueText(v: Json): string {
+  const cc = v.valueCodeableConcept as { coding?: { display?: string }[]; text?: string } | undefined;
+  if (cc) return cc.coding?.[0]?.display ?? cc.text ?? "";
+  const qty = v.valueQuantity as { value: number; unit: string } | undefined;
+  if (qty) return `${qty.value} ${qty.unit}`;
+  return String(v.valueString ?? v.valueInteger ?? "");
+}
+const listNarrative = (title: string, rows: [string, string][]) =>
+  narrative(`<p><b>${esc(title)}</b></p><ul>${rows.map(([k, v]) => `<li>${esc(k)}: ${esc(v)}</li>`).join("")}</ul>`);
 const SURVEY = [{ coding: [{ system: "http://terminology.hl7.org/CodeSystem/observation-category", code: "survey", display: "Survey" }] }];
 const role = (code: "author" | "assembler" | "informant" | "verifier") => ({
   coding: [{ system: PARTICIPANT, code, display: code[0].toUpperCase() + code.slice(1) }],
@@ -213,6 +226,9 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     resourceType: "Location",
     id: ids.location,
     meta: meta(OAH_LOCATION_PROFILE),
+    text: narrative(
+      `<p><b>${esc(site.name)}</b></p><p>${esc(site.custom ? "Stream site added by a Brook volunteer" : `OneAquaHealth research site ${site.code}`)}${site.city ? `, ${esc(site.city)}` : ""} (${site.lat}, ${site.lon})</p>`,
+    ),
     identifier: [site.custom ? { system: `${BROOK_FHIR}/user-sites`, value: ids.location } : { system: OAH_SITES, value: site.code }],
     name: site.name,
     description: site.custom ? "Stream site added by a Brook volunteer" : `OneAquaHealth research site ${site.code}${site.city ? `, ${site.city}` : ""}`,
@@ -239,7 +255,9 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     resourceType: "QuestionnaireResponse",
     id: ids.form,
     meta: meta(undefined, asked.some((q) => aiAsserted(sources[q.id]))),
-    language: check.lang,
+    text: narrative(
+      `<p>OneAquaHealth citizen stream check at <b>${esc(site.name)}</b>, submitted ${esc(check.submittedAt)}: ${items.filter((i) => i.answer || i.item).length} questions answered, ${items.filter((i) => !i.answer && !i.item).length} not sure.</p>`,
+    ),
     identifier: { system: `${BROOK_FHIR}/checks`, value: check.id },
     questionnaire: BROOK_QUESTIONNAIRE,
     status: "completed",
@@ -249,11 +267,12 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     item: items,
   };
 
-  type ObservationBody = { extension?: Json[]; value?: Json; component?: Json[] };
+  type ObservationBody = { text: Json; extension?: Json[]; value?: Json; component?: Json[] };
   const observation = (n: number, code: Json, ai: boolean, rest: ObservationBody, profile = verified, who: Json[] = performer): Resource => ({
     resourceType: "Observation",
     id: uuid(check.id, n),
     meta: meta(profile ? OAH_INDICATOR_PROFILE : undefined, ai),
+    text: rest.text,
     ...(rest.extension ? { extension: rest.extension } : {}),
     status,
     category: SURVEY,
@@ -278,12 +297,19 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
         ...value,
       })),
     );
-    observations.push(observation(10 + i, { coding: [{ system: OAH_CODES, code: g.code, display: g.display }] }, fields.some((f) => aiAsserted(sources[f])), { component }));
+    const rows = component.map((c): [string, string] => [fieldDisplay(c.code.coding[0].code), valueText(c)]);
+    observations.push(
+      observation(10 + i, { coding: [{ system: OAH_CODES, code: g.code, display: g.display }] }, fields.some((f) => aiAsserted(sources[f])), {
+        text: listNarrative(`${g.display} (${status})`, rows),
+        component,
+      }),
+    );
   });
 
   if (askedIds.has("overallAssessment") && typeof answers.overallAssessment === "string") {
     observations.push(
       observation(30, { coding: [fieldCoding("overallAssessment")], text: en.q.overallAssessment.official }, aiAsserted(sources.overallAssessment), {
+        text: narrative(`<p><b>${esc(fieldDisplay("overallAssessment"))}</b>: ${esc(answerDisplay("overallAssessment", answers.overallAssessment))} (${status})</p>`),
         ...sourceExt(sources.overallAssessment),
         value: { valueCodeableConcept: chosen("overallAssessment", answers.overallAssessment) },
       }),
@@ -297,6 +323,7 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
         { coding: [fieldCoding("feelings")], text: en.q.feelings.official },
         aiAsserted(sources.feelings),
         {
+          text: listNarrative(`${fieldDisplay("feelings")} (${status})`, feelingScores.map(([k, v]) => [fieldDisplay(`feelings.${k}`), `${v} of 5`])),
           component: feelingScores.map(([k, v]) => ({
             ...sourceExt(sources.feelings),
             code: { coding: [fieldCoding(`feelings.${k}`)] },
@@ -314,6 +341,7 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     resourceType: "Device",
     id: ids.device,
     meta: meta(),
+    text: narrative(`<p>Brook, version ${BROOK_APP_VERSION}: the talking field coach that guided the check and assembled these records</p>`),
     deviceName: [{ name: "Brook — talking field coach for the OneAquaHealth citizen stream check", type: "user-friendly-name" }],
     type: { text: "Progressive web app (citizen science field guide)" },
     version: [{ value: BROOK_APP_VERSION }],
@@ -323,6 +351,7 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
         resourceType: "Device",
         id: modelDeviceId(model),
         meta: meta(),
+        text: narrative(`<p>AI model <b>${esc(model)}</b>, which suggested answers from photos or read free speech for the citizen to confirm</p>`),
         deviceName: [{ name: model, type: "model-name" }],
         type: { text: "AI model that suggested answers from photos or read free speech, for the citizen to confirm" },
       }
@@ -332,6 +361,9 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
     resourceType: "Provenance",
     id: ids.provenance,
     meta: meta(),
+    text: narrative(
+      `<p>Recorded ${esc(check.submittedAt)}: a citizen stream check guided by Brook${modelDevice ? `, with suggestions from ${esc(modelDevice.id)}` : ""}; every answer given or confirmed by the citizen.</p>`,
+    ),
     target: [{ reference: `QuestionnaireResponse/${ids.form}` }, ...observations.map((o) => ({ reference: `Observation/${o.id}` }))],
     occurredPeriod: { start: check.startedAt, end: check.submittedAt },
     recorded: check.submittedAt,
@@ -350,6 +382,7 @@ export function buildBundle(check: CheckForFhir): Record<string, unknown> {
         resourceType: "Provenance",
         id: ids.verification,
         meta: meta(),
+        text: narrative(`<p>Verified ${esc(check.verifiedAt ?? check.submittedAt)} by ${esc(check.verifiedBy)}; observations set to final.</p>`),
         target: observations.map((o) => ({ reference: `Observation/${o.id}` })),
         recorded: check.verifiedAt ?? check.submittedAt,
         activity: {

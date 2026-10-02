@@ -1,0 +1,159 @@
+{
+  "server": "https://sandbox.hl7europe.eu/oneaquahealth/fhir",
+  "software": "HAPI FHIR Server 8.2.0",
+  "fhirVersion": "4.0.1",
+  "ran": "2026-10-02T10:52:05.202Z",
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.hl7europe.eu/oneaquahealth/fhir",
+    "headers": {
+      "content-type": "application/fhir+json",
+      "accept": "application/fhir+json",
+      "cache-control": "no-cache"
+    },
+    "body": "docs/evidence/bundles/b-verified-check-o17.json",
+    "entries": 14,
+    "resources": [
+      "1 Location",
+      "1 QuestionnaireResponse",
+      "8 Observation",
+      "2 Device",
+      "2 Provenance"
+    ]
+  },
+  "response": {
+    "status": 200,
+    "ms": 566,
+    "entries": [
+      {
+        "status": "201 Created",
+        "location": "Location/oah-site-o17/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Device/brook-app/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Device/brook-ai-gpt-6-luna/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      },
+      {
+        "status": "201 Created",
+        "location": "Provenance/8554e96e-5b0e-4c1e-af4a-4c7e9d3b6a1f/_history/1"
+      }
+    ]
+  },
+  "readBack": [
+    {
+      "url": "https://sandbox.hl7europe.eu/oneaquahealth/fhir/Location/oah-site-o17",
+      "status": 200,
+      "versionId": "1",
+      "lastUpdated": "2026-10-02T10:52:05.584+00:00",
+      "sameAsSent": true,
+      "stored": {
+        "resourceType": "Location",
+        "id": "oah-site-o17",
+        "profile": [
+          "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
+        ],
+        "tag": [
+          "brook-citizen-check"
+        ],
+        "security": [],
+        "identifier": [
+          "https://api.enora-oah.eu/api/sites|O17"
+        ],
+        "position": {
+          "longitude": 10.8128,
+          "latitude": 59.9078
+        }
+      }
+    },
+    {
+      "url": "https://sandbox.hl7europe.eu/oneaquahealth/fhir/Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f",
+      "status": 200,
+      "versionId": "1",
+      "lastUpdated": "2026-10-02T10:52:05.584+00:00",
+      "sameAsSent": true,
+      "stored": {
+        "resourceType": "Observation",
+        "id": "3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f",
+        "status": "final",
+        "profile": [
+          "http://hl7.eu/fhir/ig/oah/StructureDefinition/observation-indicators-oah"
+        ],
+        "tag": [
+          "brook-citizen-check"
+        ],
+        "security": [
+          "AIAST"
+        ],
+        "code": [
+          "http://hl7.eu/fhir/ig/oah/CodeSystem/temporarySystem-oah-eu|hydrology"
+        ],
+        "subject": "Location/oah-site-o17",
+        "performer": [
+          "Citizen scientist (pseudonymous)",
+          "OneAquaHealth reviewer (demo)"
+        ],
+        "components": 5,
+        "answerSources": [
+          "photo-confirmed",
+          "voice",
+          "photo-confirmed",
+          "voice",
+          "voice"
+        ]
+      }
+    }
+  ],
+  "search": {
+    "query": "Observation?subject=Location/oah-site-o17&code=http://hl7.eu/fhir/ig/oah/CodeSystem/temporarySystem-oah-eu|hydrology&_tag=…|brook-citizen-check",
+    "status": 200,
+    "total": 1,
+    "found": [
+      "Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f"
+    ],
+    "includesSent": true
+  }
+}

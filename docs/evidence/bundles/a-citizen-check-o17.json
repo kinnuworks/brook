@@ -28,6 +28,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Alna – Bryn stasjon</b></p><p>OneAquaHealth research site O17, Oslo (59.9078, 10.8128)</p></div>"
+        },
         "identifier": [
           {
             "system": "https://api.enora-oah.eu/api/sites",
@@ -71,7 +75,10 @@
             }
           ]
         },
-        "language": "en",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>OneAquaHealth citizen stream check at <b>Alna – Bryn stasjon</b>, submitted 2026-10-01T07:49:55.000Z: 24 questions answered, 1 not sure.</p></div>"
+        },
         "identifier": {
           "system": "https://brook-oah.vercel.app/fhir/checks",
           "value": "5b0e8c1e-2f4a-4c7e-9d3b-6a1f0c2e7d41"
@@ -396,6 +403,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Morphology of the streams (preliminary)</b></p><ul><li>Channel form: U Shape (B)</li><li>Stream bed: Natural (A)</li><li>Banks: Laid stones with no concrete (C)</li><li>Habitats: Stone deposits (C)</li><li>Habitats: Riffles, rapids, falls (D)</li><li>Natural debris: Fallen branches (B)</li><li>Natural debris: Deposits of fallen leaves (C)</li></ul></div>"
+        },
         "status": "preliminary",
         "category": [
           {
@@ -661,6 +672,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Hydrology of the stream (preliminary)</b></p><ul><li>Water flow: Slow (B)</li><li>Water depth: 0.4 m</li><li>Barriers: Yes</li><li>Number of barriers: 1 dams</li><li>Water taken out: No</li></ul></div>"
+        },
         "status": "preliminary",
         "category": [
           {
@@ -862,6 +877,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Foam/colour/smell (preliminary)</b></p><ul><li>Water look: Muddy/turbid (B)</li><li>Polluting pipes: Yes</li><li>Sewage discharge: Asked But Unknown</li><li>Works: No</li></ul></div>"
+        },
         "status": "preliminary",
         "category": [
           {
@@ -1043,6 +1062,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Land use in the margins (preliminary)</b></p><ul><li>Hard surfaces, left: Yes</li><li>Hard surfaces, right: No</li><li>Recent cutting: No</li></ul></div>"
+        },
         "status": "preliminary",
         "category": [
           {
@@ -1195,6 +1218,10 @@
               "display": "Artificial Intelligence asserted"
             }
           ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Riparian vegetation (preliminary)</b></p><ul><li>Plants, left: Yes</li><li>Main plants, left: Shrubs (B)</li><li>Plants, right: Yes</li><li>Main plants, right: Trees (C)</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -1370,6 +1397,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Invasive invertebrate, plants and fish (preliminary)</b></p><ul><li>Invasive plants: Yes</li><li>Which invasive plants: Japanese knotweed by the footbridge</li></ul></div>"
+        },
         "status": "preliminary",
         "category": [
           {
@@ -1479,6 +1510,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Overall health</b>: Moderate quality (preliminary)</p></div>"
+        },
         "extension": [
           {
             "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
@@ -1562,6 +1597,10 @@
               "display": "Artificial Intelligence asserted"
             }
           ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>How it feels (preliminary)</b></p><ul><li>Joy: 3 of 5</li><li>Serenity: 3 of 5</li><li>Anger: 1 of 5</li><li>Fear: 0 of 5</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -1698,6 +1737,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Brook, version 1.0.0: the talking field coach that guided the check and assembled these records</p></div>"
+        },
         "deviceName": [
           {
             "name": "Brook — talking field coach for the OneAquaHealth citizen stream check",
@@ -1732,6 +1775,10 @@
             }
           ]
         },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>AI model <b>gpt-6-luna</b>, which suggested answers from photos or read free speech for the citizen to confirm</p></div>"
+        },
         "deviceName": [
           {
             "name": "gpt-6-luna",
@@ -1760,6 +1807,10 @@
               "display": "Brook citizen stream check"
             }
           ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Recorded 2026-10-01T07:49:55.000Z: a citizen stream check guided by Brook, with suggestions from brook-ai-gpt-6-luna; every answer given or confirmed by the citizen.</p></div>"
         },
         "target": [
           {

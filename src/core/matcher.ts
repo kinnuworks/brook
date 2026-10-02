@@ -46,18 +46,61 @@ function findPhrase(text: string, phrases: readonly string[]): string | null {
   return best;
 }
 
+// Words that negate what follows, in the seven languages (accents already stripped).
+const NEGATIONS = new Set([
+  "not", "no", "isn't", "aren't", "without", "never", "none",
+  "nao", "nem", "sem", "nenhum", "nenhuma",
+  "pas", "aucun", "aucune", "sans", "ni", "jamais",
+  "non", "senza", "nessun", "nessuno", "nessuna",
+  "niet", "geen", "zonder", "nooit",
+  "ikke", "ikkje", "ingen", "uten", "aldri",
+  "δεν", "οχι", "μη", "χωρισ", "κανενα", "καμια",
+]);
+// Small words that may sit between a negation and the thing it negates ("pas DE bancs", "ikke NOEN").
+const FILLERS = new Set([
+  "a", "an", "the", "any", "some", "of", "there", "is", "are",
+  "de", "des", "du", "d'", "l'", "la", "le", "les", "un", "une", "y", "a",
+  "di", "da", "del", "della", "dei", "delle", "il", "lo", "gli", "i", "uno", "una", "c'e", "ci",
+  "do", "dos", "das", "o", "os", "as", "um", "uma", "ha",
+  "het", "een", "er", "zijn", "is",
+  "noe", "noen", "en", "et", "ei", "det", "er",
+  "το", "τα", "η", "ο", "οι", "ενα", "μια", "εχει", "υπαρχει", "υπαρχουν",
+]);
+
 /**
- * Removes "not X" / "no X" spans so "not concrete, it's natural" does not
- * also match "concrete". Only the word right after the negation is dropped.
+ * Drops what a negation negates, so "not concrete, it's gravel" or "il n'y a
+ * pas de bancs de sable" don't select the very thing being denied. After a
+ * negation word, fillers are skipped and words belonging to this question's
+ * answers are dropped; the first other word ends the negation, so "no, it's a
+ * U" still keeps its U.
  */
-function dropNegated(text: string, s: Strings): string {
-  const negations = ["not", "no", "isn't", "aren't", "nao", "pas", "non", "niet", "geen", "ikke", "ikkje", "δεν", "οχι", "μη"];
-  void s;
-  let out = text;
-  for (const n of negations) {
-    out = out.replace(new RegExp(`(^|\\s)${n}\\s+[\\p{L}\\-]+`, "gu"), " ");
+function dropNegated(text: string, vocabulary: Set<string>): string {
+  const tokens = text.split(" ");
+  const keep: string[] = [];
+  for (let i = 0; i < tokens.length; i++) {
+    const tok = tokens[i];
+    const bare = tok.replace(/^(?:n'|l'|d'|c')/, "");
+    if (!NEGATIONS.has(tok) && !NEGATIONS.has(bare)) {
+      keep.push(tok);
+      continue;
+    }
+    let j = i + 1;
+    while (j < tokens.length) {
+      const w = tokens[j];
+      const wb = w.replace(/^(?:l'|d'|qu')/, "");
+      if (FILLERS.has(w) || FILLERS.has(wb)) {
+        j++;
+        continue;
+      }
+      if (vocabulary.has(w) || vocabulary.has(wb)) {
+        j++;
+        continue;
+      }
+      break;
+    }
+    i = j - 1;
   }
-  return out.replace(/\s+/g, " ").trim();
+  return keep.join(" ").replace(/\s+/g, " ").trim();
 }
 
 /** Options mentioned in the text, best (longest) match per option. */
@@ -71,9 +114,10 @@ function matchOptions(text: string, q: QuestionDef, s: Strings): { code: string;
     const hit = findPhrase(text, phrases);
     if (hit) hits.push({ code, strength: normalize(hit).length });
   }
-  // OneAquaHealth's illustrations are lettered A, B, C… so "option B" or just "B" counts.
+  // OneAquaHealth's illustrations are lettered A, B, C… so "option B" or just "B" counts, but only as the
+  // whole reply: French "a", Italian "e" and Norwegian "å" are ordinary words inside a sentence.
   if (!hits.length && q.letters) {
-    const m = text.match(/(?:^|\s)(?:option|letter|opcao|lettre|opzione|optie|alternativ|επιλογη)?\s*([a-e])(?:$|\s)/u);
+    const m = text.match(/^(?:(?:option|letter|opcao|opcion|lettre|opzione|lettera|optie|letter|alternativ|bokstav|επιλογη|γραμμα)\s+)?([a-e])$/u);
     if (m) {
       const i = q.letters.indexOf(m[1].toUpperCase());
       if (i >= 0 && q.codes?.[i]) hits.push({ code: q.codes[i], strength: 1 });
@@ -86,7 +130,7 @@ function matchOptions(text: string, q: QuestionDef, s: Strings): { code: string;
 export function parseNumber(text: string, s: Strings, unit: "metres" | "count"): number | null {
   const t = normalize(text.replace(/(\d),(\d)/g, "$1.$2"));
   if (unit === "metres") {
-    for (const [phrase, value] of Object.entries(s.units.depth)) {
+    for (const [phrase, value] of Object.entries(s.units.depth).sort((a, b) => b[0].length - a[0].length)) {
       if (hasPhrase(t, phrase)) return value;
     }
   }
@@ -99,7 +143,8 @@ export function parseNumber(text: string, s: Strings, unit: "metres" | "count"):
     return Number.isFinite(value) ? value : null;
   }
   if (unit === "metres" && s.units.half.some((h) => hasPhrase(t, h))) return 0.5;
-  for (const [word, value] of Object.entries(s.numbers)) {
+  // Longest phrase first, so "a couple" is 2 and not the 1 of "a".
+  for (const [word, value] of Object.entries(s.numbers).sort((a, b) => b[0].length - a[0].length)) {
     if (hasPhrase(t, word)) return value;
   }
   return null;
@@ -134,7 +179,10 @@ export function interpretLocally(q: QuestionDef, raw: string, s: Strings): Local
   if (findPhrase(text, w.repeat) && text.split(" ").length <= 4) return { kind: "repeat" };
   if (findPhrase(text, w.back) && text.split(" ").length <= 4) return { kind: "back" };
 
-  const positive = dropNegated(text, s);
+  const vocabulary = new Set(
+    Object.values(s.q[q.id].options ?? {}).flatMap((o) => [...o.say, o.label].flatMap((p) => normalize(p).split(" "))),
+  );
+  const positive = dropNegated(text, vocabulary);
 
   switch (q.kind) {
     case "single":
@@ -156,6 +204,7 @@ export function interpretLocally(q: QuestionDef, raw: string, s: Strings): Local
     }
     case "yesno": {
       if (findPhrase(text, w.notSure)) return { kind: "notSure" };
+      if (findPhrase(text, w.help)) return { kind: "help" };
       const yes = findPhrase(text, w.yes);
       const no = findPhrase(text, w.no);
       if (yes && !no) return { kind: "answer", value: true };

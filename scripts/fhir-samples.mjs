@@ -9,6 +9,8 @@
 // b  the same check after a researcher verified it: final, OAH profiles claimed
 // c  a check at a stream the volunteer added themselves, tap and voice only
 // broken-*  copies of a/b with one deliberate fault each; the validator must reject them
+//           (an unknown answer code, a final Observation without performer, a
+//           preliminary one claiming the OAH profile, a form answer of the wrong type)
 // gap-*     probes of the IG itself (see docs/FHIR.md)
 //
 // manifest.json records what each file is expected to do, for scripts/fhir-validate.mjs.
@@ -175,6 +177,10 @@ export function buildSamples() {
   const claimed = firstObservation(preliminaryClaim, "hydrology");
   claimed.meta.profile = [OAH_INDICATOR_PROFILE];
 
+  const wrongFormType = clone(a);
+  const form = resources(wrongFormType).find((r) => r.resourceType === "QuestionnaireResponse");
+  form.item.find((i) => i.linkId === "waterHeight").answer = [{ valueString: "knee deep" }];
+
   const referenceForm = clone(a);
   const location = resources(referenceForm).find((r) => r.resourceType === "Location");
   location.extension = [
@@ -191,6 +197,7 @@ export function buildSamples() {
     { file: "broken-1-unknown-answer-code.json", bundle: unknownCode, expect: "invalid", about: "Copy of a with channelForm.W, a code not in oah-citizen-answers" },
     { file: "broken-2-verified-without-performer.json", bundle: noPerformer, expect: "invalid", about: "Copy of b whose final hydrology Observation has no performer" },
     { file: "broken-3-preliminary-claims-oah-profile.json", bundle: preliminaryClaim, expect: "invalid", about: "Copy of a whose preliminary hydrology Observation claims observation-indicators-oah" },
+    { file: "broken-4-form-answer-wrong-type.json", bundle: wrongFormType, expect: "invalid", about: "Copy of a whose QuestionnaireResponse answers the decimal waterHeight item with a string" },
     { file: "gap-location-referenceForm.json", bundle: referenceForm, expect: "probe", about: "Copy of a using the IG's referenceForm slice (artifact-relatedArtifact) on the Location" },
   ];
 }

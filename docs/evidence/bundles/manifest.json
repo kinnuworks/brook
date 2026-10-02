@@ -30,6 +30,11 @@
     "about": "Copy of a whose preliminary hydrology Observation claims observation-indicators-oah"
   },
   {
+    "file": "broken-4-form-answer-wrong-type.json",
+    "expect": "invalid",
+    "about": "Copy of a whose QuestionnaireResponse answers the decimal waterHeight item with a string"
+  },
+  {
     "file": "gap-location-referenceForm.json",
     "expect": "probe",
     "about": "Copy of a using the IG's referenceForm slice (artifact-relatedArtifact) on the Location"

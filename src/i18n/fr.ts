@@ -49,6 +49,8 @@ const strings: DeepPartial<Strings> = {
     "un couple": 2,
     "quelques-uns": 3,
     "quelques-unes": 3,
+    "qu'un": 1,
+    "qu'une": 1,
     zéro: 0,
     un: 1,
     une: 1,
@@ -102,9 +104,9 @@ const strings: DeepPartial<Strings> = {
       help: "Les berges sont les côtés qui retiennent l’eau. Naturelles : de la terre, des racines et des plantes. Artificielles : du béton, ou des pierres liées par du béton. Pierres posées : des pierres ou des blocs placés par l’homme, sans béton entre eux.",
       official: "Les berges sont…",
       options: {
-        NAT: { label: "Naturelles", official: "Naturelles (A)", say: ["naturel", "naturels", "naturelle", "naturelles", "terre", "herbe", "herbeuses", "plantes", "racines", "végétation", "boue", "végétalisées"] },
+        NAT: { label: "Naturelles", official: "Naturelles (A)", say: ["naturel", "naturelle", "naturelles", "terre", "herbe", "l'herbe", "herbeuses", "plantes", "racines", "végétation", "boue", "végétalisées"] },
         ART: { label: "Artificielles", official: "Artificielles (béton ou pierres avec béton) (B)", say: ["artificiel", "artificielle", "artificielles", "béton", "bétonnées", "mur", "murs", "ciment", "murs en béton", "maçonnerie", "quai", "pierres cimentées"] },
-        LAS: { label: "Pierres posées", official: "Pierres posées sans béton (C)", say: ["pierres posées", "pierres", "rochers", "enrochement", "enrochements", "pierres sèches", "blocs", "gros cailloux", "cailloux", "gabions", "moellons", "mur de pierres"] },
+        LAS: { label: "Pierres posées", official: "Pierres posées sans béton (C)", say: ["pierres posées", "pierres", "rochers", "enrochement", "enrochements", "pierres sèches", "blocs", "gros cailloux", "cailloux", "gabions", "l'enrochement", "mur de pierres"] },
       },
     },
     habitats: {
@@ -116,8 +118,8 @@ const strings: DeepPartial<Strings> = {
         SB: { label: "Bancs de sable", official: "Bancs de sable (A)", say: ["banc de sable", "bancs de sable", "plage de sable", "plages de sable", "sable sur le bord", "sable sur les bords", "berge sableuse", "bord sableux"] },
         SI: { label: "Îlots de sable", official: "Îlots de sable (B)", say: ["îlot de sable", "îlots de sable", "île de sable", "îles de sable", "îlot", "îlots", "île", "îles", "sable au milieu"] },
         SD: { label: "Dépôts de pierres", official: "Dépôts de pierres (C)", say: ["dépôt de pierres", "dépôts de pierres", "pierres", "cailloux", "galets", "gravier", "graviers", "tas de pierres", "tas de cailloux", "rochers", "amas de pierres"] },
-        RF: { label: "Petits rapides", official: "Rapides, cascades, chutes d’eau (D)", say: ["radier", "radiers", "rapide", "rapides", "cascade", "cascades", "chute", "chutes", "chute d'eau", "remous", "eau vive", "bouillonnant"] },
-        AV: { label: "Plantes aquatiques", official: "Végétation aquatique (E)", say: ["plante aquatique", "plantes aquatiques", "végétation aquatique", "plantes dans l'eau", "herbes aquatiques", "algues", "roseaux", "joncs", "nénuphars", "herbier", "herbiers"] },
+        RF: { label: "Petits rapides", official: "Rapides, cascades, chutes d’eau (D)", say: ["radier", "rapide", "rapides", "cascade", "cascades", "chute", "chutes", "chute d'eau", "remous", "l'eau vive", "d'eau vive", "bouillonnant"] },
+        AV: { label: "Plantes aquatiques", official: "Végétation aquatique (E)", say: ["plante aquatique", "plantes aquatiques", "végétation aquatique", "plantes dans l'eau", "herbes aquatiques", "algues", "d'algues", "roseaux", "joncs", "nénuphars", "herbier", "herbiers"] },
       },
     },
     fallenBiomassTypes: {
@@ -139,7 +141,7 @@ const strings: DeepPartial<Strings> = {
       options: {
         FAS: { label: "Rapide", official: "Rapidement (avec des vagues ou une grande vitesse) (A)", say: ["rapide", "rapidement", "vite", "vagues", "fort", "courant fort", "torrentiel", "agité", "ça coule vite"] },
         NOR: { label: "Lent", official: "Lentement (B)", say: ["lent", "lente", "lentement", "doucement", "calme", "tranquille", "normal", "régulier", "paisible", "ça coule doucement"] },
-        STA: { label: "Stagnant", official: "Stagnant ou intermittent (C)", say: ["stagnant", "stagnante", "stagne", "immobile", "ne bouge", "bouge pas", "ne coule", "coule pas", "eau dormante", "flaques", "intermittent", "à peine"] },
+        STA: { label: "Stagnant", official: "Stagnant ou intermittent (C)", say: ["stagnant", "stagnante", "stagne", "immobile", "ne bouge", "bouge pas", "ne coule", "coule pas", "dormante", "flaques", "intermittent", "à peine"] },
         DRY: { label: "Sec", official: "Sec (D)", say: ["sec", "sèche", "à sec", "asséché", "plus d'eau", "sans eau", "aucune eau", "vide", "tari", "tarie"] },
       },
     },
@@ -151,8 +153,8 @@ const strings: DeepPartial<Strings> = {
       options: {
         CL: { label: "Claire", official: "Claire ou transparente (A)", say: ["claire", "clair", "transparente", "transparent", "limpide", "propre", "cristalline", "on voit le fond", "on voit à travers"] },
         MU: { label: "Boueuse", official: "Boueuse ou turbide (B)", say: ["boueuse", "boueux", "trouble", "marron", "brune", "brun", "turbide", "sale", "vaseuse", "terreuse", "opaque"] },
-        FO: { label: "Mousse", official: "Présence de mousse (C)", say: ["mousse", "mousseuse", "mousse blanche", "écume", "écumeuse", "bulles", "savonneuse"] },
-        CO: { label: "Couleur bizarre", official: "Est colorée, ou a une couleur altérée (D)", say: ["couleur", "colorée", "vert", "verte", "rouge", "laiteuse", "huileuse", "irisée", "couleur bizarre", "couleur étrange", "drôle de couleur", "arc-en-ciel"] },
+        FO: { label: "Mousse", official: "Présence de mousse (C)", say: ["mousse", "mousseuse", "mousse blanche", "écume", "l'écume", "d'écume", "écumeuse", "bulles", "savonneuse"] },
+        CO: { label: "Couleur bizarre", official: "Est colorée, ou a une couleur altérée (D)", say: ["couleur", "colorée", "vert", "verte", "rouge", "laiteuse", "huileuse", "d'huile", "l'huile", "couleur bizarre", "couleur étrange", "drôle de couleur"] },
       },
     },
     waterAbstraction: {
@@ -221,9 +223,9 @@ const strings: DeepPartial<Strings> = {
       help: "Choisissez ce qui couvre plus de la moitié des cinq premiers mètres. Herbe : l’herbe et les plantes basses. Arbustes : des buissons jusqu’à environ trois mètres. Arbres : plus hauts que trois mètres.",
       official: "Quelle végétation est dominante sur la berge gauche ?",
       options: {
-        H: { label: "Herbe et plantes basses", official: "Herbacées (A)", say: ["herbe", "herbes", "herbacées", "gazon", "pelouse", "plantes basses", "pré", "prairie", "orties", "fougères", "mauvaises herbes"] },
-        B: { label: "Arbustes", official: "Arbustes (B)", say: ["arbuste", "arbustes", "buisson", "buissons", "broussailles", "haie", "haies", "ronces", "fourrés", "taillis"] },
-        T: { label: "Arbres", official: "Arbres (C)", say: ["arbre", "arbres", "bois", "forêt", "boisé", "boisée", "grands arbres", "bosquet", "platanes", "peupliers"] },
+        H: { label: "Herbe et plantes basses", official: "Herbacées (A)", say: ["herbe", "herbes", "herbacées", "gazon", "pelouse", "plantes basses", "pré", "prairie", "orties", "fougères", "l'herbe", "d'herbe"] },
+        B: { label: "Arbustes", official: "Arbustes (B)", say: ["arbuste", "arbustes", "buisson", "buissons", "broussailles", "haie", "haies", "ronces", "fourrés", "taillis", "d'arbustes"] },
+        T: { label: "Arbres", official: "Arbres (C)", say: ["arbre", "arbres", "bois", "forêt", "boisé", "boisée", "grands arbres", "bosquet", "platanes", "peupliers", "d'arbres"] },
       },
     },
     isVegetationCoveredRight: {
@@ -238,9 +240,9 @@ const strings: DeepPartial<Strings> = {
       help: "Choisissez ce qui couvre plus de la moitié des cinq premiers mètres. Herbe : l’herbe et les plantes basses. Arbustes : des buissons jusqu’à environ trois mètres. Arbres : plus hauts que trois mètres.",
       official: "Quelle végétation est dominante sur la berge droite ?",
       options: {
-        H: { label: "Herbe et plantes basses", official: "Herbacées (A)", say: ["herbe", "herbes", "herbacées", "gazon", "pelouse", "plantes basses", "pré", "prairie", "orties", "fougères", "mauvaises herbes"] },
-        B: { label: "Arbustes", official: "Arbustes (B)", say: ["arbuste", "arbustes", "buisson", "buissons", "broussailles", "haie", "haies", "ronces", "fourrés", "taillis"] },
-        T: { label: "Arbres", official: "Arbres (C)", say: ["arbre", "arbres", "bois", "forêt", "boisé", "boisée", "grands arbres", "bosquet", "platanes", "peupliers"] },
+        H: { label: "Herbe et plantes basses", official: "Herbacées (A)", say: ["herbe", "herbes", "herbacées", "gazon", "pelouse", "plantes basses", "pré", "prairie", "orties", "fougères", "l'herbe", "d'herbe"] },
+        B: { label: "Arbustes", official: "Arbustes (B)", say: ["arbuste", "arbustes", "buisson", "buissons", "broussailles", "haie", "haies", "ronces", "fourrés", "taillis", "d'arbustes"] },
+        T: { label: "Arbres", official: "Arbres (C)", say: ["arbre", "arbres", "bois", "forêt", "boisé", "boisée", "grands arbres", "bosquet", "platanes", "peupliers", "d'arbres"] },
       },
     },
     hasInvasivePlantSpecies: {
@@ -283,8 +285,8 @@ const strings: DeepPartial<Strings> = {
   // Gendered pairs, because people describe themselves ("heureux", "heureuse").
   feelingWords: {
     joy: ["joie", "joyeux", "joyeuse", "heureux", "heureuse", "content", "contente", "ravi", "ravie", "beau", "magnifique", "agréable"],
-    serenity: ["calme", "paisible", "apaisant", "apaisé", "apaisée", "serein", "sérénité", "détendu", "détendue", "tranquille", "reposant", "zen"],
-    anger: ["colère", "fâché", "fâchée", "énervé", "énervée", "agacé", "agacée", "frustré", "frustrée", "furieux", "révolté", "dégoûté"],
+    serenity: ["calme", "paisible", "apaisant", "apaisé", "apaisée", "serein", "sérénité", "détendu", "détendue", "tranquille", "reposant", "zen", "m'apaise"],
+    anger: ["colère", "fâché", "fâchée", "énervé", "énervée", "agacé", "agacée", "frustré", "frustrée", "m'énerve", "révolté", "dégoûté"],
     fear: ["peur", "effrayé", "effrayée", "inquiet", "inquiète", "angoissé", "angoissée", "anxieux", "anxieuse", "mal à l'aise", "pas rassuré", "pas rassurée"],
   },
   brook: {
@@ -424,6 +426,9 @@ const strings: DeepPartial<Strings> = {
     useThisPlace: "Utiliser ma position actuelle pour ce cours d’eau",
     sendFailed: "Envoi impossible pour le moment. Votre observation est enregistrée sur ce téléphone.",
     retry: "Réessayer",
+    left: "Gauche",
+    right: "Droite",
+    facingDownstream: "Face à l’aval, dans le sens du courant",
   },
   home: {
     trust: ["Les questions et les codes de OneAquaHealth", "106 sites de recherche dans 5 villes", "7 langues", "À la voix ou au toucher"],
@@ -453,7 +458,8 @@ const strings: DeepPartial<Strings> = {
     includeSimulated: "Inclure les observations simulées",
     simulatedNote: "Les observations simulées montrent comment fonctionne l’espace avant l’arrivée de vrais bénévoles. Elles suivent des hypothèses annoncées, pas des résultats, et ne sont jamais envoyées à OneAquaHealth.",
     simulated: "Simulée",
-    live: "Réelles",
+    live: "Sur le terrain",
+    trial: "Essai (photos d’exemple)",
     checks: "Observations",
     sitesCovered: "Sites couverts",
     medianTime: "Durée médiane",
@@ -487,6 +493,30 @@ const strings: DeepPartial<Strings> = {
     latestCitizen: "Dernier avis citoyen",
     downloadCsv: "Télécharger le CSV",
     loading: "Chargement des observations…",
+  },
+  // System Usability Scale, worded after the validated French version (F-SUS,
+  // Gronier & Baudet 2021) with "Brook" in place of "ce système".
+  sus: {
+    title: "Une minute pour nous aider à améliorer Brook",
+    intro: "Dix affirmations rapides. Indiquez à quel point vous êtes d’accord.",
+    items: [
+      "Je voudrais utiliser Brook fréquemment.",
+      "Brook est inutilement complexe.",
+      "Brook est facile à utiliser.",
+      "J’aurais besoin du soutien d’un technicien pour être capable d’utiliser Brook.",
+      "Les différentes fonctionnalités de Brook sont bien intégrées.",
+      "Il y a trop d’incohérences dans Brook.",
+      "La plupart des gens apprendraient à utiliser Brook très rapidement.",
+      "Brook est très lourd à utiliser.",
+      "Je me suis senti·e très en confiance en utilisant Brook.",
+      "J’ai eu besoin d’apprendre beaucoup de choses avant de pouvoir utiliser Brook.",
+    ],
+    disagree: "Pas du tout d’accord",
+    agree: "Tout à fait d’accord",
+    comment: "Autre chose à nous dire ? (facultatif)",
+    send: "Envoyer mon avis",
+    thanks: "Merci ! Votre avis va directement aux personnes qui améliorent Brook.",
+    score: "Score d’utilisabilité",
   },
   story: {
     title: "L’histoire de votre cours d’eau",
@@ -530,7 +560,8 @@ const strings: DeepPartial<Strings> = {
       fish: "Quels poissons vivent ici, et combien d’espèces.",
     },
     tips: {
-      faecal: "Empêchez les chiens de boire ou de se baigner ici, et lavez-vous les mains après avoir touché l’eau.",
+      faecal: "Lavez-vous les mains après avoir touché l’eau, et gardez-la loin de votre bouche et de toute plaie.",
+      dogs: "Empêchez les chiens de boire ou de se baigner ici, surtout après la pluie.",
       pathogens: "Évitez d’avaler l’eau ou d’en mettre sur une plaie.",
       foam: "Ne laissez pas les enfants ou les animaux jouer dans la mousse sur l’eau.",
       discharge: "Si vous avez vu un rejet, signalez-le à la mairie pour qu’on puisse en trouver l’origine.",

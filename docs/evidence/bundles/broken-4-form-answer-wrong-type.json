@@ -12,10 +12,10 @@
   },
   "entry": [
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Location/oah-site-o17",
       "resource": {
         "resourceType": "Location",
-        "id": "61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "oah-site-o17",
         "meta": {
           "profile": [
             "http://hl7.eu/fhir/ig/oah/StructureDefinition/location-oah"
@@ -30,32 +30,35 @@
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Ribeira de Coselhas, behind the school</b></p><p>Stream site added by a Brook volunteer (40.2229, -8.4167)</p></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Alna – Bryn stasjon</b></p><p>OneAquaHealth research site O17, Oslo (59.9078, 10.8128)</p></div>"
         },
         "identifier": [
           {
-            "system": "https://brook-oah.vercel.app/fhir/user-sites",
-            "value": "61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "system": "https://api.enora-oah.eu/api/sites",
+            "value": "O17"
           }
         ],
-        "name": "Ribeira de Coselhas, behind the school",
-        "description": "Stream site added by a Brook volunteer",
+        "name": "Alna – Bryn stasjon",
+        "description": "OneAquaHealth research site O17, Oslo",
         "mode": "instance",
+        "address": {
+          "city": "Oslo"
+        },
         "position": {
-          "longitude": -8.4167,
-          "latitude": 40.2229
+          "longitude": 10.8128,
+          "latitude": 59.9078
         }
       },
       "request": {
         "method": "PUT",
-        "url": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Location/oah-site-o17"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "QuestionnaireResponse",
-        "id": "62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -63,26 +66,33 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>OneAquaHealth citizen stream check at <b>Ribeira de Coselhas, behind the school</b>, submitted 2026-09-30T16:11:42.000Z: 19 questions answered, 3 not sure.</p></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>OneAquaHealth citizen stream check at <b>Alna – Bryn stasjon</b>, submitted 2026-10-01T07:49:55.000Z: 24 questions answered, 1 not sure.</p></div>"
         },
         "identifier": {
           "system": "https://brook-oah.vercel.app/fhir/checks",
-          "value": "9e4d7a20-61b3-4f58-8c0a-2d5e9b1f3c77"
+          "value": "5b0e8c1e-2f4a-4c7e-9d3b-6a1f0c2e7d41"
         },
         "questionnaire": "https://brook-oah.vercel.app/fhir/Questionnaire/oah-citizen-check",
         "status": "completed",
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "authored": "2026-09-30T16:11:42.000Z",
+        "authored": "2026-10-01T07:49:55.000Z",
         "author": {
           "identifier": {
             "system": "https://brook-oah.vercel.app/fhir/citizens",
-            "value": "7a4e496f7992deca"
+            "value": "ea593f9c6bcb21b7"
           },
           "display": "Citizen scientist (pseudonymous)"
         },
@@ -93,8 +103,8 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "channelForm.V",
-                  "display": "V Shape (C)"
+                  "code": "channelForm.U",
+                  "display": "U Shape (B)"
                 }
               }
             ]
@@ -117,8 +127,8 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "banksChannelType.NAT",
-                  "display": "Natural (A)"
+                  "code": "banksChannelType.LAS",
+                  "display": "Laid stones with no concrete (C)"
                 }
               }
             ]
@@ -128,9 +138,16 @@
             "answer": [
               {
                 "valueCoding": {
-                  "system": "http://hl7.eu/fhir/ig/oah/CodeSystem/temporarySystem-oah-eu",
-                  "code": "absent",
-                  "display": "Absent"
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+                  "code": "habitats.SD",
+                  "display": "Stone deposits (C)"
+                }
+              },
+              {
+                "valueCoding": {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+                  "code": "habitats.RF",
+                  "display": "Riffles, rapids, falls (D)"
                 }
               }
             ]
@@ -141,8 +158,8 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "fallenBiomassTypes.FT",
-                  "display": "Fallen trees (A)"
+                  "code": "fallenBiomassTypes.FB",
+                  "display": "Fallen branches (B)"
                 }
               },
               {
@@ -160,8 +177,8 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "waterFlow.FAS",
-                  "display": "Fast (with waves or high velocity) (A)"
+                  "code": "waterFlow.NOR",
+                  "display": "Slow (B)"
                 }
               }
             ]
@@ -172,20 +189,33 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "waterColor.CL",
-                  "display": "Clear/transparent (A)"
+                  "code": "waterColor.MU",
+                  "display": "Muddy/turbid (B)"
                 }
               }
             ]
           },
           {
-            "linkId": "waterAbstraction"
+            "linkId": "waterAbstraction",
+            "answer": [
+              {
+                "valueBoolean": false
+              }
+            ]
           },
           {
             "linkId": "hasDams",
             "answer": [
               {
-                "valueBoolean": false
+                "valueBoolean": true
+              }
+            ]
+          },
+          {
+            "linkId": "numberOfDams",
+            "answer": [
+              {
+                "valueInteger": 1
               }
             ]
           },
@@ -193,17 +223,12 @@
             "linkId": "pipes",
             "answer": [
               {
-                "valueBoolean": false
+                "valueBoolean": true
               }
             ]
           },
           {
-            "linkId": "waterDischarge",
-            "answer": [
-              {
-                "valueBoolean": false
-              }
-            ]
+            "linkId": "waterDischarge"
           },
           {
             "linkId": "construction",
@@ -217,7 +242,7 @@
             "linkId": "waterHeight",
             "answer": [
               {
-                "valueDecimal": 0.2
+                "valueString": "knee deep"
               }
             ]
           },
@@ -225,12 +250,17 @@
             "linkId": "imperviousAreasLeft",
             "answer": [
               {
-                "valueBoolean": false
+                "valueBoolean": true
               }
             ]
           },
           {
-            "linkId": "imperviousAreasRight"
+            "linkId": "imperviousAreasRight",
+            "answer": [
+              {
+                "valueBoolean": false
+              }
+            ]
           },
           {
             "linkId": "isVegetationCoveredLeft",
@@ -246,8 +276,8 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "vegetationTypeLeft.T",
-                  "display": "Trees (C)"
+                  "code": "vegetationTypeLeft.B",
+                  "display": "Shrubs (B)"
                 }
               }
             ]
@@ -256,12 +286,37 @@
             "linkId": "isVegetationCoveredRight",
             "answer": [
               {
-                "valueBoolean": false
+                "valueBoolean": true
               }
             ]
           },
           {
-            "linkId": "hasInvasivePlantSpecies"
+            "linkId": "vegetationTypeRight",
+            "answer": [
+              {
+                "valueCoding": {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+                  "code": "vegetationTypeRight.T",
+                  "display": "Trees (C)"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "hasInvasivePlantSpecies",
+            "answer": [
+              {
+                "valueBoolean": true
+              }
+            ]
+          },
+          {
+            "linkId": "invasivePlantSpecies",
+            "answer": [
+              {
+                "valueString": "Japanese knotweed by the footbridge"
+              }
+            ]
           },
           {
             "linkId": "recentVegetationCuts",
@@ -277,8 +332,8 @@
               {
                 "valueCoding": {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "overallAssessment.GOOD",
-                  "display": "Good quality"
+                  "code": "overallAssessment.MODERATE",
+                  "display": "Moderate quality"
                 }
               }
             ]
@@ -290,7 +345,7 @@
                 "linkId": "feelings.joy",
                 "answer": [
                   {
-                    "valueInteger": 4
+                    "valueInteger": 3
                   }
                 ]
               },
@@ -298,7 +353,7 @@
                 "linkId": "feelings.serenity",
                 "answer": [
                   {
-                    "valueInteger": 5
+                    "valueInteger": 3
                   }
                 ]
               },
@@ -306,7 +361,7 @@
                 "linkId": "feelings.anger",
                 "answer": [
                   {
-                    "valueInteger": 0
+                    "valueInteger": 1
                   }
                 ]
               },
@@ -324,14 +379,14 @@
       },
       "request": {
         "method": "PUT",
-        "url": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/306181bd-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "306181bd-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -339,11 +394,18 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Morphology of the streams (preliminary)</b></p><ul><li>Channel form: V Shape (C)</li><li>Stream bed: Natural (A)</li><li>Banks: Natural (A)</li><li>Habitats: Absent</li><li>Natural debris: Fallen trees (A)</li><li>Natural debris: Deposits of fallen leaves (C)</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Morphology of the streams (preliminary)</b></p><ul><li>Channel form: U Shape (B)</li><li>Stream bed: Natural (A)</li><li>Banks: Laid stones with no concrete (C)</li><li>Habitats: Stone deposits (C)</li><li>Habitats: Riffles, rapids, falls (D)</li><li>Natural debris: Fallen branches (B)</li><li>Natural debris: Deposits of fallen leaves (C)</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -367,22 +429,22 @@
           ]
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -390,7 +452,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -407,18 +469,18 @@
               "coding": [
                 {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "channelForm.V",
-                  "display": "V Shape (C)"
+                  "code": "channelForm.U",
+                  "display": "U Shape (B)"
                 }
               ],
-              "text": "V shape"
+              "text": "U shape"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -446,7 +508,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-corrected"
               }
             ],
             "code": {
@@ -463,18 +525,18 @@
               "coding": [
                 {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "banksChannelType.NAT",
-                  "display": "Natural (A)"
+                  "code": "banksChannelType.LAS",
+                  "display": "Laid stones with no concrete (C)"
                 }
               ],
-              "text": "Natural"
+              "text": "Laid stones"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -490,12 +552,40 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "system": "http://hl7.eu/fhir/ig/oah/CodeSystem/temporarySystem-oah-eu",
-                  "code": "absent",
-                  "display": "Absent"
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+                  "code": "habitats.SD",
+                  "display": "Stone deposits (C)"
                 }
               ],
-              "text": "None"
+              "text": "Stone deposits"
+            }
+          },
+          {
+            "extension": [
+              {
+                "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
+                "valueCode": "photo-confirmed"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+                  "code": "habitats",
+                  "display": "Habitats"
+                }
+              ],
+              "text": "The habitats present are…"
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+                  "code": "habitats.RF",
+                  "display": "Riffles, rapids, falls (D)"
+                }
+              ],
+              "text": "Riffles or rapids"
             }
           },
           {
@@ -519,11 +609,11 @@
               "coding": [
                 {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "fallenBiomassTypes.FT",
-                  "display": "Fallen trees (A)"
+                  "code": "fallenBiomassTypes.FB",
+                  "display": "Fallen branches (B)"
                 }
               ],
-              "text": "Fallen trees"
+              "text": "Fallen branches"
             }
           },
           {
@@ -558,14 +648,14 @@
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/306181bd-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/2f61802a-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "2f61802a-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -573,11 +663,18 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Hydrology of the stream (preliminary)</b></p><ul><li>Water flow: Fast (with waves or high velocity) (A)</li><li>Water depth: 0.2 m</li><li>Barriers: No</li><li>Water taken out: Asked But Unknown</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Hydrology of the stream (preliminary)</b></p><ul><li>Water flow: Slow (B)</li><li>Water depth: 0.4 m</li><li>Barriers: Yes</li><li>Number of barriers: 1 dams</li><li>Water taken out: No</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -601,22 +698,22 @@
           ]
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -624,7 +721,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -641,18 +738,18 @@
               "coding": [
                 {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "waterFlow.FAS",
-                  "display": "Fast (with waves or high velocity) (A)"
+                  "code": "waterFlow.NOR",
+                  "display": "Slow (B)"
                 }
               ],
-              "text": "Fast"
+              "text": "Slow"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "voice"
               }
             ],
             "code": {
@@ -666,7 +763,7 @@
               "text": "What is the water height? (in metres)"
             },
             "valueQuantity": {
-              "value": 0.2,
+              "value": 0.4,
               "unit": "m",
               "system": "http://unitsofmeasure.org",
               "code": "m"
@@ -676,7 +773,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -693,11 +790,35 @@
               "coding": [
                 {
                   "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
-                  "code": "N",
-                  "display": "No"
+                  "code": "Y",
+                  "display": "Yes"
                 }
               ],
-              "text": "No"
+              "text": "Yes"
+            }
+          },
+          {
+            "extension": [
+              {
+                "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
+                "valueCode": "voice"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+                  "code": "numberOfDams",
+                  "display": "Number of barriers"
+                }
+              ],
+              "text": "Number of dams"
+            },
+            "valueQuantity": {
+              "value": 1,
+              "unit": "dams",
+              "system": "http://unitsofmeasure.org",
+              "code": "1"
             }
           },
           {
@@ -720,26 +841,26 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
-                  "code": "asked-unknown",
-                  "display": "Asked But Unknown"
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
+                  "code": "N",
+                  "display": "No"
                 }
               ],
-              "text": "Not sure"
+              "text": "No"
             }
           }
         ]
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/2f61802a-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/2e617e97-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "2e617e97-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -747,11 +868,18 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Foam/colour/smell (preliminary)</b></p><ul><li>Water look: Clear/transparent (A)</li><li>Polluting pipes: No</li><li>Sewage discharge: No</li><li>Works: No</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Foam/colour/smell (preliminary)</b></p><ul><li>Water look: Muddy/turbid (B)</li><li>Polluting pipes: Yes</li><li>Sewage discharge: Asked But Unknown</li><li>Works: No</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -775,22 +903,22 @@
           ]
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -798,7 +926,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-corrected"
               }
             ],
             "code": {
@@ -815,11 +943,11 @@
               "coding": [
                 {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "waterColor.CL",
-                  "display": "Clear/transparent (A)"
+                  "code": "waterColor.MU",
+                  "display": "Muddy/turbid (B)"
                 }
               ],
-              "text": "Clear"
+              "text": "Muddy"
             }
           },
           {
@@ -843,18 +971,18 @@
               "coding": [
                 {
                   "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
-                  "code": "N",
-                  "display": "No"
+                  "code": "Y",
+                  "display": "Yes"
                 }
               ],
-              "text": "No"
+              "text": "Yes"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "voice"
               }
             ],
             "code": {
@@ -870,19 +998,19 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
-                  "code": "N",
-                  "display": "No"
+                  "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                  "code": "asked-unknown",
+                  "display": "Asked But Unknown"
                 }
               ],
-              "text": "No"
+              "text": "Not sure"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -910,14 +1038,14 @@
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/2e617e97-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/2d617d04-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "2d617d04-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -925,11 +1053,18 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Land use in the margins (preliminary)</b></p><ul><li>Hard surfaces, left: No</li><li>Hard surfaces, right: Asked But Unknown</li><li>Recent cutting: No</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Land use in the margins (preliminary)</b></p><ul><li>Hard surfaces, left: Yes</li><li>Hard surfaces, right: No</li><li>Recent cutting: No</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -953,22 +1088,22 @@
           ]
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -976,7 +1111,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-corrected"
               }
             ],
             "code": {
@@ -993,18 +1128,18 @@
               "coding": [
                 {
                   "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
-                  "code": "N",
-                  "display": "No"
+                  "code": "Y",
+                  "display": "Yes"
                 }
               ],
-              "text": "No"
+              "text": "Yes"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -1020,12 +1155,12 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
-                  "code": "asked-unknown",
-                  "display": "Asked But Unknown"
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
+                  "code": "N",
+                  "display": "No"
                 }
               ],
-              "text": "Not sure"
+              "text": "No"
             }
           },
           {
@@ -1060,14 +1195,14 @@
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/2d617d04-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/2c617b71-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "2c617b71-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -1075,11 +1210,18 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Riparian vegetation (preliminary)</b></p><ul><li>Plants, left: Yes</li><li>Main plants, left: Trees (C)</li><li>Plants, right: No</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Riparian vegetation (preliminary)</b></p><ul><li>Plants, left: Yes</li><li>Main plants, left: Shrubs (B)</li><li>Plants, right: Yes</li><li>Main plants, right: Trees (C)</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -1103,22 +1245,22 @@
           ]
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -1126,7 +1268,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -1154,7 +1296,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "voice"
+                "valueCode": "tap"
               }
             ],
             "code": {
@@ -1171,18 +1313,18 @@
               "coding": [
                 {
                   "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-                  "code": "vegetationTypeLeft.T",
-                  "display": "Trees (C)"
+                  "code": "vegetationTypeLeft.B",
+                  "display": "Shrubs (B)"
                 }
               ],
-              "text": "Trees"
+              "text": "Shrubs"
             }
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "photo-confirmed"
               }
             ],
             "code": {
@@ -1199,25 +1341,53 @@
               "coding": [
                 {
                   "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
-                  "code": "N",
-                  "display": "No"
+                  "code": "Y",
+                  "display": "Yes"
                 }
               ],
-              "text": "No"
+              "text": "Yes"
+            }
+          },
+          {
+            "extension": [
+              {
+                "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
+                "valueCode": "photo-confirmed"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+                  "code": "vegetationTypeRight",
+                  "display": "Main plants, right"
+                }
+              ],
+              "text": "Which vegetation is dominant in the right margin?"
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
+                  "code": "vegetationTypeRight.T",
+                  "display": "Trees (C)"
+                }
+              ],
+              "text": "Trees"
             }
           }
         ]
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/2c617b71-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/2b6179de-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "2b6179de-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -1229,7 +1399,7 @@
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Invasive invertebrate, plants and fish (preliminary)</b></p><ul><li>Invasive plants: Asked But Unknown</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Invasive invertebrate, plants and fish (preliminary)</b></p><ul><li>Invasive plants: Yes</li><li>Which invasive plants: Japanese knotweed by the footbridge</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -1253,22 +1423,22 @@
           ]
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -1292,26 +1462,45 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
-                  "code": "asked-unknown",
-                  "display": "Asked But Unknown"
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0532",
+                  "code": "Y",
+                  "display": "Yes"
                 }
               ],
-              "text": "Not sure"
+              "text": "Yes"
             }
+          },
+          {
+            "extension": [
+              {
+                "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
+                "valueCode": "voice"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-fields",
+                  "code": "invasivePlantSpecies",
+                  "display": "Which invasive plants"
+                }
+              ],
+              "text": "Which ones?"
+            },
+            "valueString": "Japanese knotweed by the footbridge"
           }
         ]
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/2b6179de-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/9c66a8ef-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "9c66a8ef-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -1323,12 +1512,12 @@
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Overall health</b>: Good quality (preliminary)</p></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Overall health</b>: Moderate quality (preliminary)</p></div>"
         },
         "extension": [
           {
             "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-            "valueCode": "voice"
+            "valueCode": "tap"
           }
         ],
         "status": "preliminary",
@@ -1354,15 +1543,15 @@
           "text": "Provide an overall assessment of the stream ecosystem health"
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
@@ -1371,28 +1560,28 @@
           "coding": [
             {
               "system": "https://brook-oah.vercel.app/fhir/CodeSystem/oah-citizen-answers",
-              "code": "overallAssessment.GOOD",
-              "display": "Good quality"
+              "code": "overallAssessment.MODERATE",
+              "display": "Moderate quality"
             }
           ],
-          "text": "Good"
+          "text": "Moderate"
         },
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ]
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/9c66a8ef-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/9b66a75c-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f",
       "resource": {
         "resourceType": "Observation",
-        "id": "9b66a75c-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "id": "b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f",
         "meta": {
           "tag": [
             {
@@ -1400,11 +1589,18 @@
               "code": "brook-citizen-check",
               "display": "Brook citizen stream check"
             }
+          ],
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationValue",
+              "code": "AIAST",
+              "display": "Artificial Intelligence asserted"
+            }
           ]
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>How it feels (preliminary)</b></p><ul><li>Joy: 4 of 5</li><li>Serenity: 5 of 5</li><li>Anger: 0 of 5</li><li>Fear: 0 of 5</li></ul></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>How it feels (preliminary)</b></p><ul><li>Joy: 3 of 5</li><li>Serenity: 3 of 5</li><li>Anger: 1 of 5</li><li>Fear: 0 of 5</li></ul></div>"
         },
         "status": "preliminary",
         "category": [
@@ -1429,22 +1625,22 @@
           "text": "Which feeling(s) best describe your experience?"
         },
         "subject": {
-          "reference": "Location/61abc15f-9e4d-4a20-a1b3-4f588c0a2d5e"
+          "reference": "Location/oah-site-o17"
         },
-        "effectiveDateTime": "2026-09-30T16:05:00.000Z",
-        "issued": "2026-09-30T16:11:42.000Z",
+        "effectiveDateTime": "2026-10-01T07:42:10.000Z",
+        "issued": "2026-10-01T07:49:55.000Z",
         "performer": [
           {
             "identifier": {
               "system": "https://brook-oah.vercel.app/fhir/citizens",
-              "value": "7a4e496f7992deca"
+              "value": "ea593f9c6bcb21b7"
             },
             "display": "Citizen scientist (pseudonymous)"
           }
         ],
         "derivedFrom": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "component": [
@@ -1452,7 +1648,7 @@
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "voice-ai"
               }
             ],
             "code": {
@@ -1464,13 +1660,13 @@
                 }
               ]
             },
-            "valueInteger": 4
+            "valueInteger": 3
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "voice-ai"
               }
             ],
             "code": {
@@ -1482,13 +1678,13 @@
                 }
               ]
             },
-            "valueInteger": 5
+            "valueInteger": 3
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "voice-ai"
               }
             ],
             "code": {
@@ -1500,13 +1696,13 @@
                 }
               ]
             },
-            "valueInteger": 0
+            "valueInteger": 1
           },
           {
             "extension": [
               {
                 "url": "https://brook-oah.vercel.app/fhir/StructureDefinition/answer-source",
-                "valueCode": "tap"
+                "valueCode": "voice-ai"
               }
             ],
             "code": {
@@ -1524,7 +1720,7 @@
       },
       "request": {
         "method": "PUT",
-        "url": "Observation/9b66a75c-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     },
     {
@@ -1566,10 +1762,10 @@
       }
     },
     {
-      "fullUrl": "https://brook-oah.vercel.app/fhir/Provenance/63abc485-9e4d-4a20-a1b3-4f588c0a2d5e",
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Device/brook-ai-gpt-6-luna",
       "resource": {
-        "resourceType": "Provenance",
-        "id": "63abc485-9e4d-4a20-a1b3-4f588c0a2d5e",
+        "resourceType": "Device",
+        "id": "brook-ai-gpt-6-luna",
         "meta": {
           "tag": [
             {
@@ -1581,42 +1777,75 @@
         },
         "text": {
           "status": "generated",
-          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Recorded 2026-09-30T16:11:42.000Z: a citizen stream check guided by Brook; every answer given or confirmed by the citizen.</p></div>"
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>AI model <b>gpt-6-luna</b>, which suggested answers from photos or read free speech for the citizen to confirm</p></div>"
+        },
+        "deviceName": [
+          {
+            "name": "gpt-6-luna",
+            "type": "model-name"
+          }
+        ],
+        "type": {
+          "text": "AI model that suggested answers from photos or read free speech, for the citizen to confirm"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Device/brook-ai-gpt-6-luna"
+      }
+    },
+    {
+      "fullUrl": "https://brook-oah.vercel.app/fhir/Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f",
+        "meta": {
+          "tag": [
+            {
+              "system": "https://brook-oah.vercel.app/fhir/CodeSystem/tags",
+              "code": "brook-citizen-check",
+              "display": "Brook citizen stream check"
+            }
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Recorded 2026-10-01T07:49:55.000Z: a citizen stream check guided by Brook, with suggestions from brook-ai-gpt-6-luna; every answer given or confirmed by the citizen.</p></div>"
         },
         "target": [
           {
-            "reference": "QuestionnaireResponse/62abc2f2-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "QuestionnaireResponse/8754ec94-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/306181bd-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/40b827c7-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/2f61802a-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/3fb82634-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/2e617e97-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/42b82aed-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/2d617d04-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/41b8295a-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/2c617b71-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/3cb8217b-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/2b6179de-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/3bb81fe8-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/9c66a8ef-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/b4b2ce35-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           },
           {
-            "reference": "Observation/9b66a75c-9e4d-4a20-a1b3-4f588c0a2d5e"
+            "reference": "Observation/b3b2cca2-5b0e-4c1e-af4a-4c7e9d3b6a1f"
           }
         ],
         "occurredPeriod": {
-          "start": "2026-09-30T16:05:00.000Z",
-          "end": "2026-09-30T16:11:42.000Z"
+          "start": "2026-10-01T07:42:10.000Z",
+          "end": "2026-10-01T07:49:55.000Z"
         },
-        "recorded": "2026-09-30T16:11:42.000Z",
+        "recorded": "2026-10-01T07:49:55.000Z",
         "activity": {
           "coding": [
             {
@@ -1641,7 +1870,7 @@
             "who": {
               "identifier": {
                 "system": "https://brook-oah.vercel.app/fhir/citizens",
-                "value": "7a4e496f7992deca"
+                "value": "ea593f9c6bcb21b7"
               },
               "display": "Citizen scientist (pseudonymous)"
             }
@@ -1659,12 +1888,26 @@
             "who": {
               "reference": "Device/brook-app"
             }
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "informant",
+                  "display": "Informant"
+                }
+              ]
+            },
+            "who": {
+              "reference": "Device/brook-ai-gpt-6-luna"
+            }
           }
         ]
       },
       "request": {
         "method": "PUT",
-        "url": "Provenance/63abc485-9e4d-4a20-a1b3-4f588c0a2d5e"
+        "url": "Provenance/8854ee27-5b0e-4c1e-af4a-4c7e9d3b6a1f"
       }
     }
   ]

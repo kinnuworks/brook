@@ -1,4 +1,4 @@
-// Strings added after the main translations: the "face downstream" labels,
+// Strings added after the main translations (pt, it, el; fr/nl/no carry their own): the "face downstream" labels,
 // the trial badge, the split hygiene/dog tips and the System Usability Scale.
 // Merged over each language at load time (see compose.ts).
 
@@ -39,38 +39,6 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
       score: "Pontuação de usabilidade",
     },
   },
-  fr: {
-    ui: { left: "Gauche", right: "Droite", facingDownstream: "Face à l'aval, dans le sens du courant" },
-    hub: { trial: "Essai (photos d'exemple)" },
-    story: {
-      tips: {
-        faecal: "Lavez-vous les mains après avoir touché l'eau, et évitez tout contact avec la bouche et les plaies.",
-        dogs: "Empêchez les chiens de boire ou de se baigner ici, surtout après la pluie.",
-      },
-    },
-    sus: {
-      title: "Une minute pour nous aider à améliorer Brook",
-      intro: "Dix affirmations rapides. Indiquez votre degré d'accord.",
-      items: [
-        "Je pense que j'aimerais utiliser Brook fréquemment.",
-        "J'ai trouvé Brook inutilement complexe.",
-        "J'ai trouvé Brook facile à utiliser.",
-        "Je pense que j'aurais besoin de l'aide d'une personne technique pour pouvoir utiliser Brook.",
-        "J'ai trouvé que les différentes parties de Brook étaient bien intégrées.",
-        "J'ai trouvé qu'il y avait trop d'incohérences dans Brook.",
-        "J'imagine que la plupart des gens apprendraient très rapidement à utiliser Brook.",
-        "J'ai trouvé Brook très lourd à utiliser.",
-        "Je me suis senti(e) très en confiance en utilisant Brook.",
-        "J'ai dû apprendre beaucoup de choses avant de pouvoir utiliser Brook.",
-      ],
-      disagree: "Pas du tout d'accord",
-      agree: "Tout à fait d'accord",
-      comment: "Autre chose à nous dire ? (facultatif)",
-      send: "Envoyer mon avis",
-      thanks: "Merci ! Votre avis va directement aux personnes qui améliorent Brook.",
-      score: "Score d'utilisabilité",
-    },
-  },
   it: {
     ui: { left: "Sinistra", right: "Destra", facingDownstream: "Rivolto a valle, nel verso della corrente" },
     hub: { trial: "Prova (foto di esempio)" },
@@ -101,70 +69,6 @@ export const EXTRA: Record<string, DeepPartial<Strings>> = {
       send: "Invia il parere",
       thanks: "Grazie! Il tuo parere arriva direttamente a chi migliora Brook.",
       score: "Punteggio di usabilità",
-    },
-  },
-  nl: {
-    ui: { left: "Links", right: "Rechts", facingDownstream: "Met je gezicht stroomafwaarts, in de richting van het water" },
-    hub: { trial: "Proef (voorbeeldfoto's)" },
-    story: {
-      tips: {
-        faecal: "Was je handen nadat je het water hebt aangeraakt, en houd het weg van je mond en wondjes.",
-        dogs: "Laat honden hier niet drinken of zwemmen, zeker niet na regen.",
-      },
-    },
-    sus: {
-      title: "Eén minuut om Brook beter te maken",
-      intro: "Tien korte uitspraken. Tik aan hoeveel je het ermee eens bent.",
-      items: [
-        "Ik denk dat ik Brook graag vaak zou gebruiken.",
-        "Ik vond Brook onnodig ingewikkeld.",
-        "Ik vond Brook makkelijk te gebruiken.",
-        "Ik denk dat ik hulp van een technisch persoon nodig zou hebben om Brook te kunnen gebruiken.",
-        "Ik vond dat de verschillende onderdelen van Brook goed samenhingen.",
-        "Ik vond dat er te veel tegenstrijdigheden in Brook zaten.",
-        "Ik denk dat de meeste mensen heel snel zouden leren Brook te gebruiken.",
-        "Ik vond Brook erg omslachtig in gebruik.",
-        "Ik voelde me erg zeker bij het gebruik van Brook.",
-        "Ik moest veel leren voordat ik met Brook aan de slag kon.",
-      ],
-      disagree: "Helemaal oneens",
-      agree: "Helemaal eens",
-      comment: "Wil je ons nog iets laten weten? (optioneel)",
-      send: "Feedback versturen",
-      thanks: "Dank je! Je feedback gaat rechtstreeks naar de mensen die Brook verbeteren.",
-      score: "Bruikbaarheidsscore",
-    },
-  },
-  no: {
-    ui: { left: "Venstre", right: "Høyre", facingDownstream: "Med ansiktet nedstrøms, samme vei som vannet renner" },
-    hub: { trial: "Prøve (eksempelbilder)" },
-    story: {
-      tips: {
-        faecal: "Vask hendene etter at du har tatt i vannet, og hold det unna munnen og sår.",
-        dogs: "Ikke la hunder drikke eller bade her, særlig etter regn.",
-      },
-    },
-    sus: {
-      title: "Ett minutt for å hjelpe oss å gjøre Brook bedre",
-      intro: "Ti korte påstander. Trykk på hvor enig du er.",
-      items: [
-        "Jeg tror jeg kunne tenke meg å bruke Brook ofte.",
-        "Jeg syntes Brook var unødvendig komplisert.",
-        "Jeg syntes Brook var lett å bruke.",
-        "Jeg tror jeg ville trenge hjelp fra en teknisk person for å kunne bruke Brook.",
-        "Jeg syntes de ulike delene av Brook hang godt sammen.",
-        "Jeg syntes det var for mye inkonsekvens i Brook.",
-        "Jeg tror de fleste ville lære seg å bruke Brook veldig raskt.",
-        "Jeg syntes Brook var veldig tungvint å bruke.",
-        "Jeg følte meg veldig trygg da jeg brukte Brook.",
-        "Jeg måtte lære mye før jeg kunne komme i gang med Brook.",
-      ],
-      disagree: "Helt uenig",
-      agree: "Helt enig",
-      comment: "Er det noe mer du vil si til oss? (valgfritt)",
-      send: "Send tilbakemelding",
-      thanks: "Takk! Tilbakemeldingen din går rett til dem som forbedrer Brook.",
-      score: "Brukervennlighetspoeng",
     },
   },
   el: {
