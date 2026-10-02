@@ -5,6 +5,5 @@ docs/evidence/bundles
 docs/evidence/validation
 test-results
 playwright-report
-.claude
 *.mp4
 *.webm
